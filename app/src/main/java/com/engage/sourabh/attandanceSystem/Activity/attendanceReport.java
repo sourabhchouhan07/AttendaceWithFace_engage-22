@@ -1,7 +1,7 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,13 +9,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.engage.sourabh.attandanceSystem.R;
+import com.engage.sourabh.attandanceSystem.global;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +53,6 @@ public class attendanceReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_report);
-
         FY_1BSCIT.add("Communication Skill");
         FY_1BSCIT.add("Operating Systems");
         FY_1BSCIT.add("Digital Electronics");
@@ -155,56 +164,194 @@ public class attendanceReport extends AppCompatActivity {
                 Toast.makeText(attendanceReport.this,"Error--"+parent,Toast.LENGTH_LONG).show();
             }
         });
-//        search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tableLayout.removeAllViews();
-//                final String searchroll1=searchroll.getText().toString().trim();
-//                final String searchdiv1=searchdiv.getText().toString().trim();
-//                final String searchcource1=searchcource.getSelectedItem().toString().trim();
-//                final String searchyear1=seachyear.getSelectedItem().toString().trim();
-//                if(searchroll1.isEmpty()){
-//                    searchroll.setError("please enter Roll number");
-//                    searchroll.requestFocus();
-//                }else if(searchdiv1.isEmpty()){
-//                    searchdiv.setError("please enter Roll number");
-//                    searchdiv.requestFocus();
-//                }else{
-//                    tableLayout.removeAllViews();
-//                    if(main==0&&sub==0){
-//                        for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+FY_1BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,FY_1BSCIT.get(i));
-//                        }
-//                    }else if(main==0&&sub==1){
-//                        for(int i=0;i<=FY_2BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+FY_2BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,FY_2BSCIT.get(i));
-//                        }
-//                    }else if(main==0&&sub==2){
-//                        for(int i=0;i<=SY_3BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+SY_3BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,SY_3BSCIT.get(i));
-//                        }
-//                    }else if(main==0&&sub==3){
-//                        for(int i=0;i<=SY_4BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+SY_4BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,SY_4BSCIT.get(i));
-//                        }
-//                    }else if(main==0&&sub==4){
-//                        for(int i=0;i<=TY_5BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+TY_5BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,TY_5BSCIT.get(i));
-//                        }
-//                    }else if(main==0&&sub==5){
-//                        for(int i=0;i<=TY_6BSCIT.size()-1;i++){
-//                            Log.d("report","Report"+TY_6BSCIT.get(i));
-//                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,TY_6BSCIT.get(i));
-//                        }
-//                    }
-//                }
-//            }
-//        });
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableLayout.removeAllViews();
+                final String searchroll1=searchroll.getText().toString().trim();
+                final String searchdiv1=searchdiv.getText().toString().trim();
+                final String searchcource1=searchcource.getSelectedItem().toString().trim();
+                final String searchyear1=seachyear.getSelectedItem().toString().trim();
+                if(searchroll1.isEmpty()){
+                    searchroll.setError("please enter Roll number");
+                    searchroll.requestFocus();
+                }else if(searchdiv1.isEmpty()){
+                    searchdiv.setError("please enter Roll number");
+                    searchdiv.requestFocus();
+                }else{
+                    tableLayout.removeAllViews();
+                    if(main==0&&sub==0){
+                        for(int i=0;i<=FY_1BSCIT.size()-1;i++){
+                            Log.d("report","Report"+FY_1BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,FY_1BSCIT.get(i));
+                        }
+                    }else if(main==0&&sub==1){
+                        for(int i=0;i<=FY_2BSCIT.size()-1;i++){
+                            Log.d("report","Report"+FY_2BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,FY_2BSCIT.get(i));
+                        }
+                    }else if(main==0&&sub==2){
+                        for(int i=0;i<=SY_3BSCIT.size()-1;i++){
+                            Log.d("report","Report"+SY_3BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,SY_3BSCIT.get(i));
+                        }
+                    }else if(main==0&&sub==3){
+                        for(int i=0;i<=SY_4BSCIT.size()-1;i++){
+                            Log.d("report","Report"+SY_4BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,SY_4BSCIT.get(i));
+                        }
+                    }else if(main==0&&sub==4){
+                        for(int i=0;i<=TY_5BSCIT.size()-1;i++){
+                            Log.d("report","Report"+TY_5BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,TY_5BSCIT.get(i));
+                        }
+                    }else if(main==0&&sub==5){
+                        for(int i=0;i<=TY_6BSCIT.size()-1;i++){
+                            Log.d("report","Report"+TY_6BSCIT.get(i));
+                            attandance(searchcource1,searchyear1,searchdiv1,searchroll1,TY_6BSCIT.get(i));
+                        }
+                    }
+                }
+            }
+        });
         tableLayout=findViewById(R.id.list);
+
+    }
+
+    private void attandance(final String searchcource1, final String searchyear1, final String searchdiv1, String searchroll1, final String dataclass){
+         String icode=((global)getApplication()).getInstituteCode();
+        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode);
+        notice = dbref.child("Attandance/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+searchroll1+"/"+dataclass);
+        notice.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChildren()){
+                    final long child=dataSnapshot.getChildrenCount();
+                    Log.d("report","mainchild----"+child);
+                    final int minchild=(int)child;
+                    notice1 = dbref.child("Attandancedetail/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+dataclass);
+                    notice1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.hasChildren()){
+                                num=num+1;
+                                long tchild=dataSnapshot.getChildrenCount();
+                                Log.d("report","subchild----"+tchild);
+                                Log.d("att","num"+String.valueOf(num));
+                                int maxchild=(int)tchild;
+                                progress(dataclass,minchild,maxchild);
+                                report(num);
+                            }  else {
+                                num=num+1;
+                                Log.d("att","num"+String.valueOf(num));
+                                Log.d("report","Teacher Not child");
+                                progress(dataclass,minchild,minchild);
+                                report(num);
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.d("report","Error--"+error);
+                            Toast.makeText(attendanceReport.this,"Error--"+error,Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else {
+                    num=num+1;
+                    Log.d("att","num"+String.valueOf(num));
+                    int i=0,j=0;
+                    progress(dataclass,i,j);
+                    Log.d("report","student Not child");
+                    report(num);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("report","Error--"+error);
+                Toast.makeText(attendanceReport.this,"Error--"+error,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
+    private void progress(String i, int min, int max){
+        minmum.add(min);
+        manmum.add(max);
+        tableRow = new TableRow(attendanceReport.this);
+        TextView tv=new TextView(attendanceReport.this);
+        tv.setText(i);
+        tv.setTextSize(20);
+        tv.setPadding(5,0,0,0);
+        tv.setWidth(900);
+        tv.setTextColor(Color.BLACK);
+        TextView tv1=new TextView(attendanceReport.this);
+        int percentage;
+        if(max==0){
+            percentage=0;
+        }else {
+            percentage =(min*100)/max;
+        }
+        tv1.setTextColor(Color.GRAY);
+        if(percentage>100){
+            percentage=100;
+        }
+        tv1.setText(min+"/"+max+"\t\t"+percentage+"%");
+        tv1.setTextSize(9);
+        tv1.setPadding(0,0,0,0);
+        tableRow.addView(tv);
+        tableRow.addView(tv1);
+        ProgressBar pb=new ProgressBar(attendanceReport.this,null,android.R.attr.progressBarStyleHorizontal);
+        pb.setMin(0);
+        pb.setMax(max);
+        pb.setProgress(min);
+        pb.setPadding(15,0,15,5);
+        TextView qw=new TextView(attendanceReport.this);
+        qw.setBackgroundColor(Color.BLACK);
+        qw.setHeight(5);
+        tableLayout.addView(tableRow);
+        tableLayout.addView(pb);
+        tableLayout.addView(qw);
+    }
+    @SuppressLint("SetTextI18n")
+    private void report(int qw){
+        if(qw==10){
+            int newmin=0;
+            int newmax=0;
+            num=0;
+            for(int v=0;v<minmum.size();v++){
+                newmax=newmax+manmum.get(v);
+                newmin=newmin+minmum.get(v);
+            }
+            int newpercentage;
+            if(newmax==0){
+                newpercentage=0;
+            }else {
+                newpercentage =(newmin*100)/newmax;
+            }
+            Log.d("atttt","per"+newpercentage);
+            TableRow tableRow1 = new TableRow(attendanceReport.this);
+            tableRow1.setBackgroundColor(Color.parseColor("#1134af"));
+            TextView tv3=new TextView(attendanceReport.this);
+            tv3.setText("Total Attandance");
+            tv3.setTextSize(20);
+            tv3.setPadding(35,10,0,15);
+            tv3.setWidth(900);
+            tv3.setTextColor(Color.WHITE);
+            TextView tv2=new TextView(attendanceReport.this);
+            tv2.setTextColor(Color.WHITE);
+            if(newpercentage>100){
+                newpercentage=100;
+            }
+            tv2.setText(newmin+"/"+newmax+"\t"+newpercentage+"%");
+            tv2.setTextSize(12);
+            tv2.setPadding(0,10,0,15);
+            tableRow1.addView(tv3);
+            tableRow1.addView(tv2);
+            tableLayout.addView(tableRow1);
+            newmax=0;
+            newmin=0;
+            newpercentage=0;
+            manmum.clear();
+            minmum.clear();
+        }
     }
 }
+

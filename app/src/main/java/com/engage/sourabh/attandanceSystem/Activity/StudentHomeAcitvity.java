@@ -3,6 +3,7 @@ package com.engage.sourabh.attandanceSystem.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.engage.sourabh.attandanceSystem.Fragment.ProfileFragment;
 import com.engage.sourabh.attandanceSystem.Fragment.StudentHomeFragment;
 import com.engage.sourabh.attandanceSystem.Fragment.TeacherHomeFragment;
 import com.engage.sourabh.attandanceSystem.R;
+import com.engage.sourabh.attandanceSystem.global;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 public class StudentHomeAcitvity extends AppCompatActivity {
@@ -24,6 +26,14 @@ public class StudentHomeAcitvity extends AppCompatActivity {
         bottomNavigation =findViewById(R.id.bottom_navigation);
 
         //Addm menu item to nav
+        Intent intent=getIntent();
+        String uids=intent.getStringExtra("uid");
+        String code=intent.getStringExtra("code");
+        String userType=intent.getStringExtra("userType");
+        ((global) getApplication()).setUid(uids);
+        ((global)getApplication()).setInstituteCode(code);
+
+        ((global)getApplication()).setUsertype(userType);
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_notification));
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_home));

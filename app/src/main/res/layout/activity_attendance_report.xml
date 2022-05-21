@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/white"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Activity.attendanceReport">
 
     <!-- AppBar layout for using Toolbar as AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -66,7 +64,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/home_btn"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/toolbar"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.002" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -86,37 +85,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TableLayout
-        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
-
-
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
+        android:layout_height="wrap_content">
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingStart="25dp"
             android:paddingEnd="25dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="0dp"
-                android:paddingStart="10dp"
                 android:text="Course"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
-
+                android:layout_margin="0dp"
+                android:textSize="13dp"
+                android:paddingStart="10dp"/>
             <Spinner
+                android:layout_margin="0dp"
                 android:id="@+id/searchspinner"
                 style="@style/spinnerItemStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_margin="0dp"
                 android:background="@drawable/spinner_bg"
                 android:dropDownWidth="wrap_content"
                 android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
@@ -125,29 +115,26 @@
                 android:popupElevation="3dp"
                 android:stateListAnimator="@drawable/spinner_sla" />
         </LinearLayout>
-
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:paddingStart="25dp"
             android:paddingEnd="25dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="0dp"
-                android:paddingStart="10dp"
                 android:text="Year"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
-
+                android:layout_margin="0dp"
+                android:textSize="13dp"
+                android:paddingStart="10dp"/>
             <Spinner
+                android:layout_margin="0dp"
                 android:id="@+id/searchspinner2"
                 style="@style/spinnerItemStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_margin="0dp"
                 android:background="@drawable/spinner_bg"
                 android:dropDownWidth="wrap_content"
                 android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
@@ -156,93 +143,76 @@
                 android:popupElevation="3dp"
                 android:stateListAnimator="@drawable/spinner_sla" />
         </LinearLayout>
-
         <TableRow
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp">
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="174dp"
                 android:layout_height="55dp"
                 android:hint="@string/rollnumber"
-                android:textColorHint="#000"
-                app:boxStrokeColor="#000"
                 app:hintTextColor="#000"
+                android:textColorHint="#000"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
+                app:boxStrokeColor="#000">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchroll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:maxLength="3"
+                    android:textColorHint="#242424"
                     android:textColor="@color/black"
-                    android:textColorHint="#242424" />
+                    android:maxLength="3"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="193dp"
                 android:layout_height="55dp"
-                android:layout_marginStart="5dp"
                 android:hint="@string/division"
-                android:textColorHint="#000"
-                app:boxStrokeColor="#000"
                 app:hintTextColor="#000"
+                android:textColorHint="#000"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
+                app:boxStrokeColor="#000"
+                android:layout_marginStart="5dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchdivision"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:maxLength="1"
+                    android:textColorHint="#242424"
                     android:textColor="@color/black"
-                    android:textColorHint="#242424" />
+                    android:inputType="text"
+                    android:maxLength="1"  />
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
-
         <Button
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/colorPrimary"
-            android:backgroundTint="#1134af"
             android:text="@string/search"
-            android:textColor="#fff" />
+            android:backgroundTint="#1134af"
+            android:textColor="#fff"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"/>
     </TableLayout>
-
     <View
-        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.023"></View>
-
+        android:background="#0052c5">
+    </View>
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
+        android:layout_width="match_parent">
         <TableLayout
-            android:id="@+id/list"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TableLayout>
+            android:id="@+id/list">
+        </TableLayout>
     </ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

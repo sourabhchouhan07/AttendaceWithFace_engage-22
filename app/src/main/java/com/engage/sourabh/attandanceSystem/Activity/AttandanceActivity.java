@@ -1,9 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import static androidx.camera.core.CameraX.getContext;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +13,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.engage.sourabh.attandanceSystem.R;
-import com.google.android.material.internal.ManufacturerUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -297,7 +294,7 @@ public class AttandanceActivity extends AppCompatActivity {
                     starttime.setError("Please enter valid formate");
                     starttime.requestFocus();
                 }else{
-                    Intent intent=new Intent(AttandanceActivity.this, manualAttendance.class);
+                    Intent intent=new Intent(AttandanceActivity.this, selectrollnumber.class);
                     intent.putExtra("course",attancourses);
                     intent.putExtra("year",attanyears);
                     intent.putExtra("division",divisions);

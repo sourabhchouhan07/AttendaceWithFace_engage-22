@@ -294,6 +294,13 @@ public class AddStudentFace extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    String uid=mAuth.getCurrentUser().getUid().toString();
+                    String code=((global)getApplication()).getInstituteCode();
+                    profiledatabase profiledatabase = new profiledatabase(code,fullname, email, birthofdate, number, uid, addresss, number, "Student", rollnumber, courese, year, null, null, division);
+                    profileRef.child(uid).setValue(profiledatabase);
+                    addstudentdatabase addstudentdatabase = new addstudentdatabase(fullname, rollnumber, addresss, email, birthofdate, division, courese + year, number, uid);
+                    studentRef.child("student/"+courese + "/" + year + "/" + division + "/" + rollnumber).setValue(addstudentdatabase);
+
 
                     Toast.makeText(AddStudentFace.this, "Successfully added Student "+code, Toast.LENGTH_LONG).show();
 
@@ -334,7 +341,7 @@ public class AddStudentFace extends AppCompatActivity {
 
                     registered.put(input.getText().toString(), result);
                     String name = input.getText().toString();
-                    DatabaseReference ref =studentRef.child("student").child("rollnumber");
+                    DatabaseReference ref =studentRef.child("studentrollnumber").child("rollnumber");
                     DatabaseReference tk = studentRef.child("faces").child(courese + "/" + year + "/" + division+ "/" + rollnumber);
                     ref.setValue(name);
                     count++;
