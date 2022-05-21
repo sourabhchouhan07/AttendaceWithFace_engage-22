@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".Activity.StudentDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- ToolBar widget -->
+
+
+            <!-- Right most ImageView -->
+
+            <!-- ImageView beside title of ToolBar -->
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+
+                app:titleTextColor="#ffff" />
+
+            <ImageView
+                android:id="@+id/home_btn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_home" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Details"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintEnd_toStartOf="@+id/home_btn"
+
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/home_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout4"
+        android:layout_width="388dp"
+
+        android:layout_height="184dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+        <TableRow
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp">
+
+            <LinearLayout android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:paddingStart="10dp"
+                    android:text="@string/cource"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <Spinner
+                    android:id="@+id/detailcource"
+                    style="@style/spinnerItemStyle"
+                    android:layout_width="174dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:background="@drawable/spinner_bg"
+                    android:dropDownWidth="160dp"
+                    android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                    android:paddingRight="14dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:stateListAnimator="@drawable/spinner_sla" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginStart="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:paddingStart="10dp"
+                    android:text="@string/year"
+                    android:textColor="@color/black"
+                    android:textSize="13dp" />
+
+                <Spinner
+                    android:id="@+id/detailyear"
+                    style="@style/spinnerItemStyle"
+                    android:layout_width="191dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="0dp"
+                    android:background="@drawable/spinner_bg"
+                    android:dropDownWidth="180dp"
+                    android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                    android:paddingRight="14dp"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    android:stateListAnimator="@drawable/spinner_sla" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="174dp"
+                android:layout_height="55dp"
+                android:hint="@string/rollnumber"
+                android:textColorHint="#000"
+                app:boxStrokeColor="#000"
+                app:hintTextColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/detailrollnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:textColor="@color/black"
+                    android:textColorHint="#242424" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="193dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="5dp"
+                android:hint="@string/division"
+                android:textColorHint="#000"
+                app:boxStrokeColor="#000"
+                app:hintTextColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/detaildivison"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLength="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="#242424" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </TableRow>
+
+        <Button
+            android:id="@+id/detailshow"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="#1134af"
+            android:text="@string/show"
+            android:textColor="#fff" />
+    </TableLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#0052c5"
+        app:layout_constraintBottom_toTopOf="@+id/detailprofile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout4"></View>
+
+    <ImageView
+        android:id="@+id/detailprofile"
+        android:layout_width="204dp"
+        android:layout_height="189dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@color/grey"
+        android:contentDescription="@string/profile_pic"
+        android:scaleType="fitCenter"
+        android:src="@drawable/face"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout4" />
+
+    <TableLayout
+        android:id="@+id/tableLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailprofile">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/fullname"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailfull_name"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="-------- ------"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/birth_date"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailBirthofdate"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="--/--/----"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/cource"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailshowcource"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="-----"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/division"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/divisionstudent"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="------"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/rollnumber"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailroll"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="---"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/uid"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/uidstudent"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="------------"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/email"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailmail"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="--------------"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/phone_number"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailContact"
+                android:layout_width="144dp"
+                android:paddingLeft="12dp"
+                android:text="+91 ----------"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="139dp"
+                android:text="@string/address"
+                android:textAlignment="textEnd"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailaddress"
+                android:layout_width="268dp"
+                android:layout_height="43dp"
+                android:paddingLeft="12dp"
+                android:text="---------------\n---------\n-----"
+                android:textAlignment="textStart"
+                android:textColor="#000000" />
+        </TableRow>
+    </TableLayout>
+
+    <ProgressBar
+        android:id="@+id/progressdetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.WhiteAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

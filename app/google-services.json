@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "701252010486",
+    "project_id": "camattendance-ead6a",
+    "storage_bucket": "camattendance-ead6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701252010486:android:6aa3b22c2a3101c90087d7",
+        "android_client_info": {
+          "package_name": "com.engage.sourabh.attandanceSystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "701252010486-htba03nfq091r05c7mg2opbt5abq2ict.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm7dbTSDai_-gSawH3hNImY8Yn_l4MW4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "701252010486-htba03nfq091r05c7mg2opbt5abq2ict.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

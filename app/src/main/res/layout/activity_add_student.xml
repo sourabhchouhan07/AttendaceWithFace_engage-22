@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AddStudent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- ToolBar widget -->
+
+
+            <!-- Right most ImageView -->
+
+            <!-- ImageView beside title of ToolBar -->
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+
+
+                app:titleTextColor="#ffff" />
+
+            <ImageView
+                android:id="@+id/home_btn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+
+                android:layout_marginEnd="8dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintEnd_toEndOf="@+id/toolbar"
+                app:layout_constraintHorizontal_bias="0.977"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_home" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Student"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+                app:layout_constraintEnd_toStartOf="@+id/home_btn"
+
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/home_btn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="401dp"
+        android:layout_height="654dp"
+        android:layout_margin="12dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/colorBackground"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/studentimage"
+                android:layout_width="146dp"
+                android:layout_height="134dp"
+                android:layout_marginLeft="140dp"
+                android:layout_marginRight="75dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="@color/white"
+                android:backgroundTint="@color/grey"
+                android:contentDescription="@string/profile_pic"
+                android:scaleType="fitCenter"
+                android:src="@drawable/face_icon2" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/fullname"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="#000"
+                    app:hintTextColor="#000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/studentfullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/black"
+                        android:textColorHint="#242424" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TableRow
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp">
+
+                    <LinearLayout android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:paddingStart="10dp"
+                            android:text="@string/cource"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                        <Spinner
+                            android:id="@+id/studentcourse"
+                            style="@style/spinnerItemStyle"
+                            android:layout_width="174dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/spinner_bg"
+                            android:dropDownWidth="wrap_content"
+                            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                            android:paddingRight="14dp"
+                            android:popupBackground="@android:color/white"
+                            android:popupElevation="3dp"
+                            android:stateListAnimator="@drawable/spinner_sla" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginStart="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:paddingStart="10dp"
+                            android:text="@string/year"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                        <Spinner
+                            android:id="@+id/studentyear"
+                            style="@style/spinnerItemStyle"
+                            android:layout_width="191dp"
+                            android:layout_height="50dp"
+                            android:layout_margin="0dp"
+                            android:background="@drawable/spinner_bg"
+                            android:dropDownWidth="wrap_content"
+                            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                            android:paddingRight="14dp"
+                            android:popupBackground="@android:color/white"
+                            android:popupElevation="3dp"
+                            android:stateListAnimator="@drawable/spinner_sla" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="@string/rollnumber"
+                        android:textColorHint="#000"
+                        app:boxStrokeColor="#000"
+                        app:hintTextColor="#000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/studentrollnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:textColor="@color/black"
+                            android:textColorHint="#242424" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="5dp"
+                        android:hint="@string/phone_number"
+                        android:textColorHint="#000"
+                        app:boxStrokeColor="#000"
+                        app:hintTextColor="#000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/studentnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:textColor="@color/black"
+                            android:textColorHint="#242424" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </TableRow>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/email"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="#000"
+                    app:hintTextColor="#000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/studentemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/black"
+                        android:textColorHint="#242424" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="@string/division"
+                        android:textColorHint="#000"
+                        app:boxStrokeColor="#000"
+                        app:hintTextColor="#000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/studentdivision"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLength="1"
+                            android:textColor="@color/black"
+                            android:textColorHint="#242424" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="5dp"
+                        android:hint="@string/birth_date"
+                        android:textColorHint="#000"
+                        app:boxStrokeColor="#000"
+                        app:hintTextColor="#000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/studentbirtofdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"
+                            android:maxLength="10"
+                            android:textColor="@color/black"
+                            android:textColorHint="#242424" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </TableRow>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:hint="@string/address"
+                    android:paddingStart="25dp"
+                    android:paddingEnd="25dp"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="#000"
+                    app:hintTextColor="#000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/studentaddresss"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:maxLines="4"
+                        android:textColor="@color/black"
+                        android:textColorHint="#242424" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/studentsubmit"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="60dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="Add"
+                    android:textColor="#fff" />
+            </TableLayout>
+
+            <ProgressBar
+                android:id="@+id/progressaddstudent"
+                android:layout_width="401dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:theme="@style/AppTheme.WhiteAccent" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

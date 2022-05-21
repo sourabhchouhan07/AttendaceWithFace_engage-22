@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#D1BEE9</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#EDCA9E</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="grey">#352424</color>
+
+    <color name="black">#000</color>
+
+    <color name="white">#fff</color>
+    <color name="gray">#2d2d2d</color>
+
+
+    <color name="colorPrimary">#3c415e</color>
+    <color name="colorBackground">#FFCDD2</color>
+    <color name="colorPrimaryDark">#2A2E43</color>
+    <color name="colorAccent">#FF402D</color>
+    <color name="bottomNavigationTextColor">#B2B2B2</color>
+    <color name="bottomNavigationTintColor">#B2B2B2</color>
+    <color name="bottomNavigationSelectedColor">#FC4926</color>
+    <color name="statusBarColor">#000</color>
+    <color name="whiteBodyColor">#FCFCFC</color>
+    <color name="darkTextColor">#020000</color>
+    <color name="primaryTextColor">#019AE8</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="frutorial_title">#4c4c4c</color>
+
+    <!--colors for modern ui-->
+
+
+
+
+    <color name="loginBkColor">#f0f0f0</color>
+
+    <!--colros for card-->
+
+
+    <color name="whiteCardColor">#fff</color>
+
+
+
+
+
+
+
+    <color name="blue">#4422BB</color>
+
+
+
+    <color name="gey_text">#505050</color>
+
+</resources>

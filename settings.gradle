@@ -1,0 +1,3 @@
+
+rootProject.name = "Attandence With Face"
+include ':app'

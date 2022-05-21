@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".Fragment.ProfileFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="244dp"
+            android:layout_height="234dp"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.556"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.032" />
+
+        <TextView
+            android:id="@+id/full_name"
+            android:layout_width="184dp"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="Name "
+            android:textSize="20dp"
+            android:textStyle="bold"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.559"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.035" />
+
+        <TableLayout
+            android:id="@+id/tableLayout3"
+            android:layout_width="395dp"
+            android:layout_height="258dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name">
+
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="138dp"
+                    android:paddingEnd="20sp"
+                    android:text="Course:"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showcource"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="------------"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/showdegreet"
+                    android:layout_width="138dp"
+                    android:paddingEnd="20sp"
+                    android:text="Degree:"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showdegree"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="-----,-----"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="138dp"
+                    android:paddingEnd="20sp"
+                    android:text="BirthDate:"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/Birthofdate"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="--/--/----"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/divt"
+                    android:layout_width="138dp"
+                    android:paddingEnd="20sp"
+                    android:text="@string/division"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/div"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/rollt"
+                    android:layout_width="138dp"
+                    android:paddingEnd="20sp"
+                    android:text="@string/rollnumber"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/rollnumber"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="---"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:paddingEnd="20sp"
+                    android:text="@string/phone_number"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/Contact"
+                    android:layout_width="wrap_content"
+                    android:text="+91 ----------"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:paddingEnd="20sp"
+                    android:text="@string/email"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/mail"
+                    android:layout_width="wrap_content"
+                    android:text="@string/adminerror_210_com"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="155dp"
+                    android:paddingEnd="20sp"
+                    android:text="@string/uid"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/uid"
+                    android:layout_width="wrap_content"
+                    android:text="@string/_941264536383012"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:paddingEnd="20sp"
+                    android:text="@string/address"
+                    android:textAlignment="textEnd"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="120dp"
+                    android:layout_height="72dp"
+                    android:maxLines="3"
+                    android:text="----------------------\n---------------\n--------"
+                    android:textAlignment="textStart"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </TableRow>
+        </TableLayout>
+
+        <ProgressBar
+            android:id="@+id/profilepb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme"
+            app:layout_constraintBottom_toTopOf="@+id/tableLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:cursorVisible="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+
+    android:background="@drawable/login_bk"
+
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+
+        android:id="@+id/textView4"
+        style="@style/loginHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="cursive"
+        android:text="Register Your Institute"
+        android:textColor="@color/colorPrimary"
+        android:textSize="39dp"
+        app:layout_constraintBottom_toTopOf="@+id/textinput2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput2"
+        style="@style/parent"
+
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toTopOf="@id/textInputMobile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editTextName"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/purple_200"
+            android:hint="@string/login_name_hint"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputMobile"
+        style="@style/parent"
+        android:layout_margin="14dp"
+        app:layout_constraintBottom_toTopOf="@id/textInputEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editTextMobile"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/purple_200"
+            android:hint="@string/login_mobile_number_hint"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEmail"
+        style="@style/parent"
+        android:layout_margin="14dp"
+        app:layout_constraintBottom_toTopOf="@id/textInputPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/purple_200"
+            android:hint="@string/login_email_hint"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPassword"
+        style="@style/parent"
+        android:layout_margin="14dp"
+        app:layout_constraintBottom_toTopOf="@id/textaddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/purple_200"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textaddress"
+        style="@style/parent"
+        app:layout_constraintBottom_toTopOf="@+id/cirLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="14dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/institutecode"
+            style="@style/modifiedEditText"
+            android:backgroundTint="@color/purple_200"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Enter Institute Code"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textSize="15dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/cirLoginButton"
+        style="@style/loginButton"
+        android:layout_gravity="right"
+        android:layout_marginBottom="20dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toTopOf="@+id/gotologin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/gotologin"
+        style="@style/parent"
+        android:layout_width="369dp"
+        android:layout_height="57dp"
+        android:text="Already have an Account? login"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:layout_marginRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <ProgressBar
+        android:id="@+id/progressaddstudent"
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.WhiteAccent"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
