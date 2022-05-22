@@ -3,6 +3,7 @@ package com.engage.sourabh.attandanceSystem.Fragment;
 import static android.view.View.GONE;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.engage.sourabh.attandanceSystem.Activity.LoginActivity;
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
@@ -70,6 +72,8 @@ public class ProfileFragment extends Fragment {
 
                    FirebaseAuth mauth=FirebaseAuth.getInstance();
                    mauth.signOut();
+                   Intent i=new Intent(getContext(), LoginActivity.class);
+                   startActivity(i);
                }
            });
         mStorageRef = FirebaseStorage.getInstance().getReference();

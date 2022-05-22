@@ -23,6 +23,8 @@
         android:id="@+id/bottom_navigation"
         app:mbn_circleColor="#FFCDD2"
         app:mbn_selectedIconColor="#3c415e"
+
+
         app:mbn_defaultIconColor="@color/white"
         app:mbn_countTextColor="#FFCDD2"
         app:mbn_countBackgroundColor="#ff6f00"

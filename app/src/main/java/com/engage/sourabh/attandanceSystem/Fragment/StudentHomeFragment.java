@@ -1,5 +1,6 @@
 package com.engage.sourabh.attandanceSystem.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,9 @@ import android.view.ViewGroup;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.engage.sourabh.attandanceSystem.Activity.SendMessage;
+import com.engage.sourabh.attandanceSystem.Activity.StudentAttendanceReport;
+import com.engage.sourabh.attandanceSystem.Activity.TeacherDetailActivity;
 import com.engage.sourabh.attandanceSystem.R;
 
 
@@ -29,10 +33,40 @@ public class StudentHomeFragment extends Fragment {
         teacherInfo=layout.findViewById(R.id.teacher_detail);
 
 
+        attendanceReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(getContext(), StudentAttendanceReport.class);
+                startActivity(i);
+            }
+        });
+
+        sendMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(getContext(), SendMessage.class);
+                startActivity(i);
+            }
+        });
+
+        teacherInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i=new Intent(getContext(), TeacherDetailActivity.class);
+                startActivity(i);
+            }
+        });
 
 
 
 
 
-    return layout;}
+
+
+
+
+        return layout;}
 }
