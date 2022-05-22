@@ -340,7 +340,7 @@ public class AddStudentFace extends AppCompatActivity {
                     String pt = "";
 
                     registered.put(input.getText().toString(), result);
-                    String name = input.getText().toString();
+                    String name = rollnumber;
                     DatabaseReference ref =studentRef.child("studentrollnumber").child("rollnumber");
                     DatabaseReference tk = studentRef.child("faces").child(courese + "/" + year + "/" + division+ "/" + rollnumber);
                     ref.setValue(name);

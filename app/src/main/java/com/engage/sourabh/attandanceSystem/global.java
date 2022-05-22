@@ -4,7 +4,15 @@ package com.engage.sourabh.attandanceSystem;
 import android.app.Application;
 
 public class global extends Application {
-    String instituteCode,uid,usertype,fullname,email,address,birthofdate,number,course,rollnumber,year,division,localprofilepic,emailaddrss,password;
+    String sName,instituteCode,uid,usertype,fullname,email,address,birthofdate,number,course,rollnumber,year,division,localprofilepic,emailaddrss,password;
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
 
     public String getEmailaddrss() {
         return emailaddrss;

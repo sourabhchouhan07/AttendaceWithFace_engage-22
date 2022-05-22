@@ -48,7 +48,6 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-
 import com.engage.sourabh.attandanceSystem.Model.AttandanceRecord;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.SimilarityClassifier;
@@ -98,6 +97,7 @@ public class CameraAttendance extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference  dbRef;
     static int count=0;
+    String Sname;
     TextView msg;
     ProgressDialog progressDialog;
     String icode="";
@@ -135,6 +135,9 @@ public class CameraAttendance extends AppCompatActivity {
     String modelFile="mobile_face_net.tflite"; //model name
 
     private HashMap<String, SimilarityClassifier.Recognition> registered = new HashMap<>(); //saved Faces
+
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -357,33 +360,19 @@ public class CameraAttendance extends AppCompatActivity {
         String yearsubstring=year.substring(0,2);
         DatabaseReference newref=FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/studentrollnumber/rollnumber");
 
-       retData=dbRef.child(course+"/"+yearsubstring+"/"+division);
+        retData=dbRef.child(course+"/"+yearsubstring+"/"+division);
+       DatabaseReference findName=FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/student/"+course+"/"+yearsubstring+"/"+division);
 
         // calling add value event listener method
         // for getting the values from database.
-        newref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // this method is call to get the realtime
-                // updates in the data.
-                // this method is called when the data is
-                // changed in our Firebase console.
-                // below line is for getting the data from
 
-
-
-
-                Long StudentName = snapshot.getChildrenCount();
-
-                Toast.makeText(CameraAttendance.this, "name tak."+StudentName, Toast.LENGTH_SHORT).show();
-                Log.d("ss","Detection start count"+StudentName);
 
 //                String strNew = StudentName.replace("[", "");
 //                String s1 = strNew.replace("]", "");
 //                String[] words = s1.split(",");
 
 //                msg.setText(words[0]);
-                for (int k = 1; k <=15 ; k++)
+                for (int k = 1; k <=20 ; k++)
                 {     DatabaseReference dbt = retData.child(k+"");
                     String studentName=k+"";
                     if(dbt==null){
@@ -393,23 +382,54 @@ public class CameraAttendance extends AppCompatActivity {
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            int i = 0;
-                            Log.d("sst","sourabh start"+dbt+"");
+
+                            if (snapshot.exists()){
+                                int i = 0;
+                            Log.d("sst", "sourabh start" + dbt + "");
                             float[][] mt = new float[200][200];
                             for (DataSnapshot tp : snapshot.getChildren()) {
                                 String t = tp.getValue(String.class);
                                 mt[0][i] = Float.parseFloat(t);
-                                Log.d("sst","sourabh start"+t);
+                                Log.d("sst", "sourabh start" + t);
                                 i++;
 
                             }
                             SimilarityClassifier.Recognition result = new SimilarityClassifier.Recognition(
                                     "0", "", -1f);
                             result.setExtra(mt);
-                            Toast.makeText(CameraAttendance.this, "fail"+StudentName, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CameraAttendance.this, "fail" , Toast.LENGTH_SHORT).show();
+
+                            findName.child(studentName).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    if (snapshot.exists()) {
+                                        String nos=snapshot.child("fullName").getValue().toString();
+                                        Log.d("nnnn",nos); //yaha tk aa rha hai data
+
+                                     String toge=nos+" , " +studentName+"";
+                                     registered.put(toge,result);
+                                       Log.d("reff",findName.child(studentName).toString());
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                            //yaha par akar null or rha  hai sname;
+
+
+//                            String ttt=((global)getApplication()).getsName();
+//                                Log.d("name of ",ttt);
+//                            String together=ttt+" ("+studentName+")";
 
                             //upload faces and name of student from firebase database to Registered name HashMap
-                            registered.put(studentName, result);
+//                            registered.put(together, result);
+
+                        }
                         }
 
                         @Override
@@ -417,6 +437,8 @@ public class CameraAttendance extends AppCompatActivity {
                             Toast.makeText(CameraAttendance.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+
 
                 }
 
@@ -490,19 +512,12 @@ public class CameraAttendance extends AppCompatActivity {
                 // after getting the value we are setting
                 // our value to our text view in below line.
                 if(registered.isEmpty())
-                    Toast.makeText(CameraAttendance.this, "SuccessFully Fetch All student Data." + "", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CameraAttendance.this, "Emptye fail ." + "", Toast.LENGTH_LONG).show();
 
                 progressDialog.dismiss();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(CameraAttendance.this, "Fail to get data.", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-            }
-        });
+
+
 
 
 
@@ -997,13 +1012,22 @@ public class CameraAttendance extends AppCompatActivity {
                 }
                 else
                 {
-                    if(distance_local<distance){ //If distance between Closest found face is more than 1.000 ,then output UNKNOWN face.
-                        if(rollNoList.contains(name)){
-                            reco_name.setText("Already Attendance Marked -"+name);
+                    if(distance_local<distance){
+
+
+                        //If distance between Closest found face is more than 1.000 ,then output UNKNOWN face.
+                        String []part=name.split(",");
+                        String ps=part[1];
+                        ps=ps.trim();
+
+                        if(rollNoList.contains(ps)){
+                            reco_name.setText("Already Marked -"+part[0]);
                         }else{
 
-                            rollNoList.add(name);
-                            reco_name.setText("Roll Number : "+name);
+
+
+                            rollNoList.add(ps);
+                            reco_name.setText("Name "+part[0]+"\n rollNo :"+ part[1]);
                         }
 
                     }
@@ -1357,4 +1381,3 @@ public class CameraAttendance extends AppCompatActivity {
     //yaha tak
 
 }
-
