@@ -140,7 +140,7 @@ public class selectrollnumber extends AppCompatActivity {
                             @SuppressLint("SimpleDateFormat") SimpleDateFormat ft1 = new SimpleDateFormat ("yyyyMMddHH:mm");
                             final String Adate=ft1.format(AdNow);
 
-                            notice2 = FirebaseDatabase.getInstance().getReference("Attandancedetail");
+                            notice2 = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandancedetail");
                             notice2.child(course+"/"+year+"/"+division+"/"+subject+"/"+Adate).setValue("date");
                             pbs.setVisibility(View.GONE);
                             Toast.makeText(selectrollnumber.this,"Submit", Toast.LENGTH_LONG).show();

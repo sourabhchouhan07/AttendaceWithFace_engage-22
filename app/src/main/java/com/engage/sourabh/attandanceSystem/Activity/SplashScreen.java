@@ -1,8 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.engage.sourabh.attandanceSystem.R;
@@ -63,13 +63,17 @@ public class SplashScreen extends AppCompatActivity {
                                 i.putExtra("uid",uid);
                                 i.putExtra("userType",usertypelogin);
                                 i.putExtra("code",inCode);
+                                String name=dataSnapshot.child("fullname").getValue().toString();
                                 ((global)getApplication()).setInstituteCode(inCode);
+                                ((global)getApplication()).setFullname(name);
                                 startActivity(i);
                             }else if(usertypelogin.equals("Student")){
                                 loader.setVisibility(View.GONE);
                                 Intent i = new Intent(SplashScreen.this, StudentHomeAcitvity.class);
                                 i.putExtra("uid",uid);
                                 ((global)getApplication()).setInstituteCode(inCode);
+                                String name=dataSnapshot.child("fullname").getValue().toString();
+                                ((global)getApplication()).setFullname(name);
                                 i.putExtra("code",inCode);
                                 startActivity(i);
                             }else if(usertypelogin.equals("institute")){
@@ -78,6 +82,9 @@ public class SplashScreen extends AppCompatActivity {
                                 Intent i = new Intent(SplashScreen.this, IndexActivity.class);
                                 i.putExtra("uid",uid);
                                 ((global)getApplication()).setInstituteCode(inCode);
+
+                                String name=dataSnapshot.child("name").getValue().toString();
+                                ((global)getApplication()).setFullname(name);
                                 i.putExtra("code",inCode);
                                 i.putExtra("userType",usertypelogin);
                                 startActivity(i);

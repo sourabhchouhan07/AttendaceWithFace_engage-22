@@ -16,9 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-        <activity
-            android:name=".teacherList"
-            android:exported="false" />
+
+
         <activity
             android:name=".Activity.selectrollnumber"
             android:exported="false" />

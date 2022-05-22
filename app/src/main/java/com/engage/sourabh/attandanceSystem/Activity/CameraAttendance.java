@@ -383,7 +383,7 @@ public class CameraAttendance extends AppCompatActivity {
 //                String[] words = s1.split(",");
 
 //                msg.setText(words[0]);
-                for (int k = 1; k <=2 ; k++)
+                for (int k = 1; k <=15 ; k++)
                 {     DatabaseReference dbt = retData.child(k+"");
                     String studentName=k+"";
                     if(dbt==null){

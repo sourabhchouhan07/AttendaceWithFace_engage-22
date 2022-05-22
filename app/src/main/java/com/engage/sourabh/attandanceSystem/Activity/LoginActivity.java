@@ -1,12 +1,6 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.engage.sourabh.attandanceSystem.R;
@@ -103,18 +100,25 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this,"Successfull login ",Toast.LENGTH_SHORT).show();
                                         if(usertypelogin.equals("Teacher")){
                                             spinner.setVisibility(View.GONE);
-
+                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                             i.putExtra("uid",uid);
                                             i.putExtra("userType","Teacher");
                                             startActivity(i);
                                         }else if(usertypelogin.equals("Student")){
+
+                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             spinner.setVisibility(View.GONE);
                                             Intent i = new Intent(LoginActivity.this, StudentHomeAcitvity.class);
                                             i.putExtra("uid",uid);
                                             startActivity(i);
                                         } else if (usertypelogin.equals("Institute")){
+                                            String name=dataSnapshot.child("name").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             spinner.setVisibility(View.GONE);
+
                                             Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                             i.putExtra("uid",uid);
                                             i.putExtra("userType","institute");
@@ -161,12 +165,16 @@ public class LoginActivity extends AppCompatActivity {
                                         String usertypelogin=dataSnapshot.child("userType").getValue().toString();
                                         Toast.makeText(LoginActivity.this,"Successfull login ",Toast.LENGTH_SHORT).show();
                                         if(usertypelogin.equals("Teacher")){
+                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             spinner.setVisibility(View.GONE);
                                             Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                             i.putExtra("uid",uid);
                                             i.putExtra("userType","Teacher");
                                             startActivity(i);
                                         }else if(usertypelogin.equals("institute")){
+                                            String name=dataSnapshot.child("name").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             spinner.setVisibility(View.GONE);
                                             Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                             i.putExtra("uid",uid);
@@ -174,6 +182,8 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(i);
                                         }
                                         else if(usertypelogin.equals("Student")){
+                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                            ((global)getApplication()).setFullname(name);
                                             spinner.setVisibility(View.GONE);
                                             Intent i = new Intent(LoginActivity.this, StudentHomeAcitvity.class);
                                             i.putExtra("uid",uid);
@@ -319,6 +329,8 @@ public class LoginActivity extends AppCompatActivity {
                                            String inCode=dataSnapshot.child("code").getValue().toString();
                                             Toast.makeText(LoginActivity.this,"Successfully login ",Toast.LENGTH_SHORT).show();
                                             if(usertypelogin.equals("Teacher")){
+                                                String name=dataSnapshot.child("fullname").getValue().toString();
+                                                ((global)getApplication()).setFullname(name);
                                                 spinner.setVisibility(View.GONE);
                                                 Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                                 i.putExtra("uid",uid);
@@ -327,6 +339,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 i.putExtra("code",inCode);
                                                 startActivity(i);
                                             }else if(usertypelogin.equals("Student")){
+                                                String name=dataSnapshot.child("fullname").getValue().toString();
+                                                ((global)getApplication()).setFullname(name);
                                                 spinner.setVisibility(View.GONE);
                                                 Intent i = new Intent(LoginActivity.this, StudentHomeAcitvity.class);
                                                 i.putExtra("uid",uid);
@@ -335,6 +349,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(i);
                                             }else if(usertypelogin.equals("institute"))
                                             {
+                                                String name=dataSnapshot.child("name").getValue().toString();
+                                                ((global)getApplication()).setFullname(name);
                                                 spinner.setVisibility(View.GONE);
                                                 Intent i = new Intent(LoginActivity.this, IndexActivity.class);
                                                 i.putExtra("uid",uid);
