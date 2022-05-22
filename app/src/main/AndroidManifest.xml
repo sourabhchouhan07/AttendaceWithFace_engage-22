@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/student"
+        android:icon="@drawable/facerecong"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/student"
+        android:roundIcon="@drawable/facerecong"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">

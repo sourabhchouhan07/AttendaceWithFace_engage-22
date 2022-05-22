@@ -122,8 +122,7 @@ public class IndexActivity extends AppCompatActivity {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 //display Toast
-                Toast.makeText(getApplicationContext(),"you clicked"+item.getId(),
-                        Toast.LENGTH_LONG).show();
+
             }
         });
 

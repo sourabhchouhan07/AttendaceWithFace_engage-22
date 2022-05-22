@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +39,7 @@ import java.io.File;
 public class ProfileFragment extends Fragment {
 
     private TextView full_names,showcources,Birthofdates,Contacts,mails,addresss,uids,div,rollnumber,usertype,rollt,divt,showdegreet,showdegree;
-    private ImageButton profile;
+    private ImageView profile;
     Button logout;
     private ProgressBar ppb;
     private StorageReference mStorageRef;
@@ -55,6 +55,7 @@ public class ProfileFragment extends Fragment {
         addresss=layout.findViewById(R.id.address);
         uids=layout.findViewById(R.id.uid);
         logout=layout.findViewById(R.id.logout);
+        profile=layout.findViewById(R.id.imageView2);
 //        profile=layout.findViewById(R.id.profileimage);
         ppb=layout.findViewById(R.id.profilepb);
         div=layout.findViewById(R.id.div);
@@ -62,6 +63,7 @@ public class ProfileFragment extends Fragment {
         usertype=layout.findViewById(R.id.usertype);
         divt=layout.findViewById(R.id.divt);
         rollt=layout.findViewById(R.id.rollt);
+
         showdegree=layout.findViewById(R.id.showdegree);
         showdegreet=layout.findViewById(R.id.showdegreet);
         showdegree.setVisibility(GONE);
@@ -94,6 +96,18 @@ public class ProfileFragment extends Fragment {
                 assert addTeacherdatbase != null;
                 full_names.setText(addTeacherdatbase.getFullname());
                 usertype.setText("Usertype:"+addTeacherdatbase.getUserType());
+
+                String ust=addTeacherdatbase.getUserType();
+
+                if(ust.equals("institute")){
+                    profile.setImageResource(R.drawable.college);
+
+                }else if(ust.equals("Teacher")){
+                    profile.setImageResource(R.drawable.college);
+
+                }else{
+                    profile.setImageResource(R.drawable.stdent);
+                }
                 if(addTeacherdatbase.getCourece()!=null){
                     showcources.setText(addTeacherdatbase.getCourece());
                 }

@@ -112,6 +112,10 @@ public class StudentDetailActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot!=null){
                                     addstudentdatabase showinfo=dataSnapshot.getValue(addstudentdatabase.class);
+
+                                    if(showinfo==null){
+                                        Toast.makeText(StudentDetailActivity.this,"Student Doesn't exit",Toast.LENGTH_LONG).show();
+                                    }
                                     assert showinfo != null;
                                     if(showinfo!=null){
                                         detailfull_name.setText(showinfo.getFullName());

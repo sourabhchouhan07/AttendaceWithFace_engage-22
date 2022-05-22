@@ -1,33 +1,36 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.engage.sourabh.attandanceSystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -44,8 +47,9 @@ public class SignUpActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     Button submit, clear;
     FirebaseAuth mAuth;
+    HashSet<String>keyi=new HashSet<String>();
     FirebaseUser currentUser;
-    DatabaseReference rootRef;
+    DatabaseReference rootRef,uniKey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,27 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        uniKey=FirebaseDatabase.getInstance().getReference("inCode");
+
+        uniKey.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    for(DataSnapshot tp: snapshot.getChildren()){
+                        String cod=tp.getValue().toString();
+                        keyi.add(cod);
+                        Log.d("code",cod);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
     }
 
@@ -118,12 +143,21 @@ public class SignUpActivity extends AppCompatActivity {
             pbadd.setVisibility(View.GONE);
 
         } else if (code.isEmpty() || code.length() < 4) {
-            instituteCode.setError("Please enter code");
+            instituteCode.setError("Please enter institute code");
             instituteCode.requestFocus();
             pbadd.setVisibility(View.GONE);
 
 
-        } else if (!isValid(email)) {
+        }else if(keyi.contains(code)){
+            instituteCode.setError("Please enter unique code");
+            instituteCode.requestFocus();
+            pbadd.setVisibility(View.GONE);
+
+
+        }
+
+
+        else if (!isValid(email)) {
             userEmail.setError("Email not valid");
             userEmail.requestFocus();
             pbadd.setVisibility(View.GONE);
@@ -142,7 +176,8 @@ public class SignUpActivity extends AppCompatActivity {
             profile.put("userType", "institute");
             profile.put("number",number);
             profile.put("code",code);
-
+            String keyto =uniKey.push().getKey();
+            uniKey.child(keyto).setValue(code);
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
