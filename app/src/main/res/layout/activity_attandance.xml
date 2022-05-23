@@ -45,6 +45,7 @@
             <ImageView
                 android:id="@+id/home_btn"
                 android:layout_width="50dp"
+                android:visibility="invisible"
                 android:layout_height="40dp"
 
 
@@ -121,13 +122,14 @@
                 style="@style/spinnerItemStyle"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+
                 android:layout_margin="0dp"
                 android:background="@drawable/spinner_bg"
                 android:dropDownWidth="wrap_content"
                 android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
                 android:paddingRight="14dp"
-                android:backgroundTint="@color/white"
-                android:popupBackground="@android:color/white"
+                android:backgroundTint="@color/colorBackground"
+                android:popupBackground="@color/colorBackground"
                 android:popupElevation="3dp"
                 android:stateListAnimator="@drawable/spinner_sla" />
         </LinearLayout>
@@ -194,30 +196,30 @@
                 android:stateListAnimator="@drawable/spinner_sla" />
         </LinearLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="379dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="5dp"
+
             android:layout_marginTop="10dp"
             android:hint="@string/division"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
             android:textColorHint="#000"
-
             app:boxStrokeColor="#000"
             app:hintTextColor="#000"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/divisionattndanc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="350dp"
+                android:layout_height="41dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:inputType="text"
-
                 android:maxLength="1"
-                android:background="@color/white"
-                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textColorHint="#242424" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -237,7 +239,7 @@
             android:layout_marginEnd="25dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="174dp"
                 android:layout_height="60dp"
                 android:hint="Start Time"
@@ -253,13 +255,18 @@
                     android:layout_height="wrap_content"
                     android:inputType="time"
                     android:maxLength="5"
-                    android:background="@color/white"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_time"
+                    android:drawableTint="@color/colorPrimary"
+                    android:focusable="false"
+                    android:background="@color/colorBackground"
                     android:textColor="@color/black"
                     android:textColorHint="#242424" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
                 android:layout_width="193dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="5dp"
@@ -272,11 +279,17 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/endtime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="167dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackground"
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_time"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:focusable="false"
                     android:inputType="time"
                     android:maxLength="5"
-                    android:background="@color/white"
                     android:textColor="@color/black"
                     android:textColorHint="#242424" />
             </com.google.android.material.textfield.TextInputLayout>

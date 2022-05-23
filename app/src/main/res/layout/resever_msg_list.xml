@@ -14,32 +14,35 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
         android:textSize="19dp" />
+
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hh:mm dd/mm/yyyy"
-        android:textAlignment="textEnd"
-        android:textSize="15dp"
         android:layout_marginLeft="270dp"
         android:paddingTop="5dp"
-        android:textColor="@color/grey"/>
+        android:text="hh:mm dd/mm/yyyy"
+        android:textAlignment="textEnd"
+        android:textColor="@color/grey"
+        android:textSize="15dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subject:"
         android:layout_marginTop="30dp"
         android:paddingStart="6dp"
-        android:textSize="19dp"
-        android:textColor="#000"/>
+        android:text="Subject:"
+        android:textColor="#000"
+        android:textSize="19dp" />
+
     <TextView
         android:id="@+id/subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Good morning"
-        android:textColor="@color/grey"
         android:layout_marginLeft="78dp"
         android:layout_marginTop="32dp"
+        android:text="Good morning"
+        android:textColor="@color/grey"
         android:textSize="18dp" />
     <TextView
         android:layout_width="wrap_content"

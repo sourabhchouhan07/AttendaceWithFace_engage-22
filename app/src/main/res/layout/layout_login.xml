@@ -1,86 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="24dp"
-    android:layout_marginStart="24dp"
-    android:layout_marginTop="8dp"
-    android:orientation="vertical"
-    android:background="@color/white"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/loginHeader"
-        android:fontFamily="cursive"
-        android:textSize="35dp"
-        android:text="Login"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    app:cardBackgroundColor="@color/colorPrimary"
+    android:backgroundTint="@color/colorBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="10dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="10dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputEmail"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        style="@style/parent"
-        android:layout_marginTop="@dimen/loginViewsMargin">
-
-        <EditText
-            android:id="@+id/loginEmail"
-            style="@style/modifiedEditText"
-            android:hint="@string/login_email_hint"
-           android:textSize="17dp"
-            android:backgroundTint="@color/bottomNavigationTextColor"
-            android:inputType="textEmailAddress"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputPassword"
-        style="@style/parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="@dimen/loginViewsMargin">
-
-        <EditText
-            android:id="@+id/loginPassword"
-            style="@style/modifiedEditText"
-            android:hint="@string/login_password_hint"
-            android:textSize="17dp"
-            android:backgroundTint="@color/bottomNavigationTintColor"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/cirLoginButton"
-        style="@style/loginButton"
-        android:text="Login"
-        android:layout_gravity="right"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
-
-    <TextView
-        style="@style/parent"
-        android:textAlignment="textEnd"
-        android:textStyle="bold"
-        android:id="@+id/signupfromlogin"
-        android:textColor="@color/primaryTextColor"
-        android:text="@string/login_signup_hint"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
-
-    <TextView
-        android:id="@+id/forgetpass"
-        android:textAlignment="textEnd"
+    <View
+        android:id="@+id/viewColorTag"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
-        android:layout_height="wrap_content"
-        android:text="Forget password ?" />
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:background="@android:color/white"
+        android:paddingBottom="5dp">
+
+        <RelativeLayout
+            android:id="@+id/clickme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:onClick="itemClick"
+            android:padding="5dp">
+
+
+            <TextView
+                android:id="@+id/by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@+id/time"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="#303030"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/tittiti"
+                android:layout_width="79dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/by"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Subject" />
+
+
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="199dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/by"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/subject"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="5dp"
+                android:text="Message"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/messae"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textDate"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="7dp"
+                android:textColor="@android:color/black"
+                android:visibility="visible"
+                tools:text="" />
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:text="Date"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textTime"
+                android:layout_alignParentEnd="true"
+                android:textColor="@android:color/black"
+                android:visibility="visible"
+                tools:text="22-12-2022" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

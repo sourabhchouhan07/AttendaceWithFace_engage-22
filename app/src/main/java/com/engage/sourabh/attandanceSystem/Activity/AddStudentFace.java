@@ -130,7 +130,7 @@ public class AddStudentFace extends AppCompatActivity {
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     DatabaseReference retData;
     String code;
-
+    ImageView backbtn, homeButton;
     Button nextBtn;
     String modelFile = "mobile_face_net.tflite"; //model name
     String fullname,email,rollnumber,addresss,courese,year,birthofdate,division,number;
@@ -181,10 +181,19 @@ public class AddStudentFace extends AppCompatActivity {
         face_preview.setVisibility(View.INVISIBLE);
         recognize = findViewById(R.id.button3);
         camera_switch = findViewById(R.id.button5);
-        actions = findViewById(R.id.button2);
+
         textAbove_preview.setText("Recognized Face:");
 
         nextBtn=findViewById(R.id.button2);
+
+        backbtn=findViewById(R.id.backBtn);
+        homeButton=findViewById(R.id.home_btn);
+
+        backbtn.setOnClickListener(v->{
+            onBackPressed();
+        });
+
+
 
 
 

@@ -45,6 +45,7 @@
                 android:id="@+id/home_btn"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
+                android:visibility="invisible"
 
 
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -242,21 +243,23 @@
 
     <TableLayout
         android:id="@+id/tableLayout5"
-        android:layout_width="400dp"
-        android:layout_height="352dp"
+        android:layout_width="394dp"
+        android:layout_height="434dp"
         android:layout_margin="10dp"
 
+        android:layout_marginTop="183dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/progressdetail"
-        app:layout_constraintTop_toBottomOf="@+id/detailprofile">
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout4">
 
         <TableRow>
 
             <TextView
-                android:layout_width="139dp"
+                android:layout_width="115dp"
+                android:layout_height="match_parent"
                 android:text="@string/fullname"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -275,7 +278,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/birth_date"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -293,8 +296,8 @@
 
             <TextView
                 android:layout_width="139dp"
-                android:text="@string/cource"
-                android:textAlignment="textEnd"
+                android:text="course"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -313,7 +316,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/division"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -332,7 +335,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/rollnumber"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -351,7 +354,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/uid"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -370,7 +373,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/email"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -389,7 +392,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/phone_number"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -408,7 +411,7 @@
             <TextView
                 android:layout_width="139dp"
                 android:text="@string/address"
-                android:textAlignment="textEnd"
+                android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />

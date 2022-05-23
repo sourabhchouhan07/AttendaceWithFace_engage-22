@@ -17,7 +17,7 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
     private List<notificationSendAndReceive> messagelist;
 
     public messagelist(Activity context, List<notificationSendAndReceive> messagelist){
-        super(context,R.layout.resever_msg_list,messagelist);
+        super(context,R.layout.layout_login,messagelist);
         this.context=context;
         this.messagelist=messagelist;
     }

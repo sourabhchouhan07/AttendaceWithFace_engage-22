@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class IndexActivity extends AppCompatActivity {
          //variable initialization
+         String userType;
     MeowBottomNavigation bottomNavigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class IndexActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String uids=intent.getStringExtra("uid");
         String code=intent.getStringExtra("code");
-        String userType=intent.getStringExtra("userType");
+     userType=intent.getStringExtra("userType");
         ((global) getApplication()).setUid(uids);
         ((global)getApplication()).setInstituteCode(code);
 
@@ -50,7 +51,8 @@ public class IndexActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 profiledatabase profiledatabase=dataSnapshot.getValue(profiledatabase.class);
                 assert profiledatabase != null;
-                if(profiledatabase!=null){
+                if(profiledatabase!=null)
+                {
                     String fullnameindex=profiledatabase.getFullname();
                     String usertype=profiledatabase.getUserType();
                     String email=profiledatabase.getEmail();

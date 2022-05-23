@@ -1,7 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,10 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
+import android.widget.ImageView;
 import android.widget.Spinner;
-
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.setpassword;
@@ -27,7 +26,7 @@ import java.util.regex.Pattern;
 
 public class AddTeacher extends AppCompatActivity {
 
-
+      private ImageView homeButton, backbtn;
     private EditText name,degree_t,birthofdate,number,email,address;
     private Spinner courses;
     private ProgressDialog detectionProgressDialog;
@@ -52,6 +51,14 @@ public class AddTeacher extends AppCompatActivity {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AddTeacher.this, R.layout.spinner_item, categories);
         dataAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
         courses.setAdapter(dataAdapter);
+
+        backbtn=findViewById(R.id.backBtn);
+        homeButton=findViewById(R.id.home_btn);
+
+        backbtn.setOnClickListener(v->{
+            onBackPressed();
+        });
+
 
         birthofdate.setOnClickListener(new View.OnClickListener() {
             @Override

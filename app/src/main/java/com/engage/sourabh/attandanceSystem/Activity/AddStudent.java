@@ -1,8 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,20 +11,19 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,6 +33,8 @@ import java.util.regex.Pattern;
 public class AddStudent extends AppCompatActivity {
      Button sumitBtn;
     String icode="121212";
+    private ImageView backBtn;
+    private ImageView homeBtn;
     private EditText studentfullname, studentrollnumber,studentnumber,studentemail,studentdivision,studentbirtofdate,studentaddresss;
     private TextView faceidstudent;
     private ImageButton studentimage;
@@ -56,7 +54,8 @@ public class AddStudent extends AppCompatActivity {
         setContentView(R.layout.activity_add_student);
 
         sumitBtn=findViewById(R.id.studentsubmit);
-
+         backBtn=findViewById(R.id.backBtn);
+         homeBtn=findViewById(R.id.home_btn);
 
         pbadd=findViewById(R.id.progressaddstudent);
         pbadd.setVisibility(View.GONE);
@@ -78,6 +77,13 @@ public class AddStudent extends AppCompatActivity {
 
 
         studentbirtofdate.setInputType(InputType.TYPE_NULL);
+
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
+
+
+
         studentbirtofdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

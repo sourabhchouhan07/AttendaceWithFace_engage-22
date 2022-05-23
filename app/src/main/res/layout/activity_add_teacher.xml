@@ -47,7 +47,7 @@
                 android:layout_width="50dp"
                 android:layout_height="40dp"
 
-
+                   android:visibility="invisible"
                 android:layout_marginEnd="8dp"
 
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -67,11 +67,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintEnd_toStartOf="@+id/home_btn"
 
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintStart_toEndOf="@+id/backBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/backBtn"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
 
@@ -88,10 +88,10 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="391dp"
+        android:layout_height="478dp"
         android:layout_margin="10dp"
+        android:orientation="vertical"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +186,7 @@
                     android:layout_marginTop="10dp"
                     android:hint="@string/birth_date"
                     android:textColorHint="#000"
+
                     app:boxStrokeColor="#000"
                     app:hintTextColor="#000"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -274,8 +275,8 @@
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="25dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/next"

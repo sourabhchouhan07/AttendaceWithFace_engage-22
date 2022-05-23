@@ -1,8 +1,6 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,19 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.engage.sourabh.attandanceSystem.Model.addstudentdatabase;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -128,31 +121,8 @@ public class StudentDetailActivity extends AppCompatActivity {
                                         String uids=showinfo.getUid();
                                         uidstudent.setText(uids);
                                         divisionstudent.setText(showinfo.getDivision());
-                                        if(uids!=null){
-                                            StorageReference riversRef = mStorageRef.child("Profile/"+uids+".jpg");
-                                            try {
-                                                final File localFile = File.createTempFile("images", "jpg");
-                                                riversRef.getFile(localFile)
-                                                        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                                                            @Override
-                                                            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                                                                Bitmap bitmapdatabase2 = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                                                                detailprofile.setImageBitmap(bitmapdatabase2);
-                                                                detailstudentpb.setVisibility(View.GONE);
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                            @Override
-                                                            public void onFailure(@NonNull Exception exception) {
-                                                                Toast.makeText(StudentDetailActivity.this,"Error"+exception,Toast.LENGTH_LONG).show();
-                                                                detailstudentpb.setVisibility(View.GONE);
-                                                            }
-                                                        });
-                                            } catch (IOException e) {
-                                                Toast.makeText(StudentDetailActivity.this,"Error"+e,Toast.LENGTH_LONG).show();
-                                                e.printStackTrace();
-                                                detailstudentpb.setVisibility(View.GONE);
-                                            }
-                                        }else {detailstudentpb.setVisibility(View.GONE);}
+                                        detailstudentpb.setVisibility(View.GONE);
+
                                     }else {
                                         Toast.makeText(StudentDetailActivity.this,"First enter student",Toast.LENGTH_LONG).show();
                                         detailfull_name.setText("---- ----");
