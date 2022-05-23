@@ -239,6 +239,8 @@ public class AddStudentFace extends AppCompatActivity {
                 addFace();
                 createStudentAccount();
 
+
+
                 spinner.setVisibility(View.GONE);
 
 
@@ -319,7 +321,10 @@ public class AddStudentFace extends AppCompatActivity {
                 }
             }
         });
-
+        String icode=((global)getApplication()).getInstituteCode();
+        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"studentRoll");
+           dbref=dbref.child(courese + "/" + year + "/" + division);
+           dbref.push().setValue(rollnumber);
 
     }
 

@@ -70,7 +70,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="18dp"
-                        android:src="@drawable/attandance" />
+                        android:src="@drawable/attandencepic" />
 
                     <TextView
                         android:layout_width="wrap_content"

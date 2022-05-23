@@ -71,12 +71,12 @@
                 android:layout_below="@+id/by"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="95dp"
+
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
+                android:textSize="15dp" />
 
 
             <TextView
@@ -88,7 +88,8 @@
                 android:layout_marginTop="5dp"
                 android:text="Message"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="15dp"
+
                 android:visibility="visible" />
 
             <TextView
@@ -97,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textDate"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="3dp"
+                android:textSize="15dp"
                 android:layout_marginTop="7dp"
                 android:textColor="@android:color/black"
                 android:visibility="visible"
@@ -116,13 +118,18 @@
 
             <TextView
                 android:id="@+id/time"
-                android:layout_width="wrap_content"
+                android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textTime"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="9dp"
+                android:maxLines="2"
+                android:paddingStart="4dp"
                 android:textColor="@android:color/black"
+                android:textSize="15dp"
                 android:visibility="visible"
-                tools:text="22-12-2022" />
+                tools:text="22:10 221010" />
 
         </RelativeLayout>
 

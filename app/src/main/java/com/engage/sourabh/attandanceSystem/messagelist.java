@@ -17,7 +17,7 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
     private List<notificationSendAndReceive> messagelist;
 
     public messagelist(Activity context, List<notificationSendAndReceive> messagelist){
-        super(context,R.layout.layout_login,messagelist);
+        super(context,R.layout.resever_msg_list,messagelist);
         this.context=context;
         this.messagelist=messagelist;
     }
@@ -30,10 +30,14 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
         TextView time=listviewitem.findViewById(R.id.time);
         TextView subject=listviewitem.findViewById(R.id.subject);
         TextView message=listviewitem.findViewById(R.id.messae);
+        TextView timed=listviewitem.findViewById(R.id.timed);
         notificationSendAndReceive notificationSendAndReceive = messagelist.get(position);
 
         sender.setText(notificationSendAndReceive.getSender());
-        time.setText(notificationSendAndReceive.getTime());
+        String ti=notificationSendAndReceive.getTime();
+        String[] arrOfStr = ti.split(" ");
+          timed.setText(arrOfStr[0]);
+        time.setText(arrOfStr[1]);
         subject.setText(notificationSendAndReceive.getSubject());
         message.setText(notificationSendAndReceive.getMessage());
         return listviewitem;

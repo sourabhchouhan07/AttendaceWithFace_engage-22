@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
         Contacts=layout.findViewById(R.id.Contact);
         mails=layout.findViewById(R.id.mail);
         addresss=layout.findViewById(R.id.address);
-        uids=layout.findViewById(R.id.uid);
+//        uids=layout.findViewById(R.id.uid);
         logout=layout.findViewById(R.id.logout);
         profile=layout.findViewById(R.id.imageView2);
 //        profile=layout.findViewById(R.id.profileimage);
@@ -100,13 +100,13 @@ public class ProfileFragment extends Fragment {
                 String ust=addTeacherdatbase.getUserType();
 
                 if(ust.equals("institute")){
-                    profile.setImageResource(R.drawable.college);
+                    profile.setImageResource(R.drawable.instititue);
 
                 }else if(ust.equals("Teacher")){
-                    profile.setImageResource(R.drawable.college);
+                    profile.setImageResource(R.drawable.teachepic);
 
                 }else{
-                    profile.setImageResource(R.drawable.stdent);
+                    profile.setImageResource(R.drawable.stdentpic);
                 }
                 if(addTeacherdatbase.getCourece()!=null){
                     showcources.setText(addTeacherdatbase.getCourece());
@@ -123,7 +123,7 @@ public class ProfileFragment extends Fragment {
                 Contacts.setText(addTeacherdatbase.getNumbers());
                 mails.setText(addTeacherdatbase.getEmail());
                 addresss.setText(addTeacherdatbase.getAddresss());
-                uids.setText(addTeacherdatbase.getUid());
+//                uids.setText(addTeacherdatbase.getUid());
                 if(addTeacherdatbase.getDivision()==null){
                     div.setVisibility(GONE);
                     divt.setVisibility(GONE);

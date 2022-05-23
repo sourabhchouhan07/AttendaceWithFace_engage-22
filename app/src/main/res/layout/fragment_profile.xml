@@ -191,24 +191,7 @@
                     android:textSize="14dp" />
             </TableRow>
 
-            <TableRow>
 
-                <TextView
-                    android:layout_width="155dp"
-                    android:paddingEnd="20sp"
-                    android:text="@string/uid"
-                    android:textAlignment="textEnd"
-                    android:textColor="#000000"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/uid"
-                    android:layout_width="wrap_content"
-                    android:text="@string/_941264536383012"
-                    android:textAlignment="textStart"
-                    android:textColor="#000000"
-                    android:textSize="18dp" />
-            </TableRow>
 
             <TableRow>
 
@@ -261,11 +244,34 @@
             android:layout_height="22dp"
             android:layout_marginTop="16dp"
             android:text=""
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/full_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
 
+        <TextView
+            android:layout_width="155dp"
+            android:paddingEnd="20sp"
+            android:text="@string/uid"
+            android:visibility="gone"
+            android:textAlignment="textEnd"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/uid"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:text="@string/_941264536383012"
+            android:textAlignment="textStart"
+            android:textColor="#000000"
+            android:textSize="18dp" />
+    </TableRow>
 
 </FrameLayout>

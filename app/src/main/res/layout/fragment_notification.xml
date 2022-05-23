@@ -7,20 +7,24 @@
     tools:context=".Fragment.NotificationFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimary"
         android:text="Notification"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listview"
-        android:layout_marginTop="45dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="629dp"
+        android:layout_marginTop="54dp" />
 
     <ProgressBar
         android:id="@+id/notiprogressbar"

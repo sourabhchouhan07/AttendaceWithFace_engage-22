@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -37,6 +38,7 @@ public class selectrollnumber extends AppCompatActivity {
     private DatabaseReference notice;
     private DatabaseReference notice1;
     String icode="";
+    HashSet<String> rollList=new HashSet<String>();
     private DatabaseReference notice2;
     private ProgressBar pbs;
     ArrayList<Integer> list=new ArrayList<Integer>();
@@ -64,6 +66,29 @@ public class selectrollnumber extends AppCompatActivity {
         icode=((global)getApplication()).getInstituteCode();
        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"student");
         notice = dbref.child(course+"/"+yearsubstring+"/"+division);
+        DatabaseReference rollcountref=notice;
+
+//
+//        rollcountref.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//
+//                    for(DataSnapshot tp: snapshot.getChildren()){
+//                        String cod=tp.getValue().toString();
+//                        rollList.add(cod);
+//                        Log.d("code",cod);
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
         notice.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,11 +119,13 @@ public class selectrollnumber extends AppCompatActivity {
                         }
                         tableLayout.addView(tableRow);
                     }
+
+
                     Button btn=new Button(getApplicationContext());
                     btn.setText("Submit");
                     btn.setTextColor(Color.WHITE);
                     btn.setId(1000);
-                    btn.setBackgroundColor(Color.parseColor("#1134af"));
+                    btn.setBackgroundColor(Color.parseColor("#3c415e"));
 
                     tableLayout.addView(btn);
 

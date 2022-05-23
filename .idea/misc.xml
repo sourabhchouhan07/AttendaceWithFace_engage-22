@@ -19,7 +19,7 @@
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_add_student.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_add_student_face.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_add_teacher.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_attandance.xml" value="0.22" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_attandance.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_attendance_report.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_camera_attendance.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_index.xml" value="0.1796875" />
@@ -33,7 +33,7 @@
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_sign_up.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_student_attendance_report.xml" value="0.14722222222222223" />
-        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_student_detail.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_student_detail.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_student_home_acitvity.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_teacher_detail.xml" value="0.165625" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/fragment_institute_home.xml" value="0.1796875" />
@@ -41,9 +41,9 @@
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/fragment_profile.xml" value="0.165625" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/fragment_student_home.xml" value="0.165625" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/fragment_teacher_home.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/layout_login.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/layout_login.xml" value="0.22" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/layout_signup.xml" value="0.1796875" />
-        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/resever_msg_list.xml" value="0.22" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/resever_msg_list.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/spinner_drop_item.xml" value="0.1" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/spinner_item.xml" value="0.1" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/teacherlist.xml" value="0.1796875" />
