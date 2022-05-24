@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:orientation="vertical"
-    android:background="@drawable/login_bk"
+    android:background="@drawable/tke"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -19,17 +19,19 @@
 
         android:orientation="vertical"
         >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/loginHeader"
-        android:fontFamily="cursive"
-        android:textSize="35dp"
-        android:textColor="@color/colorPrimary"
-        android:text="Login"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
 
-    <com.google.android.material.textfield.TextInputLayout
+        <TextView
+            style="@style/loginHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:fontFamily="cursive"
+            android:text="Login"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="35dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -40,10 +42,10 @@
             android:id="@+id/loginEmail"
             style="@style/modifiedEditText"
             android:hint="@string/login_email_hint"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="17dp"
-            android:backgroundTint="@color/purple_200"
+            android:backgroundTint="@color/colorPrimary"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,9 +62,9 @@
             style="@style/modifiedEditText"
             android:hint="@string/login_password_hint"
             android:textSize="17dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="@color/purple_200"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:backgroundTint="@color/colorPrimary"
             android:inputType="textPassword"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>

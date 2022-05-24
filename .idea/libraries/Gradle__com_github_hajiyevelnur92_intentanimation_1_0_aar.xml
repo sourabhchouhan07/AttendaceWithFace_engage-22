@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.hajiyevelnur92:intentanimation:1.0@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c3bf72b4befbc37e46ed5e0cbb98ec87/jetified-intentanimation-1.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c3bf72b4befbc37e46ed5e0cbb98ec87/jetified-intentanimation-1.0/res" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c3bf72b4befbc37e46ed5e0cbb98ec87/jetified-intentanimation-1.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.github.hajiyevelnur92/intentanimation/1.0/22125658d1184ae8762a3ef2191bace975d6150/intentanimation-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

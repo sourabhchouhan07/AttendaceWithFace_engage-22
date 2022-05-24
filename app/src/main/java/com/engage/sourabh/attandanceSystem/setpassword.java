@@ -131,6 +131,7 @@ public class setpassword extends AppCompatActivity {
 
                                             String ps=((global)getApplication()).getPassword();
                                             Log.d("check",em+ ps);
+                                            finish();
                                            mAuth.signInWithEmailAndPassword(em,ps);
                                         } else {
                                             Toast.makeText(setpassword.this, "Error", Toast.LENGTH_LONG).show();

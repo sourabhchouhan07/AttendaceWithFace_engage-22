@@ -234,7 +234,7 @@
         android:visibility="gone"
         android:contentDescription="@string/profile_pic"
         android:scaleType="fitCenter"
-        android:src="@drawable/face"
+
         app:layout_constraintBottom_toTopOf="@+id/idliner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.408"

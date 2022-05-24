@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -34,6 +35,7 @@ public class attendanceReport extends AppCompatActivity {
     private Spinner searchcource,seachyear;
     private EditText searchroll,searchdiv;
     private Button search;
+    ImageView backBtn;
     private DatabaseReference notice;
     private DatabaseReference notice1;
     private List<String> FY_1BSCIT=new ArrayList<String>(10);
@@ -125,6 +127,11 @@ public class attendanceReport extends AppCompatActivity {
         searchroll=findViewById(R.id.searchroll);
         searchdiv=findViewById(R.id.searchdivision);
         search=findViewById(R.id.search);
+        backBtn=findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
 
 
         List<String> categories = new ArrayList<String>();

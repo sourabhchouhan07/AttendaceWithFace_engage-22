@@ -97,6 +97,8 @@ public class CameraAttendance extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference  dbRef;
     static int count=0;
+    ImageView backBtn;
+
     String Sname;
     TextView msg;
     ProgressDialog progressDialog;
@@ -167,6 +169,7 @@ public class CameraAttendance extends AppCompatActivity {
 
         submitBtn=findViewById(R.id.submitBtn);
 
+
 //        actions=findViewById(R.id.button2);
         textAbove_preview.setText("Recognized Face:");
 //        preview_info.setText("        Recognized Face:");
@@ -186,6 +189,11 @@ public class CameraAttendance extends AppCompatActivity {
         endtime=intent.getStringExtra("endtime");
 
         loadfun();
+
+        backBtn=findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
         //On-screen Action Button
 //        actions.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -1021,17 +1029,22 @@ public class CameraAttendance extends AppCompatActivity {
                         ps=ps.trim();
 
                         if(rollNoList.contains(ps)){
-                            reco_name.setText("Already Marked -"+part[0]);
+
+//                            reco_name.setTextColor(Color.parseColor("#FFDC40"));
+                            reco_name.setText("Already Marked \n"+part[0]);
                         }else{
 
 
 
                             rollNoList.add(ps);
-                            reco_name.setText("Name "+part[0]+"\n rollNo :"+ part[1]);
+//                            reco_name.setTextColor(Color.parseColor("#4FC654"));
+//                            reco_name.setTextColor(getResources().getColor(R.color.green));
+                            reco_name.setText("Name :"+part[0]+"\n rollNo :"+ part[1]);
                         }
 
                     }
                     else
+//                        reco_name.setTextColor(Color.parseColor("#2A2E43"));
                         reco_name.setText("Unknown Student ");
 //                    System.out.println("nearest: " + name + " - distance: " + distance_local);
                 }

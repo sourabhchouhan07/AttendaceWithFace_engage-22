@@ -137,6 +137,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.etebarian:meow-bottom-navigation-java:1.2.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.hajiyevelnur92:intentanimation:1.0@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="Attandence_With_Face.app.main" />
 </module>

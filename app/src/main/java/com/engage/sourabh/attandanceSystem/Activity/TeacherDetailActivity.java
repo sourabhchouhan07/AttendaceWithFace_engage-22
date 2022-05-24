@@ -2,6 +2,7 @@ package com.engage.sourabh.attandanceSystem.Activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class TeacherDetailActivity extends AppCompatActivity {
     ListView listView;
     String icode="";
     DatabaseReference notice;
+    ImageView backBtn;
     List<addTeacherdatabase> teacherinfo;
     ProgressBar detailtpb;
     @Override
@@ -38,6 +40,10 @@ public class TeacherDetailActivity extends AppCompatActivity {
 
         notice = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/Teacher");
         teacherinfo=new ArrayList<>();
+        backBtn=findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
 
     }
     @Override

@@ -12,6 +12,8 @@
 
     <color name="white">#fff</color>
     <color name="gray">#2d2d2d</color>
+    <color name="green">#4FC654</color>
+    <color name="yellow">#FFDC40</color>
 
 
     <color name="colorPrimary">#3c415e</color>

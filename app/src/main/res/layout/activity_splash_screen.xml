@@ -4,32 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.AppCompat.NoActionBar"
-    tools:context=".Activity.SplashScreen"
-    android:background="#fff">
+    android:background="@drawable/tke"
+    tools:context=".Activity.SplashScreen">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="313dp"
-        android:layout_height="244dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/pattern1"
+        android:layout_width="75dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="120dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/pattern2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pattern2"
+        android:layout_width="75dp"
+        android:layout_height="145dp"
+        android:layout_marginBottom="120dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/pattern1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="266dp"
+        android:layout_height="317dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerInside"
+        android:src="@drawable/logofront"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369"
-        app:srcCompat="@drawable/face_icon2" />
-    <ProgressBar
-        android:theme="@style/AppTheme.WhiteAccent"
-        android:id="@+id/progressBar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginBottom="137dp"
+        app:layout_constraintVertical_bias="0.367" />
+
+    <ImageView
+        android:id="@+id/slogan"
+        android:layout_width="302dp"
+        android:layout_height="353dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556"
+        app:srcCompat="@drawable/ffface" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

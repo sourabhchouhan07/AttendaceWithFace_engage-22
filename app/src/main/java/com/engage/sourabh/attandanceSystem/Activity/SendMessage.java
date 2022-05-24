@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class SendMessage extends AppCompatActivity {
     private DatabaseReference notice;
     private DatabaseReference notice1;
     private String sendername;
+    ImageView backBtn;
     private ProgressBar pb1;
     private  String iCode="";
     @Override
@@ -69,6 +71,13 @@ public class SendMessage extends AppCompatActivity {
         dataAdapter2.setDropDownViewResource(R.layout.spinner_drop_item);
         spinner2.setAdapter(dataAdapter2);
 
+
+
+        //backpress functionality
+        backBtn=findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
 
         sendbutton.setOnClickListener(new View.OnClickListener() {
             @Override

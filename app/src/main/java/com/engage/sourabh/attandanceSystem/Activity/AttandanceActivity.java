@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -23,9 +24,10 @@ import java.util.List;
 
 public class AttandanceActivity extends AppCompatActivity {
 
-
+       ImageView backBtn;
     private Spinner attancourse,attanyear,attansubject;
     private EditText division,starttime,endtime;
+
     private Button camera,rollnumber;
     int CAMERA_PIC_REQUEST=1;
     private List<String> FY_1BSCIT=new ArrayList<>(10);
@@ -55,7 +57,7 @@ public class AttandanceActivity extends AppCompatActivity {
         camera=findViewById(R.id.camera);
         rollnumber=findViewById(R.id.rollnumber);
 
-
+     backBtn=findViewById(R.id.backBtn);
         FY_1BSCIT.add("Communication Skill");
         FY_1BSCIT.add("Operating Systems");
         FY_1BSCIT.add("Digital Electronics");
@@ -121,6 +123,11 @@ public class AttandanceActivity extends AppCompatActivity {
         TY_6BSCIT.add("Business Intelligence Practical");
         TY_6BSCIT.add("Principles of GIS/EN Practical");
         TY_6BSCIT.add("Advanced Mobile Programming");
+
+
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
+        });
 
         starttime.setInputType(InputType.TYPE_NULL);
         starttime.setOnClickListener(new View.OnClickListener() {

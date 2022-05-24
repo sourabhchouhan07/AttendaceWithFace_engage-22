@@ -147,5 +147,6 @@
     <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.etebarian:meow-bottom-navigation-java:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.hajiyevelnur92:intentanimation:1.0@aar" level="project" />
   </component>
 </module>

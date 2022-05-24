@@ -32,7 +32,7 @@ import java.util.List;
 public class StudentDetailActivity extends AppCompatActivity {
     private EditText detailrollnumber,detaildivison;
     private TextView detailfull_name,detailshowcource,detailBirthofdate,detailroll,detailContact,detailmail,detailaddress,divisionstudent,uidstudent;
-    private ImageView detailprofile;
+    private ImageView detailprofile,backBtn;
     private Button detailshow;
     private Spinner detailcource,detailyear;
     private DatabaseReference notice;
@@ -151,6 +151,11 @@ public class StudentDetailActivity extends AppCompatActivity {
                     detailstudentpb.setVisibility(View.GONE);
                 }
             }
+        });
+  //backPress fun
+        backBtn=findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v->{
+            onBackPressed();
         });
 
     }
