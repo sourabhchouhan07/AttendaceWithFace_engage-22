@@ -199,7 +199,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="393dp"
+            android:layout_width="386dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
 
@@ -214,8 +214,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/divisionattndanc"
-                android:layout_width="367dp"
-                android:layout_height="56dp"
+                android:layout_width="365dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 android:inputType="text"

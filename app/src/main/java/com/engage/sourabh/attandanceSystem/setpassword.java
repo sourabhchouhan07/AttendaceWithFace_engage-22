@@ -1,21 +1,19 @@
 package com.engage.sourabh.attandanceSystem;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.engage.sourabh.attandanceSystem.Activity.LoginActivity;
-import com.engage.sourabh.attandanceSystem.Activity.SignUpActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.engage.sourabh.attandanceSystem.Model.addTeacherdatabase;
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -128,10 +126,12 @@ public class setpassword extends AppCompatActivity {
                                             pbset.setVisibility(View.GONE);
                                             password2.setText("");
                                             password1.setText("");
+                                            String em=((global)getApplication()).getEmailaddrss();
                                             mAuth.signOut();
-                                            Intent intent=new Intent(setpassword.this, LoginActivity.class);
-                                            intent.putExtra("action","autologin");
-                                            startActivity(intent);
+
+                                            String ps=((global)getApplication()).getPassword();
+                                            Log.d("check",em+ ps);
+                                           mAuth.signInWithEmailAndPassword(em,ps);
                                         } else {
                                             Toast.makeText(setpassword.this, "Error", Toast.LENGTH_LONG).show();
                                             pbset.setVisibility(View.GONE);

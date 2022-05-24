@@ -265,7 +265,7 @@ public class StudentAttendanceReport extends AppCompatActivity {
         tv.setText(i);
         tv.setTextSize(20);
         tv.setPadding(5,0,0,0);
-        tv.setWidth(900);
+        tv.setWidth(800);
         tv.setTextColor(Color.BLACK);
         TextView tv1=new TextView(StudentAttendanceReport.this);
         int percentage=0;
@@ -279,7 +279,7 @@ public class StudentAttendanceReport extends AppCompatActivity {
             percentage=100;
         }
         tv1.setText(min+"/"+max+"\t\t"+percentage+"%");
-        tv1.setTextSize(9);
+        tv1.setTextSize(14);
         tv1.setPadding(0,0,0,0);
         tableRow.addView(tv);
         tableRow.addView(tv1);
@@ -315,18 +315,18 @@ public class StudentAttendanceReport extends AppCompatActivity {
             TableRow tableRow1 = new TableRow(StudentAttendanceReport.this);
             tableRow1.setBackgroundColor(Color.parseColor("#1134af"));
             TextView tv3=new TextView(StudentAttendanceReport.this);
-            tv3.setText("Total Attandance");
+            tv3.setText("Total Attendance");
             tv3.setTextSize(20);
             tv3.setPadding(35,10,0,15);
-            tv3.setWidth(900);
+            tv3.setWidth(800);
             tv3.setTextColor(Color.WHITE);
             TextView tv2=new TextView(StudentAttendanceReport.this);
             tv2.setTextColor(Color.WHITE);
             if(newpercentage>100){
                 newpercentage=100;
             }
-            tv2.setText(newmin+"/"+newmax+"\t"+newpercentage+"%");
-            tv2.setTextSize(12);
+            tv2.setText(newmin+"/"+newmax+"\t\t"+newpercentage+"%");
+            tv2.setTextSize(14);
             tv2.setPadding(0,10,0,15);
             tableRow1.addView(tv3);
             tableRow1.addView(tv2);

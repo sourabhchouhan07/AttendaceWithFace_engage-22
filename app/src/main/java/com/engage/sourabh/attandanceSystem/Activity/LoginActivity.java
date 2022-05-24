@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email,passsword;
     private FirebaseAuth mAuth,mauth1;
     private ProgressBar spinner;
+    String email2,password2;
     private DatabaseReference notice;
     private DatabaseReference notice1;
     private DatabaseReference notice2;
@@ -77,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
         String action=intent12.getStringExtra("action");
         String email1=intent12.getStringExtra("email");
         String password1=intent12.getStringExtra("password");
+        email2=email1;
+        password2=password1;
 
         if(action!=null){
             if(action.equals("autologin")){
@@ -84,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 String emailaddrss = ((global) this.getApplication()).getEmailaddrss();
                 String password12 = ((global) this.getApplication()).getPassword();
-                mauth1.signInWithEmailAndPassword(emailaddrss, password12).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mauth1.signInWithEmailAndPassword(email2, password2).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -150,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }else if(action.equals("login")){
-                mauth1.signInWithEmailAndPassword(email1, password1).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mauth1.signInWithEmailAndPassword(email2, password2).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {

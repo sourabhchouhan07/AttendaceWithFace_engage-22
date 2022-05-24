@@ -38,7 +38,7 @@ public class IndexActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String uids=intent.getStringExtra("uid");
         String code=intent.getStringExtra("code");
-     userType=intent.getStringExtra("userType");
+          userType=intent.getStringExtra("userType");
         ((global) getApplication()).setUid(uids);
         ((global)getApplication()).setInstituteCode(code);
 
@@ -59,6 +59,8 @@ public class IndexActivity extends AppCompatActivity {
                     String address=profiledatabase.getAddresss();
                     String birthofdate=profiledatabase.getBirthofdate();
                     String number=profiledatabase.getNumbers();
+                    String password1=profiledatabase.getPassword();
+                    ((global)getApplication()).setPassword(password1);
                     ((global) getApplication()).setFullname(fullnameindex);
                     ((global) getApplication()).setAddress(address);
                     ((global) getApplication()).setBirthofdate(birthofdate);

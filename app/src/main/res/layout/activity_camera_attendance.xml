@@ -106,12 +106,13 @@ android:visibility="invisible"
             android:background="@drawable/round_bg"
             android:text="Submit"
 
+            android:textColor="@color/white"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.48" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <FrameLayout
             android:id="@+id/container"
@@ -183,16 +184,17 @@ android:visibility="invisible"
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
                 android:background="@drawable/round_bg"
                 android:rotation="0"
+
+
                 android:rotationX="0"
                 android:rotationY="0"
                 android:text="Add Face"
                 android:textAlignment="center"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -200,9 +202,9 @@ android:visibility="invisible"
             android:id="@+id/textView"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
-            android:hint="Add Face"
+            android:hint="No Student face"
             android:textAlignment="center"
-            android:textColor="@color/purple_500"
+            android:textColor="#5923C6"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -231,6 +233,7 @@ android:visibility="invisible"
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -242,7 +245,7 @@ android:visibility="invisible"
             android:id="@+id/msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text=""
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintHorizontal_bias="0.5"

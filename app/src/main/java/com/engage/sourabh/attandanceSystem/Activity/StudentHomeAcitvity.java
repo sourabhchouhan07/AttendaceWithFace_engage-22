@@ -64,7 +64,8 @@ public class StudentHomeAcitvity extends AppCompatActivity {
                 String rollnumber=profiledatabase.getRollnumber();
                 String year=profiledatabase.getYear();
                 String division=profiledatabase.getDivision();
-
+                   String password1=profiledatabase.getPassword();
+                ((global)getApplication()).setPassword(password1);
                 ((global) getApplication()).setDivision(division);
                 ((global) getApplication()).setCourse(course);
                 ((global) getApplication()).setRollnumber(rollnumber);
@@ -74,6 +75,7 @@ public class StudentHomeAcitvity extends AppCompatActivity {
                 ((global) getApplication()).setAddress(address);
                 ((global) getApplication()).setBirthofdate(birthofdate);
                 ((global) getApplication()).setNumber(number);
+
                 ((global) getApplication()).setUsertype(usertype);
                 ((global) getApplication()).setEmail(email);
                 Log.d("student","detail"+division+course+rollnumber+year+fullnameindex+address+birthofdate+number+usertype+email);

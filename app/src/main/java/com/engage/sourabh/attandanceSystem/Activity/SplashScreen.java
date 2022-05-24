@@ -56,6 +56,7 @@ public class SplashScreen extends AppCompatActivity {
                             String usertypelogin=dataSnapshot.child("userType").getValue().toString();
                             inCode=dataSnapshot.child("code").getValue().toString();
 
+
                             Toast.makeText(SplashScreen.this,"Successfully login ",Toast.LENGTH_SHORT).show();
                             if(usertypelogin.equals("Teacher")){
                                 loader.setVisibility(View.GONE);

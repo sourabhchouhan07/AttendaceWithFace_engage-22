@@ -151,19 +151,19 @@
     <TextView
         android:id="@+id/gotologin"
         style="@style/parent"
-        android:layout_width="369dp"
-        android:layout_height="57dp"
+        android:layout_width="382dp"
+        android:layout_height="64dp"
+        android:layout_marginRight="15dp"
         android:text="Already have an Account? login"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.977" />
 
     <ProgressBar
         android:id="@+id/progressaddstudent"

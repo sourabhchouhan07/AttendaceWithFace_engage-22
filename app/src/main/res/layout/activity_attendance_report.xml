@@ -177,7 +177,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="183dp"
+                android:layout_width="185dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="10dp"
@@ -190,8 +190,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchdivision"
-                    android:layout_width="156dp"
-                    android:layout_height="45dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="53dp"
 
 
                     android:layout_marginBottom="5dp"
@@ -201,15 +201,16 @@
                     android:textColorHint="#242424" />
             </com.google.android.material.textfield.TextInputLayout>
         </TableRow>
+
         <Button
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/search"
-            android:backgroundTint="@color/colorPrimary"
-            android:textColor="#fff"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"/>
+            android:layout_marginEnd="25dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/search"
+            android:textColor="#fff" />
     </TableLayout>
     <View
         android:layout_width="match_parent"
@@ -221,9 +222,12 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
         <TableLayout
-            android:layout_margin="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            style="@style/AppTheme"
+            android:paddingBottom="10dp"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+
             android:layout_width="match_parent"
             android:id="@+id/list">
         </TableLayout>
