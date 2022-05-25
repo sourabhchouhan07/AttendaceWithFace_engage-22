@@ -72,6 +72,57 @@
 
     <string name="previous">Previous</string>
 
+
+    <string-array name="FY_1">
+
+        <item>Communication Skill</item>
+        <item>Operating Systems</item>
+        <item>Digital Electronics</item>
+        <item>Imperative Programming</item>
+        <item>Discrete Mathematics</item>
+        <item>Imperative Programming Practical</item>
+        <item>Digital Electronics Practical</item>
+        <item>Operating Systems Practical</item>
+        <item>Discrete Mathematics Practical</item>
+        <item>Communication Skills Practical</item>
+
+    </string-array>
+    <string-array name="SUbject">
+
+        <item>BSCIT</item>
+
+
+    </string-array>
+
+
+    <string-array name="FY_2">
+
+        <item>Object oriented Programming</item>
+        <item>Microprocessor Architecture</item>
+        <item>Web Programming</item>
+        <item>Numerical and Statistical Methods</item>
+        <item>Green Computing</item>
+        <item>Object Oriented Programming Practical</item>
+        <item>Microprocessor Architecture Practical</item>
+        <item>Web Programming Practical</item>
+        <item>Numerical Statistical Methods Practical</item>
+        <item>Green Computing Practical</item>
+
+    </string-array>
+
+    <string-array name="categriory">
+
+        <item>FY_1</item>
+        <item>FY_2</item>
+
+
+    </string-array>
+
+
+
+
+
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
@@ -82,4 +133,5 @@
     <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
     <string name="login_name_hint">Name</string>
     <string name="login_mobile_number_hint">Mobile Number</string>
+    <string name="AppName">FaceX</string>
 </resources>

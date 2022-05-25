@@ -6,41 +6,7 @@ import android.app.Application;
 public class global extends Application {
     String sName,instituteCode,uid,usertype,fullname,email,address,birthofdate,number,course,rollnumber,year,division,localprofilepic,emailaddrss,password;
 
-    public String getsName() {
-        return sName;
-    }
 
-    public void setsName(String sName) {
-        this.sName = sName;
-    }
-
-    public String getEmailaddrss() {
-        return emailaddrss;
-    }
-
-    public String getInstituteCode() {
-        return instituteCode;
-    }
-
-    public void setInstituteCode(String instituteCode) {
-        this.instituteCode = instituteCode;
-    }
-
-    public void setEmailaddrss(String emailaddrss) {
-        this.emailaddrss = emailaddrss;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLocalprofilepic() {
-        return localprofilepic;
-    }
 
     public void setLocalprofilepic(String localprofilepic) {
         this.localprofilepic = localprofilepic;
@@ -132,5 +98,41 @@ public class global extends Application {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public String getEmailaddrss() {
+        return emailaddrss;
+    }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
+    }
+
+    public void setEmailaddrss(String emailaddrss) {
+        this.emailaddrss = emailaddrss;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getLocalprofilepic() {
+        return localprofilepic;
     }
 }

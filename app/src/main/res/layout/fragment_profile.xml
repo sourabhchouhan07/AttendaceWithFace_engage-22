@@ -142,7 +142,7 @@
                     android:id="@+id/rollt"
                     android:layout_width="138dp"
                     android:paddingEnd="4sp"
-                    android:text="@string/rollnumber"
+                    android:text="roll no"
                     android:textAlignment="textEnd"
                     android:textColor="#000000"
                     android:textSize="18dp" />
@@ -160,7 +160,7 @@
 
                 <TextView
                     android:paddingEnd="4sp"
-                    android:text="@string/phone_number"
+                    android:text="contact no."
                     android:textAlignment="textEnd"
                     android:textColor="#000000"
                     android:textSize="18dp" />

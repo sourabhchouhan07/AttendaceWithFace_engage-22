@@ -35,11 +35,11 @@ import java.util.List;
 
 
 public class selectrollnumber extends AppCompatActivity {
-    private DatabaseReference notice;
-    private DatabaseReference notice1;
+    private DatabaseReference databaseRef;
+    private DatabaseReference databaseRef1;
     String icode="";
     HashSet<String> rollList=new HashSet<String>();
-    private DatabaseReference notice2;
+    private DatabaseReference databaseRef2;
     private ProgressBar pbs;
     ArrayList<Integer> list=new ArrayList<Integer>();
     long k=0;
@@ -58,38 +58,20 @@ public class selectrollnumber extends AppCompatActivity {
         final String subject=intent.getStringExtra("subject");
         final String starttime=intent.getStringExtra("starttime");
         final String endtime=intent.getStringExtra("endtime");
-        notice = FirebaseDatabase.getInstance().getReference("Attandance");
+        databaseRef = FirebaseDatabase.getInstance().getReference("Attandance");
 
         Log.d("tag","c- "+course+year+division+starttime+endtime);
         Log.d("year","SubString----"+year.substring(0,2));
         String yearsubstring=year.substring(0,2);
         icode=((global)getApplication()).getInstituteCode();
        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"student");
-        notice = dbref.child(course+"/"+yearsubstring+"/"+division);
-        DatabaseReference rollcountref=notice;
-
-//
-//        rollcountref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//
-//                    for(DataSnapshot tp: snapshot.getChildren()){
-//                        String cod=tp.getValue().toString();
-//                        rollList.add(cod);
-//                        Log.d("code",cod);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        databaseRef = dbref.child(course+"/"+yearsubstring+"/"+division);
+        DatabaseReference rollcountref= databaseRef;
 
 
-        notice.addValueEventListener(new ValueEventListener() {
+
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChildren()){
@@ -148,7 +130,7 @@ public class selectrollnumber extends AppCompatActivity {
                         });
                     }
 
-                    notice1=FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandance");
+                    databaseRef1 =FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandance");
                     btn=findViewById(1000);
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -160,15 +142,15 @@ public class selectrollnumber extends AppCompatActivity {
                             pbs.setVisibility(View.VISIBLE);
                             for(int roll=0;roll<rollNoList.size();roll++){
                                 AttandanceRecord attandance=new AttandanceRecord(starttime,endtime);
-                                notice1.child(course+"/"+year+"/"+division+"/"+ rollNoList.get(roll)+"/"+subject+"/"+date).setValue(attandance);
+                                databaseRef1.child(course+"/"+year+"/"+division+"/"+ rollNoList.get(roll)+"/"+subject+"/"+date).setValue(attandance);
                                 Log.d("tag","submit");
                             }
                             Date AdNow = new Date( );
                             @SuppressLint("SimpleDateFormat") SimpleDateFormat ft1 = new SimpleDateFormat ("yyyyMMddHH:mm");
                             final String Adate=ft1.format(AdNow);
 
-                            notice2 = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandancedetail");
-                            notice2.child(course+"/"+year+"/"+division+"/"+subject+"/"+Adate).setValue("date");
+                            databaseRef2 = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandancedetail");
+                            databaseRef2.child(course+"/"+year+"/"+division+"/"+subject+"/"+Adate).setValue("date");
                             pbs.setVisibility(View.GONE);
                             Toast.makeText(selectrollnumber.this,"Submit", Toast.LENGTH_LONG).show();
                             finish();

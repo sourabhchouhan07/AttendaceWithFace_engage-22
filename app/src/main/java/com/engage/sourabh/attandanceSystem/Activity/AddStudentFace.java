@@ -1,18 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageProxy;
-import androidx.camera.core.Preview;
-import androidx.camera.lifecycle.ProcessCameraProvider;
-import androidx.camera.view.PreviewView;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.LifecycleOwner;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -35,19 +22,28 @@ import android.graphics.YuvImage;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Pair;
 import android.util.Size;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.engage.sourabh.attandanceSystem.Model.addstudentdatabase;
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
@@ -61,12 +57,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
@@ -168,6 +160,12 @@ public class AddStudentFace extends AppCompatActivity {
         courese = intent.getStringExtra("cource");
         year = intent.getStringExtra("year");
         code=((global)getApplication()).getInstituteCode();
+
+        if(code==null){
+
+            Intent i=new Intent(context,LoginActivity.class);
+            startActivity(i);
+        }
         //firebase database
 
         studentRef =FirebaseDatabase.getInstance().getReference().child("institutes/"+code);
@@ -225,7 +223,8 @@ public class AddStudentFace extends AppCompatActivity {
 
                 mAuth.signOut();
                 Intent i = new Intent(context, LoginActivity.class);
-                i.putExtra("action","login");
+                Toast.makeText(context,"Student is Registered , Login Now",Toast.LENGTH_LONG).show();
+
                 i.putExtra("email",emailaddrss);
                 i.putExtra("password",password12);
 
@@ -238,6 +237,7 @@ public class AddStudentFace extends AppCompatActivity {
 
                 addFace();
                 createStudentAccount();
+
 
 
 
@@ -332,14 +332,14 @@ public class AddStudentFace extends AppCompatActivity {
         {
 
             start = false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Enter rollno");
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+            builder.setTitle("Do You Want to Add this Face ");
 
             // Set up the input
-            final EditText input = new EditText(context);
-
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
-            builder.setView(input);
+//            final EditText input = new EditText(context);
+//
+//            input.setInputType(InputType.TYPE_CLASS_TEXT);
+//            builder.setView(input);
             spinner.setVisibility(View.VISIBLE);
             // Set up the buttons
             builder.setPositiveButton("ADD", new DialogInterface.OnClickListener() {
@@ -353,7 +353,7 @@ public class AddStudentFace extends AppCompatActivity {
                     result.setExtra(embeedings);
                     String pt = "";
 
-                    registered.put(input.getText().toString(), result);
+                    registered.put(rollnumber, result);
                     String name = rollnumber;
                     DatabaseReference ref =studentRef.child("studentrollnumber").child("rollnumber");
                     DatabaseReference tk = studentRef.child("faces").child(courese + "/" + year + "/" + division+ "/" + rollnumber);

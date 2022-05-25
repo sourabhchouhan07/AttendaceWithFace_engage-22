@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.engage.sourabh.attandanceSystem.Activity.LoginActivity;
 import com.engage.sourabh.attandanceSystem.Model.addTeacherdatabase;
 import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,14 +68,7 @@ public class setpassword extends AppCompatActivity {
         final String numbers = intent.getStringExtra("number");
         final String addresss = intent.getStringExtra("address");
         final String courese = intent.getStringExtra("cource");
-//        String image = intent.getStringExtra("uri");
 
-//        if(image!= null) {
-//            file=Uri.parse(image);
-//        }else {
-//            Log.d("random","NUll");
-//        }
-//        Log.d("random","file uri setpassword"+image);
 
 
 
@@ -122,7 +116,7 @@ public class setpassword extends AppCompatActivity {
                                             addTeacherdatabase addTeacherdatabase=new addTeacherdatabase(Fullname,email,degree,courese,birthofdate,numbers,uid,addresss);
 
                                             dbRef.child(uid).setValue(addTeacherdatabase);
-                                            Toast.makeText(setpassword.this, "successfully", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(setpassword.this, "teacher Registered Login Now", Toast.LENGTH_LONG).show();
                                             pbset.setVisibility(View.GONE);
                                             password2.setText("");
                                             password1.setText("");
@@ -131,8 +125,10 @@ public class setpassword extends AppCompatActivity {
 
                                             String ps=((global)getApplication()).getPassword();
                                             Log.d("check",em+ ps);
+                                            Intent i=new Intent(setpassword.this, LoginActivity.class);
+                                            startActivity(i);
                                             finish();
-                                           mAuth.signInWithEmailAndPassword(em,ps);
+
                                         } else {
                                             Toast.makeText(setpassword.this, "Error", Toast.LENGTH_LONG).show();
                                             pbset.setVisibility(View.GONE);

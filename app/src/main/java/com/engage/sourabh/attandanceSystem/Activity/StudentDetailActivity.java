@@ -44,9 +44,13 @@ public class StudentDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_detail);
 
+
         detailrollnumber=findViewById(R.id.detailrollnumber);
         detaildivison=findViewById(R.id.detaildivison);
-
+        detailprofile=findViewById(R.id.detailprofile);
+        detailshow=findViewById(R.id.detailshow);
+        detailcource=findViewById(R.id.detailcource);
+        detailyear=findViewById(R.id.detailyear);
         detailfull_name=findViewById(R.id.detailfull_name);
         detailshowcource=findViewById(R.id.detailshowcource);
         detailBirthofdate=findViewById(R.id.detailBirthofdate);
@@ -56,12 +60,6 @@ public class StudentDetailActivity extends AppCompatActivity {
         detailaddress=findViewById(R.id.detailaddress);
         uidstudent=findViewById(R.id.uidstudent);
         divisionstudent=findViewById(R.id.divisionstudent);
-
-        detailprofile=findViewById(R.id.detailprofile);
-        detailshow=findViewById(R.id.detailshow);
-
-        detailcource=findViewById(R.id.detailcource);
-        detailyear=findViewById(R.id.detailyear);
 
         detailstudentpb=findViewById(R.id.progressdetail);
         detailstudentpb.setVisibility(View.GONE);

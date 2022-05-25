@@ -60,8 +60,7 @@ public class SplashScreen extends AppCompatActivity {
         pattern1 = findViewById(R.id.pattern1);
         pattern2 = findViewById(R.id.pattern2);
         appSlogan = findViewById(R.id.slogan);
-//        poweredBy = findViewById(R.id.powered_by);
-//        developerDepository = findViewById(R.id.go_to_meet);
+
     }
 
     private void initAnimation() {
@@ -106,6 +105,10 @@ public class SplashScreen extends AppCompatActivity {
 
 
                             Toast.makeText(SplashScreen.this,"Successfully login ",Toast.LENGTH_SHORT).show();
+
+                            //NOW selecting Correct User from his Database
+
+
                             if(usertypelogin.equals("Teacher")){
 
                                 Intent i = new Intent(SplashScreen.this, IndexActivity.class);

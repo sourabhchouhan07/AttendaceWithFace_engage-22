@@ -32,10 +32,12 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity {
 
 
+    Button login;
     private EditText email,passsword;
     private FirebaseAuth mAuth,mauth1;
     private ProgressBar spinner;
     String email2,password2;
+    String action;
     private DatabaseReference notice;
     private DatabaseReference notice1;
     private DatabaseReference notice2;
@@ -48,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        Button login = findViewById(R.id.cirLoginButton);
+        login = findViewById(R.id.cirLoginButton);
         email = findViewById(R.id.loginEmail);
         passsword = findViewById(R.id.loginPassword);
 //        TextView forget = findViewById(R.id.forget);
@@ -75,11 +77,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Intent intent12=getIntent();
-        String action=intent12.getStringExtra("action");
+        action=intent12.getStringExtra("action");
         String email1=intent12.getStringExtra("email");
         String password1=intent12.getStringExtra("password");
         email2=email1;
         password2=password1;
+
+            autoLoginFun();
+
+        }
+
+    private void autoLoginFun() {
 
         if(action!=null){
             if(action.equals("autologin")){
@@ -87,71 +95,74 @@ public class LoginActivity extends AppCompatActivity {
                 spinner.setVisibility(View.VISIBLE);
                 String emailaddrss = ((global) this.getApplication()).getEmailaddrss();
                 String password12 = ((global) this.getApplication()).getPassword();
-                mauth1.signInWithEmailAndPassword(email2, password2).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser currentUser = mAuth.getCurrentUser();
-                            if(currentUser!=null){
-                                final String uid = currentUser.getUid();
-                                notice3 = FirebaseDatabase.getInstance().getReference("Profile/"+uid);
-                                notice3.addValueEventListener(new ValueEventListener() {
+
+                mauth1.signInWithEmailAndPassword(email2, password2)
+                        .addOnCompleteListener(LoginActivity.this,
+                                new OnCompleteListener<AuthResult>() {
                                     @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        profiledatabase profiledatabase=dataSnapshot.getValue(profiledatabase.class);
-                                        String usertypelogin=dataSnapshot.child("userType").getValue().toString();
-                                        Toast.makeText(LoginActivity.this,"Successfull login ",Toast.LENGTH_SHORT).show();
-                                        if(usertypelogin.equals("Teacher")){
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser currentUser = mAuth.getCurrentUser();
+                                            if(currentUser!=null){
+                                                final String uid = currentUser.getUid();
+                                                notice3 = FirebaseDatabase.getInstance().getReference("Profile/"+uid);
+                                                notice3.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        profiledatabase profiledatabase=dataSnapshot.getValue(profiledatabase.class);
+                                                        String usertypelogin=dataSnapshot.child("userType").getValue().toString();
+                                                        Toast.makeText(LoginActivity.this,"Successfull login ",Toast.LENGTH_SHORT).show();
+                                                        if(usertypelogin.equals("Teacher")){
+                                                            spinner.setVisibility(View.GONE);
+                                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                                            ((global)getApplication()).setFullname(name);
+                                                            Intent i = new Intent(LoginActivity.this, IndexActivity.class);
+                                                            i.putExtra("uid",uid);
+                                                            i.putExtra("userType","Teacher");
+                                                            startActivity(i);
+                                                        }else if(usertypelogin.equals("Student")){
+
+                                                            String name=dataSnapshot.child("fullname").getValue().toString();
+                                                            ((global)getApplication()).setFullname(name);
+                                                            spinner.setVisibility(View.GONE);
+                                                            Intent i = new Intent(LoginActivity.this, StudentHomeAcitvity.class);
+                                                            i.putExtra("uid",uid);
+                                                            startActivity(i);
+                                                        } else if (usertypelogin.equals("Institute")){
+                                                            String name=dataSnapshot.child("name").getValue().toString();
+                                                            ((global)getApplication()).setFullname(name);
+                                                            spinner.setVisibility(View.GONE);
+
+                                                            Intent i = new Intent(LoginActivity.this, IndexActivity.class);
+                                                            i.putExtra("uid",uid);
+                                                            i.putExtra("userType","institute");
+                                                            startActivity(i);
+
+
+
+                                                        }
+                                                        else {
+                                                            Log.d("login","Error");
+                                                            Toast.makeText(LoginActivity.this,"Error not usertype",Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError error) {
+                                                        Log.d("login","Error--"+error);
+                                                        Toast.makeText(LoginActivity.this,"Error"+error,Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            }else {
+                                                Toast.makeText(LoginActivity.this,"your are not sign",Toast.LENGTH_LONG).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(LoginActivity.this,"Please enter valid password",Toast.LENGTH_LONG).show();
                                             spinner.setVisibility(View.GONE);
-                                            String name=dataSnapshot.child("fullname").getValue().toString();
-                                            ((global)getApplication()).setFullname(name);
-                                            Intent i = new Intent(LoginActivity.this, IndexActivity.class);
-                                            i.putExtra("uid",uid);
-                                            i.putExtra("userType","Teacher");
-                                            startActivity(i);
-                                        }else if(usertypelogin.equals("Student")){
-
-                                            String name=dataSnapshot.child("fullname").getValue().toString();
-                                            ((global)getApplication()).setFullname(name);
-                                            spinner.setVisibility(View.GONE);
-                                            Intent i = new Intent(LoginActivity.this, StudentHomeAcitvity.class);
-                                            i.putExtra("uid",uid);
-                                            startActivity(i);
-                                        } else if (usertypelogin.equals("Institute")){
-                                            String name=dataSnapshot.child("name").getValue().toString();
-                                            ((global)getApplication()).setFullname(name);
-                                            spinner.setVisibility(View.GONE);
-
-                                            Intent i = new Intent(LoginActivity.this, IndexActivity.class);
-                                            i.putExtra("uid",uid);
-                                            i.putExtra("userType","institute");
-                                            startActivity(i);
-
-
-
+                                            email.setEnabled(true);
+                                            passsword.setEnabled(true);
                                         }
-                                        else {
-                                            Log.d("login","Error");
-                                            Toast.makeText(LoginActivity.this,"Error not usertype",Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-                                        Log.d("login","Error--"+error);
-                                        Toast.makeText(LoginActivity.this,"Error"+error,Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                            }else {
-                                Toast.makeText(LoginActivity.this,"your are not sign",Toast.LENGTH_LONG).show();
-                            }
-                        } else {
-                            Toast.makeText(LoginActivity.this,"Please enter valid password",Toast.LENGTH_LONG).show();
-                            spinner.setVisibility(View.GONE);
-                            email.setEnabled(true);
-                            passsword.setEnabled(true);
-                        }
-                    }
-                });
             }else if(action.equals("login")){
                 mauth1.signInWithEmailAndPassword(email2, password2).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override

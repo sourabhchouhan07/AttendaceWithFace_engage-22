@@ -42,7 +42,7 @@ public class NotificationFragment extends Fragment {
         pb=listviewitem.findViewById(R.id.notiprogressbar);
         String icode=((global) requireActivity().getApplication()).getInstituteCode();
         if(icode==null)
-            icode="121212";
+            icode="1234";
 
         notice = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/Message");
 
@@ -74,7 +74,7 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 pb.setVisibility(View.GONE);
-                Toast.makeText(getContext(),"Error forjm notifi"+error,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Error from notification"+error,Toast.LENGTH_LONG).show();
             }
         });
 

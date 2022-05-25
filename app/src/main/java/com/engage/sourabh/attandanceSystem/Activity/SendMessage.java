@@ -2,7 +2,6 @@ package com.engage.sourabh.attandanceSystem.Activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,13 +37,16 @@ public class SendMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
 
+
         final Button sendbutton =findViewById(R.id.send);
         subject=findViewById(R.id.subject);
         message=findViewById(R.id.message);
         pb1=findViewById(R.id.sendprogressbar);
         pb1.setVisibility(View.GONE);
         sendername=((global)getApplication()).getFullname();
-        Log.d("send","sederid"+sendername);
+
+
+
 
         if(sendername==null){
             sendername="default";

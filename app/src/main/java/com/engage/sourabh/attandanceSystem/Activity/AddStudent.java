@@ -53,22 +53,10 @@ public class AddStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
 
-        sumitBtn=findViewById(R.id.studentsubmit);
-         backBtn=findViewById(R.id.backBtn);
-         homeBtn=findViewById(R.id.home_btn);
 
-        pbadd=findViewById(R.id.progressaddstudent);
-        pbadd.setVisibility(View.GONE);
+        initVar();
 
-        studentcourse=findViewById(R.id.studentcourse);
-        studentyear=findViewById(R.id.studentyear);
-        studentfullname=findViewById(R.id.studentfullname);
-        studentrollnumber=findViewById(R.id.studentrollnumber);
-        studentnumber=findViewById(R.id.studentnumber);
-        studentemail=findViewById(R.id.studentemail);
-        studentdivision=findViewById(R.id.studentdivision);
-        studentbirtofdate=findViewById(R.id.studentbirtofdate);
-        studentaddresss=findViewById(R.id.studentaddresss);
+
         studentRef = FirebaseDatabase.getInstance().getReference("Student");
 
 
@@ -127,21 +115,41 @@ public class AddStudent extends AppCompatActivity {
         });
     }
 
+    private void initVar() {
+
+        sumitBtn=findViewById(R.id.studentsubmit);
+        backBtn=findViewById(R.id.backBtn);
+        homeBtn=findViewById(R.id.home_btn);
+
+        pbadd=findViewById(R.id.progressaddstudent);
+        pbadd.setVisibility(View.GONE);
+
+        studentcourse=findViewById(R.id.studentcourse);
+        studentyear=findViewById(R.id.studentyear);
+        studentfullname=findViewById(R.id.studentfullname);
+        studentrollnumber=findViewById(R.id.studentrollnumber);
+        studentnumber=findViewById(R.id.studentnumber);
+        studentemail=findViewById(R.id.studentemail);
+        studentdivision=findViewById(R.id.studentdivision);
+        studentbirtofdate=findViewById(R.id.studentbirtofdate);
+        studentaddresss=findViewById(R.id.studentaddresss);
+    }
+
     private void RegisterStudent() {
         pbadd.setVisibility(View.VISIBLE);
-
-        final String emai = studentemail.getText().toString().trim();
-        final String fullnames = studentfullname.getText().toString().trim();
-        final String rollnumbers = studentrollnumber.getText().toString().trim();
-        final String birthofdates = studentbirtofdate.getText().toString().trim();
         final String numbers = studentnumber.getText().toString().trim();
         final String divisions = studentdivision.getText().toString().trim();
         final String addresss = studentaddresss.getText().toString().trim();
         final String coureses = studentcourse.getSelectedItem().toString();
         final String years = studentyear.getSelectedItem().toString();
         final String division = studentdivision.getText().toString().trim();
+        final String emailuser = studentemail.getText().toString().trim();
+        final String fullnames = studentfullname.getText().toString().trim();
+        final String rollnumbers = studentrollnumber.getText().toString().trim();
+        final String birthofdates = studentbirtofdate.getText().toString().trim();
+
 //
-        if (emai.isEmpty()) {
+        if (emailuser.isEmpty()) {
             studentemail.setError("Please enter email id");
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
@@ -176,7 +184,7 @@ public class AddStudent extends AppCompatActivity {
             studentaddresss.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (emai.length() < 10) {
+        } else if (emailuser.length() < 10) {
             studentemail.setError("Please enter proper email id");
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
@@ -196,12 +204,12 @@ public class AddStudent extends AppCompatActivity {
             studentaddresss.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (!isValid(emai)) {
+        } else if (!isValid(emailuser)) {
             studentemail.setError("Email not valid");
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (emai.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresss.isEmpty()) {
+        } else if (emailuser.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresss.isEmpty()) {
             Toast.makeText(AddStudent.this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
             pbadd.setVisibility(View.GONE);
 
@@ -214,7 +222,7 @@ public class AddStudent extends AppCompatActivity {
             intent.putExtra("year", years);
             intent.putExtra("division", division);
             intent.putExtra("fullname", fullnames);
-            intent.putExtra("email", emai);
+            intent.putExtra("email", emailuser);
             intent.putExtra("rollnumber", rollnumbers);
             intent.putExtra("birthofdate", birthofdates);
             intent.putExtra("code", icode);

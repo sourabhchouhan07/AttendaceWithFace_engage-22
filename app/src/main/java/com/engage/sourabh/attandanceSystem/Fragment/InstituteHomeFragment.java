@@ -2,13 +2,13 @@ package com.engage.sourabh.attandanceSystem.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.engage.sourabh.attandanceSystem.Activity.AddStudent;
 import com.engage.sourabh.attandanceSystem.Activity.AddTeacher;
@@ -16,7 +16,6 @@ import com.engage.sourabh.attandanceSystem.Activity.SendMessage;
 import com.engage.sourabh.attandanceSystem.Activity.StudentDetailActivity;
 import com.engage.sourabh.attandanceSystem.Activity.TeacherDetailActivity;
 import com.engage.sourabh.attandanceSystem.Activity.attendanceReport;
-import com.engage.sourabh.attandanceSystem.Model.AttandanceRecord;
 import com.engage.sourabh.attandanceSystem.R;
 
 
@@ -61,6 +60,7 @@ public class InstituteHomeFragment extends Fragment {
         attendanceReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getContext(),"You can only take attendance from teacher Account Login",Toast.LENGTH_LONG).show();
                 Intent i=new Intent(getContext(), attendanceReport.class);
                 startActivity(i);
 
@@ -69,6 +69,8 @@ public class InstituteHomeFragment extends Fragment {
         teacherDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Toast.makeText(getContext(),"You can only take attendance from teacher Account Login",Toast.LENGTH_LONG).show();
                 Intent i=new Intent(getContext(), TeacherDetailActivity.class);
                 startActivity(i);
 

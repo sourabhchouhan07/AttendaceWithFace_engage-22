@@ -1,15 +1,12 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,17 +32,12 @@ import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
     TextView gotologin;
-    TextView textview;
-    ArrayAdapter<String> adapterShops;
-    TextView ForSeller;
-    String[] shops;
-    Dialog dialog;
+
     ProgressBar pbadd;
     EditText userName,userEmail,userPass,userMobile,instituteCode;
-    TextView shopType;
+
     Button signupBtn;
-    private RadioGroup radioGroup;
-    Button submit, clear;
+
     FirebaseAuth mAuth;
     HashSet<String>keyi=new HashSet<String>();
     FirebaseUser currentUser;
@@ -75,9 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
       instituteCode=findViewById(R.id.institutecode);
         signupBtn = findViewById(R.id.cirLoginButton);
 
-        // Bind the components to their respective objects
-        // by assigning their IDs
-        // with the help of findViewById() method
+
         mAuth=FirebaseAuth.getInstance();
 
 

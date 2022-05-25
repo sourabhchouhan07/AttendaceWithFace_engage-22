@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.engage.sourabh.attandanceSystem.Constants;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
 import com.google.firebase.database.DataSnapshot;
@@ -29,12 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentAttendanceReport extends AppCompatActivity {
-    private List<String> FY_1BSCIT=new ArrayList<String>(10);
-    private List<String> FY_2BSCIT=new ArrayList<String>(10);
-    private List<String> SY_3BSCIT=new ArrayList<String>(10);
-    private List<String> SY_4BSCIT=new ArrayList<String>(10);
-    private List<String> TY_5BSCIT=new ArrayList<String>(10);
-    private List<String> TY_6BSCIT=new ArrayList<String>(10);
+
+
 
     private List<Integer> minmum=new ArrayList<>();
     private List<Integer> manmum=new ArrayList<>();
@@ -51,71 +48,10 @@ public class StudentAttendanceReport extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_attendance_report);
 
-        FY_1BSCIT.add("Communication Skill");
-        FY_1BSCIT.add("Operating Systems");
-        FY_1BSCIT.add("Digital Electronics");
-        FY_1BSCIT.add("Imperative Programming");
-        FY_1BSCIT.add("Discrete Mathematics");
-        FY_1BSCIT.add("Imperative Programming Practical");
-        FY_1BSCIT.add("Digital Electronics Practical");
-        FY_1BSCIT.add("Operating Systems Practical");
-        FY_1BSCIT.add("Discrete Mathematics Practical");
-        FY_1BSCIT.add("Communication Skills Practical");
 
-        FY_2BSCIT.add("Object oriented Programming");
-        FY_2BSCIT.add("Microprocessor Architecture");
-        FY_2BSCIT.add("Web Programming");
-        FY_2BSCIT.add("Numerical and Statistical Methods");
-        FY_2BSCIT.add("Green Computing");
-        FY_2BSCIT.add("Object Oriented Programming Practical");
-        FY_2BSCIT.add("Microprocessor Architecture Practical");
-        FY_2BSCIT.add("Web Programming Practical");
-        FY_2BSCIT.add("Numerical & Statistical Methods Practical");
-        FY_2BSCIT.add("Green Computing Practical");
 
-        SY_3BSCIT.add("Python Programming");
-        SY_3BSCIT.add("Data Structures");
-        SY_3BSCIT.add("Computer Networks");
-        SY_3BSCIT.add("Database Management Systems");
-        SY_3BSCIT.add("Applied Mathematics");
-        SY_3BSCIT.add("Python Programming Practical");
-        SY_3BSCIT.add("Data Structures Practical");
-        SY_3BSCIT.add("Computer Networks Practical");
-        SY_3BSCIT.add("Database Management Systems Practical");
-        SY_3BSCIT.add("Mobile Programming Practical");
 
-        SY_4BSCIT.add("Core Java");
-        SY_4BSCIT.add("Introduction to Embedded Systems");
-        SY_4BSCIT.add("Computer Oriented Statistical Techniques");
-        SY_4BSCIT.add("Software Engineering");
-        SY_4BSCIT.add("Computer Graphics and Animation");
-        SY_4BSCIT.add("Core Java Practical");
-        SY_4BSCIT.add("Introduction to ES Practical");
-        SY_4BSCIT.add("COST Practical");
-        SY_4BSCIT.add("Software Engineering Practical");
-        SY_4BSCIT.add("Computer Graphics and Animation Practical");
 
-        TY_5BSCIT.add("Software Project Management");
-        TY_5BSCIT.add("Internet of Things");
-        TY_5BSCIT.add("Advanced Web Programming");
-        TY_5BSCIT.add("AI/Linux Admin.");
-        TY_5BSCIT.add("E Java/NGT");
-        TY_5BSCIT.add("Project Dissertation");
-        TY_5BSCIT.add("Internet of Things Practical");
-        TY_5BSCIT.add("Advanced Web Programming Practical");
-        TY_5BSCIT.add("AI/Linux Admin. Practical");
-        TY_5BSCIT.add("E Java/NGT Practical");
-
-        TY_6BSCIT.add("Software Quality Assurance");
-        TY_6BSCIT.add("Security in Computing");
-        TY_6BSCIT.add("Business Intelligence");
-        TY_6BSCIT.add("Principles of GIS/EN");
-        TY_6BSCIT.add("IT Service Management/Cyber Laws");
-        TY_6BSCIT.add("Project Implementation");
-        TY_6BSCIT.add("Security in Computing Practical");
-        TY_6BSCIT.add("Business Intelligence Practical");
-        TY_6BSCIT.add("Principles of GIS/EN Practical");
-        TY_6BSCIT.add("Advanced Mobile Programming");
 
         selectsemister=findViewById(R.id.selectsemister);
         pb=findViewById(R.id.studentattandacepb);
@@ -131,20 +67,28 @@ public class StudentAttendanceReport extends AppCompatActivity {
         if(classyear.equals("BSCITFY")){
             categories1.add("FY_1BSCIT");
             categories1.add("FY_2BSCIT");
-        }else if(classyear.equals("BSCITSY")){
-            categories1.add("SY_3BSCIT");
-            categories1.add("SY_4BSCIT");
-        }else if(classyear.equals("BSCITTY")){
-            categories1.add("TY_5BSCIT");
-            categories1.add("TY_6BSCIT");
         }else {
             categories1.add("FY_1BSCIT");
             categories1.add("FY_2BSCIT");
-            categories1.add("SY_3BSCIT");
-            categories1.add("SY_4BSCIT");
-            categories1.add("TY_5BSCIT");
-            categories1.add("TY_6BSCIT");
+
         }
+
+        ArrayAdapter<CharSequence> DataAdapterFY=ArrayAdapter.createFromResource(
+                StudentAttendanceReport.this,
+                R.array.FY_1,R.layout.spinner_item);
+
+        DataAdapterFY.setDropDownViewResource(R.layout.spinner_drop_item);
+
+        ArrayAdapter<CharSequence> DataAdapterFY2=ArrayAdapter.createFromResource(
+                StudentAttendanceReport.this,
+                R.array.FY_2,R.layout.spinner_item);
+
+        DataAdapterFY2.setDropDownViewResource(R.layout.spinner_drop_item);
+
+
+
+
+
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(StudentAttendanceReport.this, R.layout.spinner_item, categories1);
         dataAdapter1.setDropDownViewResource(R.layout.spinner_drop_item);
         selectsemister.setAdapter(dataAdapter1);
@@ -153,34 +97,14 @@ public class StudentAttendanceReport extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 tableLayout.removeAllViews();
                 if(position == 0 && classyear.equals("BSCITFY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_1",searchdiv1,searchroll1,FY_1BSCIT.get(i));
+                    for(int i=0;i<= Constants.FY1_BSC.size()-1;i++){
+                        Log.d("report","Report"+ Constants.FY1_BSC.get(i));
+                        attandance(searchcource1,"FY_1",searchdiv1,searchroll1, Constants.FY1_BSC.get(i));
                     }
                 }else if(position == 1&& classyear.equals("BSCITFY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_2",searchdiv1,searchroll1,FY_2BSCIT.get(i));
-                    }
-                }else if(position == 0 && classyear.equals("BSCITSY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_1",searchdiv1,searchroll1,SY_3BSCIT.get(i));
-                    }
-                }else if(position == 1&& classyear.equals("BSCITSY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_2",searchdiv1,searchroll1,SY_4BSCIT.get(i));
-                    }
-                }else if(position == 0 && classyear.equals("BSCITTY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_1",searchdiv1,searchroll1,TY_5BSCIT.get(i));
-                    }
-                }else if(position == 1&& classyear.equals("BSCITTY")){
-                    for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-                        Log.d("report","Report"+FY_1BSCIT.get(i));
-                        attandance(searchcource1,"FY_2",searchdiv1,searchroll1,TY_6BSCIT.get(i));
+                    for(int i=0;i<= Constants.FY2_BSC.size()-1;i++){
+                        Log.d("report","Report"+ Constants.FY2_BSC.get(i));
+                        attandance(searchcource1,"FY_2",searchdiv1,searchroll1, Constants.FY2_BSC.get(i));
                     }
                 }
             }
@@ -189,13 +113,16 @@ public class StudentAttendanceReport extends AppCompatActivity {
                 Toast.makeText(StudentAttendanceReport.this,"Error"+parent,Toast.LENGTH_LONG).show();
             }
         });
-//        for(int i=0;i<=FY_1BSCIT.size()-1;i++){
-//            Log.d("report","Report"+FY_1BSCIT.get(i));
-//            attandance(searchcource1,"FY_1",searchdiv1,searchroll1,FY_1BSCIT.get(i));
-//        }
+
+
+
         tableLayout=findViewById(R.id.studentattandace);
 
     }
+
+
+
+
     private void attandance(final String searchcource1, final String searchyear1, final String searchdiv1, String searchroll1, final String dataclass){
         Log.d("error","hey"+searchcource1+searchyear1+searchdiv1+searchroll1+dataclass);
           String icode=((global)getApplication()).getInstituteCode();
