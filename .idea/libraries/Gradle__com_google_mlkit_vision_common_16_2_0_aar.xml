@@ -2,9 +2,10 @@
   <library name="Gradle: com.google.mlkit:vision-common:16.2.0@aar">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/0552ee780d68661eff6009c4c8e6cbad/jetified-vision-common-16.2.0/res" />
-      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a8d949a914661fd3a8ddc6ffb6deb8db/jetified-vision-common-16.2.0/AndroidManifest.xml" />
       <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a8d949a914661fd3a8ddc6ffb6deb8db/jetified-vision-common-16.2.0/res" />
-      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/a8d949a914661fd3a8ddc6ffb6deb8db/jetified-vision-common-16.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/a2b108a190a9baaaeeacdd30cedb67bb/transformed/jetified-vision-common-16.2.0/AndroidManifest.xml" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-3/a2b108a190a9baaaeeacdd30cedb67bb/transformed/jetified-vision-common-16.2.0/res" />
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-3/a2b108a190a9baaaeeacdd30cedb67bb/transformed/jetified-vision-common-16.2.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.google.mlkit/vision-common/16.2.0/74032a4d27afda1a3f3752931bda94809a93c884/vision-common-16.2.0-javadoc.jar!/" />

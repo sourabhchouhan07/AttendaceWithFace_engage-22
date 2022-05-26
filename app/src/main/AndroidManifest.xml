@@ -27,7 +27,7 @@
             android:name=".Activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".setpassword"
+            android:name=".Activity.setpassword"
             android:exported="false" />
         <activity
             android:name=".Activity.IndexActivity"

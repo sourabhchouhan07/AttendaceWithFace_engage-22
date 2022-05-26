@@ -58,17 +58,16 @@ public class SendMessage extends AppCompatActivity {
         notice = FirebaseDatabase.getInstance().getReference("institutes/"+iCode+"/Message");
 
         final Spinner spinner = findViewById(R.id.studentcourse);
-        List<String> categories = new ArrayList<String>();
-        categories.add("BSCIT");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(SendMessage.this, R.layout.spinner_item, categories);
-        dataAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
-        spinner.setAdapter(dataAdapter);
+
+        ArrayAdapter<CharSequence> courseAdapter=ArrayAdapter.createFromResource(SendMessage.this,R.array.SUbject,R.layout.spinner_item);
+        courseAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
+
+        spinner.setAdapter(courseAdapter);
 
         final Spinner spinner2 =findViewById(R.id.studentyear);
         List<String> categories2 = new ArrayList<String>();
         categories2.add("FY");
-        categories2.add("SY");
-        categories2.add("TY");
+
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(SendMessage.this, R.layout.spinner_item, categories2);
         dataAdapter2.setDropDownViewResource(R.layout.spinner_drop_item);
         spinner2.setAdapter(dataAdapter2);
@@ -108,7 +107,7 @@ public class SendMessage extends AppCompatActivity {
                     message.setEnabled(true);
                     pb1.setVisibility(View.GONE);
                 }else if(sendername.isEmpty()){
-                    sendername="Default";
+                    sendername="Institute";
                 }else {
                     @SuppressLint("SimpleDateFormat") final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy ");
                     String currentDateandTime = sdf.format(new Date()).trim();

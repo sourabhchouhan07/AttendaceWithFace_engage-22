@@ -171,10 +171,10 @@ public class AttandanceActivity extends AppCompatActivity {
                     division.setError("Please enter division");
                     division.requestFocus();
                 }else if(starttimes.isEmpty()){
-                    starttime.setError("Please enter division");
+                    starttime.setError("Please enter starting time");
                     starttime.requestFocus();
                 }else if(endtimes.isEmpty()){
-                    endtime.setError("Please enter division");
+                    endtime.setError("Please enter endTime");
                     endtime.requestFocus();
                 }else if(starttimes.length()<4){
                     starttime.setError("PLease enter valid formate");

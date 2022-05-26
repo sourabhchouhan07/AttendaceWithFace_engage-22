@@ -1,11 +1,8 @@
 package com.engage.sourabh.attandanceSystem.Model;
 
 public class notificationSendAndReceive {
-    private String Subject;
-    private String Message;
-    private String Sender;
-    private String Time;
-    private String Fro;
+    private String Subject,Message,Sender,Time,Fro;
+
 
     public notificationSendAndReceive() {
     }

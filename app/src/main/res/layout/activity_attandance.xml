@@ -296,15 +296,15 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="349dp"
-            android:layout_height="85dp"
+            android:layout_width="348dp"
+            android:layout_height="60dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="180dp"
             android:layout_marginEnd="25dp">
 
             <Button
                 android:id="@+id/camera"
-                android:layout_width="174dp"
+                android:layout_width="160dp"
                 android:layout_height="60dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/camera"
@@ -312,11 +312,12 @@
 
             <Button
                 android:id="@+id/rollnumber"
-                android:layout_width="193dp"
+                android:layout_width="152dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="5dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="@string/rollnumber"
+                android:text="mark Manually"
+                android:textAlignment="textStart"
                 android:textColor="#fff" />
         </TableRow>
     </TableLayout>

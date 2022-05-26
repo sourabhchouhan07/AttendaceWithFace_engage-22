@@ -85,8 +85,7 @@ import java.util.concurrent.Executors;
 
 public class AddStudentFace extends AppCompatActivity {
     FaceDetector detector;
-    FirebaseDatabase database;
-    DatabaseReference dbRef;
+
     static int count = 0;
     TextView msg;
     private ProgressBar spinner;
@@ -95,6 +94,8 @@ public class AddStudentFace extends AppCompatActivity {
     DatabaseReference studentRef;
     DatabaseReference profileRef;
     FirebaseAuth mAuth,auth1;
+    FirebaseDatabase database;
+    DatabaseReference dbRef;
 
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     PreviewView previewView;
@@ -126,7 +127,8 @@ public class AddStudentFace extends AppCompatActivity {
     Button nextBtn;
     String modelFile = "mobile_face_net.tflite"; //model name
     String fullname,email,rollnumber,addresss,courese,year,birthofdate,division,number;
-    private HashMap<String, SimilarityClassifier.Recognition> registered = new HashMap<>(); //saved Faces
+    private HashMap<String, SimilarityClassifier.Recognition> registered = new HashMap<>();
+    //this for saved Faces
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -150,6 +152,9 @@ public class AddStudentFace extends AppCompatActivity {
         distance = sharedPref.getFloat("distance", 1.00f);
 
         Intent intent = getIntent();
+
+        //getting data from previous intent
+
         division =intent.getStringExtra("division");
         email = intent.getStringExtra("email");
         fullname = intent.getStringExtra("fullname");
@@ -187,6 +192,10 @@ public class AddStudentFace extends AppCompatActivity {
         backbtn=findViewById(R.id.backBtn);
         homeButton=findViewById(R.id.home_btn);
 
+
+
+        //back button fun
+
         backbtn.setOnClickListener(v->{
             onBackPressed();
         });
@@ -217,6 +226,9 @@ public class AddStudentFace extends AppCompatActivity {
                 cameraBind();
             }
         });
+
+
+        // completing the activity
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

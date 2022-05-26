@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.engage.sourabh.attandanceSystem.Model.notificationSendAndReceive;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
-import com.engage.sourabh.attandanceSystem.messagelist;
+import com.engage.sourabh.attandanceSystem.Adapter.messagelist;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,7 +69,14 @@ public class NotificationFragment extends Fragment {
               messagelist adapter = new messagelist(getActivity(),messagelist);
                     listView.setAdapter(adapter);
                 }
+
+
                 pb.setVisibility(View.GONE);
+
+                if(messagelist.isEmpty()){
+
+                    Toast.makeText(getContext(),"Empty Notification",Toast.LENGTH_LONG).show();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

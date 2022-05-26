@@ -91,7 +91,7 @@ public class SplashScreen extends AppCompatActivity {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if( currentUser != null ){
                     final String uid = currentUser.getUid();
-                    Toast.makeText(SplashScreen.this,"You are logged in",Toast.LENGTH_SHORT).show();
+
                     notice3 = FirebaseDatabase.getInstance().getReference("Profile/"+uid);
 
                     notice3.addValueEventListener(new ValueEventListener() {

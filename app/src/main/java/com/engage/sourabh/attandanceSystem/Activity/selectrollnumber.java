@@ -40,28 +40,31 @@ public class selectrollnumber extends AppCompatActivity {
     String icode="";
     HashSet<String> rollList=new HashSet<String>();
     private DatabaseReference databaseRef2;
-    private ProgressBar pbs;
+    private ProgressBar pbar;
     ArrayList<Integer> list=new ArrayList<Integer>();
     long k=0;
+
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selectrollnumber);
 
-        pbs=findViewById(R.id.setectpb);
-        pbs.setVisibility(View.VISIBLE);
+        pbar =findViewById(R.id.setectpb);
+        pbar.setVisibility(View.VISIBLE);
         final Intent intent=getIntent();
         final String course =intent.getStringExtra("course");
         final String year=intent.getStringExtra("year");
         final String division=intent.getStringExtra("division");
         final String subject=intent.getStringExtra("subject");
-        final String starttime=intent.getStringExtra("starttime");
-        final String endtime=intent.getStringExtra("endtime");
+        final String startTime=intent.getStringExtra("starttime");
+        final String EndTime=intent.getStringExtra("endtime");
         databaseRef = FirebaseDatabase.getInstance().getReference("Attandance");
 
-        Log.d("tag","c- "+course+year+division+starttime+endtime);
-        Log.d("year","SubString----"+year.substring(0,2));
+
+
+
         String yearsubstring=year.substring(0,2);
         icode=((global)getApplication()).getInstituteCode();
        DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"student");
@@ -75,7 +78,7 @@ public class selectrollnumber extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChildren()){
-                    pbs.setVisibility(View.GONE);
+                    pbar.setVisibility(View.GONE);
                     k=dataSnapshot.getChildrenCount();
                     String s1=Long.toString(k);
                     Log.d("tag","hy"+s1);
@@ -139,9 +142,9 @@ public class selectrollnumber extends AppCompatActivity {
                             @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("yyyyMMddHH:mm");
                             final String date=ft.format(dNow);
 
-                            pbs.setVisibility(View.VISIBLE);
+                            pbar.setVisibility(View.VISIBLE);
                             for(int roll=0;roll<rollNoList.size();roll++){
-                                AttandanceRecord attandance=new AttandanceRecord(starttime,endtime);
+                                AttandanceRecord attandance=new AttandanceRecord(startTime,EndTime);
                                 databaseRef1.child(course+"/"+year+"/"+division+"/"+ rollNoList.get(roll)+"/"+subject+"/"+date).setValue(attandance);
                                 Log.d("tag","submit");
                             }
@@ -151,7 +154,7 @@ public class selectrollnumber extends AppCompatActivity {
 
                             databaseRef2 = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandancedetail");
                             databaseRef2.child(course+"/"+year+"/"+division+"/"+subject+"/"+Adate).setValue("date");
-                            pbs.setVisibility(View.GONE);
+                            pbar.setVisibility(View.GONE);
                             Toast.makeText(selectrollnumber.this,"Submit", Toast.LENGTH_LONG).show();
                             finish();
                         }

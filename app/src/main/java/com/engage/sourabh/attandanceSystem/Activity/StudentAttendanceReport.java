@@ -35,11 +35,11 @@ public class StudentAttendanceReport extends AppCompatActivity {
 
     private List<Integer> minmum=new ArrayList<>();
     private List<Integer> manmum=new ArrayList<>();
-
+    private String searchCourses1,searchingDiv,searchingRoll,searchYear1,classyear;
     private TableLayout tableLayout;
     private TableRow tableRow;
-    private DatabaseReference notice;
-    private DatabaseReference notice1;
+    private DatabaseReference atttendanceRef;
+    private DatabaseReference dbRef2;
     private Spinner selectsemister;
     private ProgressBar pb;
     private int num=0;
@@ -57,21 +57,13 @@ public class StudentAttendanceReport extends AppCompatActivity {
         pb=findViewById(R.id.studentattandacepb);
         pb.setVisibility(View.VISIBLE);
 
-        final String searchcource1=((global) getApplication()).getCourse();
-        String searchyear1=((global) getApplication()).getYear();
-        final String searchdiv1=((global)getApplication()).getDivision();
-        final String searchroll1=((global)getApplication()).getRollnumber();
 
-        final String classyear=searchcource1+searchyear1;
         List<String> categories1 = new ArrayList<String>();
-        if(classyear.equals("BSCITFY")){
-            categories1.add("FY_1BSCIT");
-            categories1.add("FY_2BSCIT");
-        }else {
+
             categories1.add("FY_1BSCIT");
             categories1.add("FY_2BSCIT");
 
-        }
+
 
         ArrayAdapter<CharSequence> DataAdapterFY=ArrayAdapter.createFromResource(
                 StudentAttendanceReport.this,
@@ -89,22 +81,49 @@ public class StudentAttendanceReport extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(StudentAttendanceReport.this, R.layout.spinner_item, categories1);
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(StudentAttendanceReport.this,
+                R.layout.spinner_item, categories1);
         dataAdapter1.setDropDownViewResource(R.layout.spinner_drop_item);
+
+
+
+
         selectsemister.setAdapter(dataAdapter1);
+
+
+        //giving results based on the semester he select in the spinner
+        CallselectSpinner();
+
+
+
+
+
+    }
+
+    private void CallselectSpinner() {
+        searchCourses1=((global) getApplication()).getCourse();
+        searchYear1=((global) getApplication()).getYear();
+        searchingDiv=((global)getApplication()).getDivision();
+        searchingRoll=((global)getApplication()).getRollnumber();
+
+        classyear=searchCourses1+searchYear1;
+
         selectsemister.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 tableLayout.removeAllViews();
                 if(position == 0 && classyear.equals("BSCITFY")){
-                    for(int i=0;i<= Constants.FY1_BSC.size()-1;i++){
-                        Log.d("report","Report"+ Constants.FY1_BSC.get(i));
-                        attandance(searchcource1,"FY_1",searchdiv1,searchroll1, Constants.FY1_BSC.get(i));
+                    for(int i = 0; i<= Constants.FY1_BSC.size()-1; i++){
+
+                        createAttendance(searchCourses1,"FY_1",searchingDiv,searchingRoll,
+                                Constants.FY1_BSC.get(i));
                     }
                 }else if(position == 1&& classyear.equals("BSCITFY")){
                     for(int i=0;i<= Constants.FY2_BSC.size()-1;i++){
-                        Log.d("report","Report"+ Constants.FY2_BSC.get(i));
-                        attandance(searchcource1,"FY_2",searchdiv1,searchroll1, Constants.FY2_BSC.get(i));
+
+
+                        createAttendance(searchCourses1,"FY_2",searchingDiv,searchingRoll,
+                                Constants.FY2_BSC.get(i));
                     }
                 }
             }
@@ -114,21 +133,17 @@ public class StudentAttendanceReport extends AppCompatActivity {
             }
         });
 
-
-
         tableLayout=findViewById(R.id.studentattandace);
 
     }
 
 
-
-
-    private void attandance(final String searchcource1, final String searchyear1, final String searchdiv1, String searchroll1, final String dataclass){
+    private void createAttendance(final String searchcource1, final String searchyear1, final String searchdiv1, String searchroll1, final String dataclass){
         Log.d("error","hey"+searchcource1+searchyear1+searchdiv1+searchroll1+dataclass);
           String icode=((global)getApplication()).getInstituteCode();
         DatabaseReference dbref=FirebaseDatabase.getInstance().getReference("institutes/"+icode);
-        notice = dbref.child("Attandance/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+searchroll1+"/"+dataclass);
-        notice.addValueEventListener(new ValueEventListener() {
+        atttendanceRef = dbref.child("Attandance/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+searchroll1+"/"+dataclass);
+        atttendanceRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChildren()){
@@ -136,8 +151,8 @@ public class StudentAttendanceReport extends AppCompatActivity {
                     Log.d("report","mainchild----"+child);
                     final int minchild=(int)child;
 
-                    notice1 = dbref.child("Attandancedetail/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+dataclass);
-                    notice1.addValueEventListener(new ValueEventListener() {
+                    dbRef2 = dbref.child("Attandancedetail/"+searchcource1+"/"+searchyear1+"/"+searchdiv1+"/"+dataclass);
+                    dbRef2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChildren()){
@@ -188,38 +203,39 @@ public class StudentAttendanceReport extends AppCompatActivity {
         minmum.add(min);
         manmum.add(max);
         tableRow = new TableRow(StudentAttendanceReport.this);
-        TextView tv=new TextView(StudentAttendanceReport.this);
-        tv.setText(i);
-        tv.setTextSize(20);
-        tv.setPadding(5,0,0,0);
-        tv.setWidth(800);
-        tv.setTextColor(Color.BLACK);
-        TextView tv1=new TextView(StudentAttendanceReport.this);
+        TextView textV=new TextView(StudentAttendanceReport.this);
+        textV.setText(i);
+        textV.setTextSize(20);
+        textV.setPadding(5,0,0,0);
+        textV.setWidth(800);
+        textV.setTextColor(Color.BLACK);
+        TextView textV2=new TextView(StudentAttendanceReport.this);
         int percentage=0;
         if(max==0){
             percentage=0;
         }else {
             percentage =(min*100)/max;
         }
-        tv1.setTextColor(Color.GRAY);
+        textV2.setTextColor(Color.GRAY);
         if(percentage>100){
             percentage=100;
         }
-        tv1.setText(min+"/"+max+"\t\t"+percentage+"%");
-        tv1.setTextSize(14);
-        tv1.setPadding(0,0,0,0);
-        tableRow.addView(tv);
-        tableRow.addView(tv1);
-        ProgressBar pb=new ProgressBar(StudentAttendanceReport.this,null,android.R.attr.progressBarStyleHorizontal);
-        pb.setMin(0);
-        pb.setMax(max);
-        pb.setProgress(min);
-        pb.setPadding(15,0,15,5);
+        textV2.setText(min+"/"+max+"\t\t"+percentage+"%");
+        textV2.setTextSize(14);
+        textV2.setPadding(0,0,0,0);
+        tableRow.addView(textV);
+        tableRow.addView(textV2);
+        ProgressBar pbar=new ProgressBar(StudentAttendanceReport.this,
+                null,android.R.attr.progressBarStyleHorizontal);
+        pbar.setMin(0);
+        pbar.setMax(max);
+        pbar.setProgress(min);
+        pbar.setPadding(15,0,15,5);
         TextView qw=new TextView(StudentAttendanceReport.this);
         qw.setBackgroundColor(Color.BLACK);
         qw.setHeight(5);
         tableLayout.addView(tableRow);
-        tableLayout.addView(pb);
+        tableLayout.addView(pbar);
         tableLayout.addView(qw);
     }
     @SuppressLint("SetTextI18n")

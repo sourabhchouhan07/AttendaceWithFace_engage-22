@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.engage.sourabh.attandanceSystem.Model.addTeacherdatabase;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
-import com.engage.sourabh.attandanceSystem.teacherList;
+import com.engage.sourabh.attandanceSystem.Adapter.teacherList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,6 +60,11 @@ public class TeacherDetailActivity extends AppCompatActivity {
                 teacherList adapter = new teacherList(TeacherDetailActivity.this,teacherinfo);
                 listView.setAdapter(adapter);
                 detailtpb.setVisibility(View.GONE);
+
+                if(teacherinfo.isEmpty()){
+
+                    Toast.makeText(TeacherDetailActivity.this, "No teacher is register", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onCancelled(DatabaseError error) {

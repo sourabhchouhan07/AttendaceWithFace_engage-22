@@ -134,4 +134,16 @@
     <string name="login_name_hint">Name</string>
     <string name="login_mobile_number_hint">Mobile Number</string>
     <string name="AppName">FaceX</string>
+    <string name="divAlert">Please enter division</string>
+    <string name="enterNo">Please enter number</string>
+    <string name="emailAlert">Please enter email id</string>
+    <string name="properEmailAlert">Please enter proper email id</string>
+    <string name="properAddress">Please enter proper addresses</string>
+    <string name="validNo">Please enter valid number</string>
+    <string name="nameAlert">Please enter Name </string>
+    <string name="alertDegree">Please enter degree </string>
+    <string name="enterRoll">Please enter roll number</string>
+    <string name="BOD">Please enter birth date</string>
+    <string name="fullNameAlert">Please enter FullName </string>
+    <string name="enterDetails">please fill field detail</string>
 </resources>

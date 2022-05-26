@@ -1,15 +1,8 @@
 package com.engage.sourabh.attandanceSystem.Model;
 
 public class addstudentdatabase {
-    String FullName;
-    String RollNumber;
-    String Address;
-    String Email;
-    String BrithofDate;
-    String Division;
-    String Course;
-    String Number;
-    String Uid;
+    String FullName,RollNumber,Address,Email,BrithofDate,Division,Course,Number,Uid;
+
 
     public String getUid() {
         return Uid;

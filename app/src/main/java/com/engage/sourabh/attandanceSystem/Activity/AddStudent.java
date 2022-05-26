@@ -1,7 +1,6 @@
 package com.engage.sourabh.attandanceSystem.Activity;
 
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -10,18 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,13 +32,10 @@ public class AddStudent extends AppCompatActivity {
     private ImageView backBtn;
     private ImageView homeBtn;
     private EditText studentfullname, studentrollnumber,studentnumber,studentemail,studentdivision,studentbirtofdate,studentaddresss;
-    private TextView faceidstudent;
-    private ImageButton studentimage;
+
     private Spinner studentcourse,studentyear;
     private DatabaseReference studentRef;
-    private ProgressDialog detectionProgressDialog;
-    private FirebaseAuth mAuth1;
-    private DatabaseReference profileRef;
+
     private ProgressBar pbadd;
 
     DatePickerDialog picker;
@@ -58,13 +51,11 @@ public class AddStudent extends AppCompatActivity {
 
 
         studentRef = FirebaseDatabase.getInstance().getReference("Student");
-
-
-            icode=((global)getApplication()).getInstituteCode();
-
-
+        icode=((global)getApplication()).getInstituteCode();
 
         studentbirtofdate.setInputType(InputType.TYPE_NULL);
+
+        //backButton fun
 
         backBtn.setOnClickListener(v->{
             onBackPressed();
@@ -91,19 +82,21 @@ public class AddStudent extends AppCompatActivity {
             }
         });
 
-        List<String> categories = new ArrayList<String>();
-        categories.add("BSCIT");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AddStudent.this, R.layout.spinner_item, categories);
-        dataAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
-        studentcourse.setAdapter(dataAdapter);
+        ArrayAdapter<CharSequence> adapterCourse=ArrayAdapter.createFromResource(AddStudent.this,R.array.SUbject,R.layout.spinner_item);
+        adapterCourse.setDropDownViewResource(R.layout.spinner_drop_item);
+
+
+        studentcourse.setAdapter(adapterCourse);
 
         List<String> categories1 = new ArrayList<String>();
         categories1.add("FY");
-        categories1.add("SY");
-        categories1.add("TY");
+
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(AddStudent.this, R.layout.spinner_item, categories1);
         dataAdapter1.setDropDownViewResource(R.layout.spinner_drop_item);
         studentyear.setAdapter(dataAdapter1);
+
+
+        //Submit button fun
 
         sumitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +109,7 @@ public class AddStudent extends AppCompatActivity {
     }
 
     private void initVar() {
+      //initialing the Views
 
         sumitBtn=findViewById(R.id.studentsubmit);
         backBtn=findViewById(R.id.backBtn);
@@ -139,7 +133,7 @@ public class AddStudent extends AppCompatActivity {
         pbadd.setVisibility(View.VISIBLE);
         final String numbers = studentnumber.getText().toString().trim();
         final String divisions = studentdivision.getText().toString().trim();
-        final String addresss = studentaddresss.getText().toString().trim();
+        final String addresses = studentaddresss.getText().toString().trim();
         final String coureses = studentcourse.getSelectedItem().toString();
         final String years = studentyear.getSelectedItem().toString();
         final String division = studentdivision.getText().toString().trim();
@@ -150,57 +144,57 @@ public class AddStudent extends AppCompatActivity {
 
 //
         if (emailuser.isEmpty()) {
-            studentemail.setError("Please enter email id");
+            studentemail.setError(getString(R.string.emailAlert));
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (fullnames.isEmpty()) {
-            studentfullname.setError("Please enter FullName id");
+            studentfullname.setError(getString(R.string.fullNameAlert));
             studentfullname.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (rollnumbers.isEmpty()) {
-            studentrollnumber.setError("Please enter roll number");
+            studentrollnumber.setError(getString(R.string.enterRoll));
             studentrollnumber.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (birthofdates.isEmpty()) {
-            studentbirtofdate.setError("Please enter birth date");
+            studentbirtofdate.setError(getString(R.string.BOD));
             studentbirtofdate.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (numbers.isEmpty()) {
-            studentnumber.setError("Please enter number");
+            studentnumber.setError(getString(R.string.enterNo));
             studentnumber.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (divisions.isEmpty()) {
-            studentdivision.setError("Please enter division");
+            studentdivision.setError(getString(R.string.divAlert));
             studentdivision.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (addresss.isEmpty()) {
+        } else if (addresses.isEmpty()) {
             studentaddresss.setError("Please enter address");
             studentaddresss.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (emailuser.length() < 10) {
-            studentemail.setError("Please enter proper email id");
+            studentemail.setError(getString(R.string.properEmailAlert));
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (fullnames.length() < 9) {
-            studentfullname.setError("Please enter FullName");
+        } else if (fullnames.length() < 7) {
+            studentfullname.setError(getString(R.string.fullNameAlert));
             studentfullname.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (numbers.length() < 10) {
-            studentnumber.setError("Please enter valid number");
+            studentnumber.setError(getString(R.string.validNo));
             studentnumber.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (addresss.length() < 7) {
-            studentaddresss.setError("Please enter proper addrresss");
+        } else if (addresses.length() < 7) {
+            studentaddresss.setError(getString(R.string.properAddress));
             studentaddresss.requestFocus();
             pbadd.setVisibility(View.GONE);
 
@@ -209,22 +203,24 @@ public class AddStudent extends AppCompatActivity {
             studentemail.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (emailuser.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresss.isEmpty()) {
+        } else if (emailuser.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresses.isEmpty()) {
             Toast.makeText(AddStudent.this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
             pbadd.setVisibility(View.GONE);
 
         } else {
+       //sending data to addstudentface activity through intent
 
             Intent intent = new Intent(AddStudent.this,AddStudentFace.class);
             intent.putExtra("number", numbers);
-            intent.putExtra("address", addresss);
+            intent.putExtra("address", addresses);
+
+            intent.putExtra("rollnumber", rollnumbers);
+            intent.putExtra("birthofdate", birthofdates);
             intent.putExtra("cource", coureses);
             intent.putExtra("year", years);
             intent.putExtra("division", division);
             intent.putExtra("fullname", fullnames);
             intent.putExtra("email", emailuser);
-            intent.putExtra("rollnumber", rollnumbers);
-            intent.putExtra("birthofdate", birthofdates);
             intent.putExtra("code", icode);
 
             startActivity(intent);

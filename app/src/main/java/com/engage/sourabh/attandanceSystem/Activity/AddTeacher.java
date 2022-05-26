@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.R;
-import com.engage.sourabh.attandanceSystem.setpassword;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,6 +80,8 @@ public class AddTeacher extends AppCompatActivity {
             }
         });
 
+        //submiting the Details
+
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,22 +97,22 @@ public class AddTeacher extends AppCompatActivity {
                 //checking creditianl
 
                 if(userEmail.isEmpty()){
-                    email.setError("Please enter email id");
+                    email.setError(getString(R.string.emailAlert));
                     email.requestFocus();
                 } else if(fullName.isEmpty()){
-                    name.setError("Please enter Name ");
+                    name.setError(getString(R.string.nameAlert));
                     name.requestFocus();
                 } else if(degree.isEmpty()){
-                    degree_t.setError("Please enter FullName id");
+                    degree_t.setError(getString(R.string.alertDegree));
                     degree_t.requestFocus();
                 } else if(BOD.isEmpty()){
-                    birthofdate.setError("Please enter email id");
+                    birthofdate.setError("Please BOD ");
                     birthofdate.requestFocus();
                 } else if(numbers.isEmpty()){
-                    number.setError("Please enter email id");
+                    number.setError(getString(R.string.validNo));
                     number.requestFocus();
                 } else if(addresss.isEmpty()){
-                    address.setError("Please enter email id");
+                    address.setError(getString(R.string.address));
                     address.requestFocus();
                 } else if(userEmail.length()<10){
                     email.setError("Please enter proper email id");

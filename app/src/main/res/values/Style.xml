@@ -11,7 +11,7 @@
     </style>
 
     <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:colorAccent">#F1D2AA</item>
+        <item name="android:colorAccent">#0C0B0A</item>
         <item name="android:textColor">#0B0B0B</item>
         <item name="android:textColorPrimary">#191616</item>
     </style>

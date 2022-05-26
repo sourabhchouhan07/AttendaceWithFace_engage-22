@@ -8,9 +8,6 @@ public class global extends Application {
 
 
 
-    public void setLocalprofilepic(String localprofilepic) {
-        this.localprofilepic = localprofilepic;
-    }
 
     public String getDivision() {
         return division;
@@ -134,5 +131,10 @@ public class global extends Application {
 
     public String getLocalprofilepic() {
         return localprofilepic;
+    }
+
+
+    public void setLocalprofilepic(String localprofilepic) {
+        this.localprofilepic = localprofilepic;
     }
 }
