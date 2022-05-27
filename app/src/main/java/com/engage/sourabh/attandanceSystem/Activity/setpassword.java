@@ -2,7 +2,6 @@ package com.engage.sourabh.attandanceSystem.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,18 +24,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class setpassword extends AppCompatActivity {
 
 
-    private EditText password1,password2;
+    private EditText teacherPassword,password2;
     private FirebaseAuth mAuth;
     private DatabaseReference pdroot;
     private DatabaseReference dbRef;
-    private StorageReference mStorageRef;
-    private Uri file;
+
+
     private ProgressBar pbset;
 
     @SuppressLint("SetTextI18n")
@@ -46,7 +43,7 @@ public class setpassword extends AppCompatActivity {
         setContentView(R.layout.activity_setpassword);
 
 
-        password1 = findViewById(R.id.passsword1);
+        teacherPassword = findViewById(R.id.passsword1);
         password2 = findViewById(R.id.passsword2);
 
         final Button setpassword = findViewById(R.id.submit);
@@ -55,7 +52,7 @@ public class setpassword extends AppCompatActivity {
         pbset=findViewById(R.id.progressaddTeacer);
         pbset.setVisibility(View.GONE);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         pdroot = FirebaseDatabase.getInstance().getReference("Profile");
 
 
@@ -82,11 +79,11 @@ public class setpassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pbset.setVisibility(View.VISIBLE);
-                if(password1.getText().length()<6){
-                    password1.setError("password too short");
-                    password1.requestFocus();
+                if(teacherPassword.getText().length()<6){
+                    teacherPassword.setError("password too short");
+                    teacherPassword.requestFocus();
                     pbset.setVisibility(View.GONE);
-                }if (password1.getText().toString().equals(password2.getText().toString())) {
+                }if (teacherPassword.getText().toString().equals(password2.getText().toString())) {
                     mAuth = FirebaseAuth.getInstance();
                     String icode=((global)getApplication()).getInstituteCode();
                     dbRef = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Teacher");
@@ -97,12 +94,13 @@ public class setpassword extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+
                                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                         if (user != null) {
                                             String uid = user.getUid();
                                             String code=((global)getApplication()).getInstituteCode();
-                                            profiledatabase profiledatabase=new profiledatabase(code,Fullname, email,birthofdate, numbers, uid, addresss, password,"Teacher",null,null,null,degree,courese,null);
-                                            pdroot.child(uid).setValue(profiledatabase)
+                                            profiledatabase teacherData=new profiledatabase(code,Fullname, email,birthofdate, numbers, uid, addresss, password,"Teacher",null,null,null,degree,courese,null);
+                                            pdroot.child(uid).setValue(teacherData)
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
@@ -120,7 +118,7 @@ public class setpassword extends AppCompatActivity {
                                             Toast.makeText(setpassword.this, "teacher Registered Login Now", Toast.LENGTH_LONG).show();
                                             pbset.setVisibility(View.GONE);
                                             password2.setText("");
-                                            password1.setText("");
+                                            teacherPassword.setText("");
                                             String em=((global)getApplication()).getEmailaddrss();
                                             mAuth.signOut();
 

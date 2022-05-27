@@ -162,17 +162,16 @@ public class StudentAttendanceReport extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChildren()){
                                 num=num+1;
-                                Log.d("att","num"+String.valueOf(num));
+
                                 long tchild=dataSnapshot.getChildrenCount();
-                                Log.d("report","subchild----"+tchild);
+
                                 int maxchild=(int)tchild;
-                                progress(dataclass,minchild,maxchild);
+                                makeProgressReport(dataclass,minchild,maxchild);
                                 report(num);
                             }  else {
                                 num=num+1;
-                                Log.d("att","num"+String.valueOf(num));
-                                Log.d("report","Teacher Not child");
-                                progress(dataclass,minchild,minchild);
+
+                                makeProgressReport(dataclass,minchild,minchild);
                                 report(num);
                             }
                             pb.setVisibility(View.GONE);
@@ -186,11 +185,11 @@ public class StudentAttendanceReport extends AppCompatActivity {
                     });
                 }else {
                     num=num+1;
-                    Log.d("att","num"+String.valueOf(num));
+
                     pb.setVisibility(View.GONE);
                     int i=0,j=0;
-                    progress(dataclass,i,j);
-                    Log.d("report","student Not child");
+                    makeProgressReport(dataclass,i,j);
+
                     report(num);
                 }
             }
@@ -203,8 +202,11 @@ public class StudentAttendanceReport extends AppCompatActivity {
         });
 
     }
+
+
+
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
-    private void progress(String i, int min, int max){
+    private void makeProgressReport (String i, int min, int max){
         minmum.add(min);
         manmum.add(max);
         tableRow = new TableRow(StudentAttendanceReport.this);
@@ -243,6 +245,8 @@ public class StudentAttendanceReport extends AppCompatActivity {
         tableLayout.addView(pbar);
         tableLayout.addView(qw);
     }
+
+
     @SuppressLint("SetTextI18n")
     private void report(int qw){
         if(qw==10){
@@ -262,12 +266,12 @@ public class StudentAttendanceReport extends AppCompatActivity {
             Log.d("atttt","per"+newpercentage);
             TableRow tableRow1 = new TableRow(StudentAttendanceReport.this);
             tableRow1.setBackgroundColor(Color.parseColor("#1134af"));
-            TextView tv3=new TextView(StudentAttendanceReport.this);
-            tv3.setText("Total Attendance");
-            tv3.setTextSize(20);
-            tv3.setPadding(35,10,0,15);
-            tv3.setWidth(800);
-            tv3.setTextColor(Color.WHITE);
+            TextView textView3=new TextView(StudentAttendanceReport.this);
+            textView3.setText("Total Attendance");
+            textView3.setTextSize(20);
+            textView3.setPadding(35,10,0,15);
+            textView3.setWidth(800);
+            textView3.setTextColor(Color.WHITE);
             TextView tv2=new TextView(StudentAttendanceReport.this);
             tv2.setTextColor(Color.WHITE);
             if(newpercentage>100){
@@ -276,7 +280,7 @@ public class StudentAttendanceReport extends AppCompatActivity {
             tv2.setText(newmin+"/"+newmax+"\t\t"+newpercentage+"%");
             tv2.setTextSize(14);
             tv2.setPadding(0,10,0,15);
-            tableRow1.addView(tv3);
+            tableRow1.addView(textView3);
             tableRow1.addView(tv2);
             tableLayout.addView(tableRow1);
             newmax=0;

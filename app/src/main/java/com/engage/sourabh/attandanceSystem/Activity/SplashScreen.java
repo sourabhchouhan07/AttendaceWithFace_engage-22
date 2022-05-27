@@ -9,13 +9,11 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.engage.sourabh.attandanceSystem.Model.profiledatabase;
 import com.engage.sourabh.attandanceSystem.R;
 import com.engage.sourabh.attandanceSystem.global;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,13 +28,13 @@ public class SplashScreen extends AppCompatActivity {
     String inCode="";
     public static int splash_time_out=2000;
     private ImageView appLogo, pattern1, pattern2,appSlogan;
-    private TextView  poweredBy, developerDepository;
+
 
     //Other Variables
     private Animation topAnimation, bottomAnimation, startAnimation, endAnimation;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference notice3,notice1;
+    private DatabaseReference notice3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +95,7 @@ public class SplashScreen extends AppCompatActivity {
                     notice3.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            profiledatabase profiledatabase=dataSnapshot.getValue(profiledatabase.class);
+
 //
 
                             String usertypelogin=dataSnapshot.child("userType").getValue().toString();

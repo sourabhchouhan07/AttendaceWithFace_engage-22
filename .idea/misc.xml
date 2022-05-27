@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/drawable/cell_shape.xml" value="0.13" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/drawable/gradient.xml" value="0.1395" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/drawable/ic_arrow_back.xml" value="0.102" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/drawable/ic_home.xml" value="0.102" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/drawable/ic_menu_camera.xml" value="0.188" />
@@ -26,7 +27,7 @@
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_attendance_report.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_camera_attendance.xml" value="0.12" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_index.xml" value="0.1796875" />
-        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_login.xml" value="0.165625" />
+        <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_login.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_manual_attendance.xml" value="0.1796875" />
         <entry key="..\:/Users/Sourabh Chouhan/AttandenceWithFace/app/src/main/res/layout/activity_no.xml" value="0.1597222222222222" />

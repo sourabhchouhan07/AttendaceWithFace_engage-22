@@ -15,6 +15,26 @@ public class notificationSendAndReceive {
         Fro =fro;
     }
 
+    public void setTime(String time) {
+        Time = time;
+    }
+
+    public String getSubject() {
+        return Subject;
+    }
+
+    public String getMessage() {
+        return Message;
+    }
+
+    public String getSender() {
+        return Sender;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
     public String getFro() {
         return Fro;
     }
@@ -35,23 +55,5 @@ public class notificationSendAndReceive {
         Sender = sender;
     }
 
-    public void setTime(String time) {
-        Time = time;
-    }
 
-    public String getSubject() {
-        return Subject;
-    }
-
-    public String getMessage() {
-        return Message;
-    }
-
-    public String getSender() {
-        return Sender;
-    }
-
-    public String getTime() {
-        return Time;
-    }
 }

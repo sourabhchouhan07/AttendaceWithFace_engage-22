@@ -52,33 +52,36 @@ public class StudentHomeAcitvity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 profiledatabase profiledatabase=dataSnapshot.getValue(profiledatabase.class);
                 assert profiledatabase != null;
-                String fullnameindex=profiledatabase.getFullname();
+                String studentName=profiledatabase.getFullname();
                 String usertype=profiledatabase.getUserType();
-                String email=profiledatabase.getEmail();
+                String studentEmail=profiledatabase.getEmail();
 
                 String address=profiledatabase.getAddresss();
-                String birthofdate=profiledatabase.getBirthofdate();
+                String stdDoB=profiledatabase.getBirthofdate();
                 String number=profiledatabase.getNumbers();
 
                 String course=profiledatabase.getCourse();
-                String rollnumber=profiledatabase.getRollnumber();
+                String stdRollNo=profiledatabase.getRollnumber();
                 String year=profiledatabase.getYear();
                 String division=profiledatabase.getDivision();
                    String password1=profiledatabase.getPassword();
+
+
+
                 ((global)getApplication()).setPassword(password1);
                 ((global) getApplication()).setDivision(division);
                 ((global) getApplication()).setCourse(course);
-                ((global) getApplication()).setRollnumber(rollnumber);
+                ((global) getApplication()).setRollnumber(stdRollNo);
                 ((global) getApplication()).setYear(year);
 
-                ((global) getApplication()).setFullname(fullnameindex);
+                ((global) getApplication()).setFullname(studentName);
                 ((global) getApplication()).setAddress(address);
-                ((global) getApplication()).setBirthofdate(birthofdate);
+                ((global) getApplication()).setBirthofdate(stdDoB);
                 ((global) getApplication()).setNumber(number);
 
                 ((global) getApplication()).setUsertype(usertype);
-                ((global) getApplication()).setEmail(email);
-                Log.d("student","detail"+division+course+rollnumber+year+fullnameindex+address+birthofdate+number+usertype+email);
+                ((global) getApplication()).setEmail(studentEmail);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

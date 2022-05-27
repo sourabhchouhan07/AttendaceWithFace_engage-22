@@ -23,11 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherDetailActivity extends AppCompatActivity {
+
+
     ListView listView;
     String icode="";
     DatabaseReference notice;
     ImageView backBtn;
-    List<addTeacherdatabase> teacherinfo;
+    List<addTeacherdatabase> AllTeacherInfo;
     ProgressBar detailtpb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class TeacherDetailActivity extends AppCompatActivity {
         icode=((global)getApplication()).getInstituteCode();
 
         notice = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/Teacher");
-        teacherinfo=new ArrayList<>();
+        AllTeacherInfo =new ArrayList<>();
         backBtn=findViewById(R.id.backBtn);
         backBtn.setOnClickListener(v->{
             onBackPressed();
@@ -54,14 +56,14 @@ public class TeacherDetailActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot info:dataSnapshot.getChildren()){
-                    addTeacherdatabase showinfo=info.getValue(addTeacherdatabase.class);
-                    teacherinfo.add(showinfo);
+                    addTeacherdatabase teacherDetails=info.getValue(addTeacherdatabase.class);
+                    AllTeacherInfo.add(teacherDetails);
                 }
-                teacherList adapter = new teacherList(TeacherDetailActivity.this,teacherinfo);
-                listView.setAdapter(adapter);
+                teacherList infoAdapter = new teacherList(TeacherDetailActivity.this, AllTeacherInfo);
+                listView.setAdapter(infoAdapter);
                 detailtpb.setVisibility(View.GONE);
 
-                if(teacherinfo.isEmpty()){
+                if(AllTeacherInfo.isEmpty()){
 
                     Toast.makeText(TeacherDetailActivity.this, "No teacher is register", Toast.LENGTH_SHORT).show();
                 }

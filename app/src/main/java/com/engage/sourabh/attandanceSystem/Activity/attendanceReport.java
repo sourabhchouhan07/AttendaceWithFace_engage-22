@@ -34,6 +34,11 @@ import java.util.List;
 
 public class attendanceReport extends AppCompatActivity {
     private Spinner selectCourse, selectYear;
+    private int yearPos, coursePos;
+    private TableLayout layoutTable;
+    private TableRow tableRow;
+    private int count =0;
+
     private EditText searchroll, SelectDiv;
     private Button search;
     ImageView backBtn;
@@ -41,10 +46,6 @@ public class attendanceReport extends AppCompatActivity {
     private DatabaseReference databaseRef2;
     private List<Integer> minNoList =new ArrayList<>();
     private List<Integer> maxNoList =new ArrayList<>();
-    private int yearPos, coursePos;
-    private TableLayout tableLayout;
-    private TableRow tableRow;
-    private int count =0;
 
 
 
@@ -108,19 +109,19 @@ public class attendanceReport extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableLayout.removeAllViews();
+                layoutTable.removeAllViews();
                 final String stdRollno=searchroll.getText().toString().trim();
                 final String stdDiv= SelectDiv.getText().toString().trim();
                 final String stdCourse= selectCourse.getSelectedItem().toString().trim();
                 final String stdYear= selectYear.getSelectedItem().toString().trim();
                 if(stdRollno.isEmpty()){
-                    searchroll.setError("please enter Roll number");
+                    searchroll.setError(getString(R.string.enterRoll));
                     searchroll.requestFocus();
                 }else if(stdDiv.isEmpty()){
-                    SelectDiv.setError("please enter Roll number");
+                    SelectDiv.setError(getString(R.string.divAlert));
                     SelectDiv.requestFocus();
                 }else{
-                    tableLayout.removeAllViews();
+                    layoutTable.removeAllViews();
                     if(coursePos ==0&& yearPos ==0){
                         for(int i = 0; i<= Constants.FY1_BSC.size()-1; i++){
 
@@ -135,7 +136,7 @@ public class attendanceReport extends AppCompatActivity {
                 }
             }
         });
-        tableLayout=findViewById(R.id.list);
+        layoutTable =findViewById(R.id.list);
 
     }
 
@@ -148,6 +149,7 @@ public class attendanceReport extends AppCompatActivity {
 
 
          String icode=((global)getApplication()).getInstituteCode();
+
         DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("institutes/"+icode);
         databaseRef = dbref.child("Attandance/"+stdCourse+"/"+stdYear+"/"+stdDiv+"/"+stdRollno+"/"+dataclass);
 
@@ -160,6 +162,7 @@ public class attendanceReport extends AppCompatActivity {
                     final long child=dataSnapshot.getChildrenCount();
 
                     final int minchild=(int)child;
+
                     databaseRef2 = dbref.child("Attandancedetail/"+stdCourse+"/"+stdYear+"/"+stdDiv+"/"+dataclass);
                     databaseRef2.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -236,9 +239,9 @@ public class attendanceReport extends AppCompatActivity {
         TextView qw=new TextView(attendanceReport.this);
         qw.setBackgroundColor(Color.BLACK);
         qw.setHeight(5);
-        tableLayout.addView(tableRow);
-        tableLayout.addView(proBar);
-        tableLayout.addView(qw);
+        layoutTable.addView(tableRow);
+        layoutTable.addView(proBar);
+        layoutTable.addView(qw);
     }
     @SuppressLint("SetTextI18n")
     private void report(int qw){
@@ -275,7 +278,7 @@ public class attendanceReport extends AppCompatActivity {
             tView2.setPadding(0,10,0,15);
             firstRow.addView(textView3);
             firstRow.addView(tView2);
-            tableLayout.addView(firstRow);
+            layoutTable.addView(firstRow);
             newmax=0;
             newmin=0;
             newpercentage=0;

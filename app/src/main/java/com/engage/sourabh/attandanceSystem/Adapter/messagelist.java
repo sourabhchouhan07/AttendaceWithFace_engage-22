@@ -16,7 +16,7 @@ import java.util.List;
 public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
 
 
-    private List<notificationSendAndReceive> messageData;
+    private List<notificationSendAndReceive> messages;
     private Activity activityContext;
 
 
@@ -24,7 +24,7 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
     public messagelist(Activity context, List<notificationSendAndReceive> messagelist){
         super(context, R.layout.resever_msg_list,messagelist);
         this.activityContext =context;
-        this.messageData =messagelist;
+        this.messages =messagelist;
     }
 
 
@@ -52,7 +52,7 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
 
 
 
-        notificationSendAndReceive notificationSendAndReceive = messageData.get(position);
+        notificationSendAndReceive notificationSendAndReceive = messages.get(position);
 
 
 

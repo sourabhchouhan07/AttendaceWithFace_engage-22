@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class AddTeacher extends AppCompatActivity {
 
-      private ImageView homeButton, backbtn;
+    private ImageView homeButton, backbtn;
     Button submitBtn;
     private EditText name,degree_t, teacherBOD;
     private EditText number,email,address;
@@ -113,7 +113,7 @@ public class AddTeacher extends AppCompatActivity {
                     degree_t.setError(getString(R.string.alertDegree));
                     degree_t.requestFocus();
                 } else if(BOD.isEmpty()){
-                    teacherBOD.setError("Please enter  DOB ");
+                    teacherBOD.setError(getString(R.string.dobAlert));
                     teacherBOD.requestFocus();
                 } else if(numbers.isEmpty()){
                     number.setError(getString(R.string.validNo));

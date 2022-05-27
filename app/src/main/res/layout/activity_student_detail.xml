@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Student Details"
                 android:textSize="20dp"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"
                 app:layout_constraintEnd_toStartOf="@+id/home_btn"
@@ -252,7 +253,7 @@
 
         <TableLayout
             android:id="@+id/tableLayout5"
-            android:layout_width="376dp"
+            android:layout_width="411dp"
             android:layout_height="426dp"
             android:layout_margin="10dp"
 
@@ -272,7 +273,7 @@
                 <TextView
                     android:id="@+id/detailfull_name"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="-------- ------"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -291,7 +292,7 @@
                 <TextView
                     android:id="@+id/detailBirthofdate"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="--/--/----"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -310,7 +311,7 @@
                 <TextView
                     android:id="@+id/detailshowcource"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="-----"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -329,7 +330,7 @@
                 <TextView
                     android:id="@+id/divisionstudent"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="------"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -348,7 +349,7 @@
                 <TextView
                     android:id="@+id/detailroll"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="---"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -362,21 +363,23 @@
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/uidstudent"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="------------"
                     android:textAlignment="textStart"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:visibility="gone" />
             </TableRow>
 
             <TableRow>
 
                 <TextView
-                    android:layout_width="139dp"
+                    android:layout_width="130dp"
                     android:text="@string/email"
                     android:textAlignment="center"
                     android:textColor="#000"
@@ -386,7 +389,7 @@
                 <TextView
                     android:id="@+id/detailmail"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="--------------"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -405,7 +408,7 @@
                 <TextView
                     android:id="@+id/detailContact"
                     android:layout_width="144dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
                     android:text="+91 ----------"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />
@@ -425,7 +428,8 @@
                     android:id="@+id/detailaddress"
                     android:layout_width="268dp"
                     android:layout_height="43dp"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="2dp"
+                    android:maxWidth="200dp"
                     android:text="---------------\n---------\n-----"
                     android:textAlignment="textStart"
                     android:textColor="#000000" />

@@ -33,7 +33,7 @@ public class StudentDetailActivity extends AppCompatActivity {
     private ImageView profileDetail,backBtn;
     private Button showDetail;
     private Spinner courseDetail, yearDetail;
-    private DatabaseReference notice;
+    private DatabaseReference stdDatabaseRef;
 
     private ProgressBar progressbar;
 
@@ -80,21 +80,21 @@ public class StudentDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressbar.setVisibility(View.VISIBLE);
-                String rollnumberlocal= rollnumberDetail.getText().toString().trim();
-                final String divisionlocal= divisonDetail.getText().toString().trim();
-                final String coureseslocal = courseDetail.getSelectedItem().toString();
-                final String yearslocal = yearDetail.getSelectedItem().toString();
-                if(!(rollnumberlocal.isEmpty())){
-                    if(divisionlocal.isEmpty()){
+                String stdRollno= rollnumberDetail.getText().toString().trim();
+                final String stdDic= divisonDetail.getText().toString().trim();
+                final String stdCourse = courseDetail.getSelectedItem().toString();
+                final String stdYear = yearDetail.getSelectedItem().toString();
+                if(!(stdRollno.isEmpty())){
+                    if(stdDic.isEmpty()){
                         divisonDetail.setError("Please enter division");
                         divisonDetail.requestFocus();
                         progressbar.setVisibility(View.GONE);
                     }else {
                         String icode=((global)getApplication()).getInstituteCode();
                         DatabaseReference dbref=FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/student");
-                        notice = dbref.child(coureseslocal+"/"+yearslocal+"/"+divisionlocal+"/"+rollnumberlocal);
+                        stdDatabaseRef = dbref.child(stdCourse+"/"+stdYear+"/"+stdDic+"/"+stdRollno);
 
-                        notice.addValueEventListener(new ValueEventListener() {
+                        stdDatabaseRef.addValueEventListener(new ValueEventListener() {
                             @SuppressLint("SetTextI18n")
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -120,15 +120,15 @@ public class StudentDetailActivity extends AppCompatActivity {
 
                                     }else {
                                         Toast.makeText(StudentDetailActivity.this,"This Roll no. student is not register",Toast.LENGTH_LONG).show();
-                                        fullNameDetail.setText("---- ----");
-                                        showCourseDetail.setText("----");
-                                        BODdetail.setText("----");
-                                        contactDetail.setText("----------");
-                                        mailDetail.setText("---------------");
-                                        addressDetail.setText("-------------\n------");
-                                        rolldetail.setText("--");
-                                        uidstudent.setText("------------");
-                                        studentDivDetail.setText("--");
+                                        fullNameDetail.setText("");
+                                        showCourseDetail.setText("");
+                                        BODdetail.setText("");
+                                        contactDetail.setText("");
+                                        mailDetail.setText("");
+                                        addressDetail.setText("");
+                                        rolldetail.setText("");
+                                        uidstudent.setText("");
+                                        studentDivDetail.setText("");
                                         progressbar.setVisibility(View.GONE);
                                     }
                                 }

@@ -163,4 +163,8 @@
     <string name="subjectAlert">Please enter Subject</string>
     <string name="shortPass">password too short</string>
     <string name="enterPass">Please enter your password</string>
+    <string name="vPass">Please enter valid password</string>
+    <string name="dobAlert">\"Please enter  DateOfBirth \"</string>
+
+
 </resources>

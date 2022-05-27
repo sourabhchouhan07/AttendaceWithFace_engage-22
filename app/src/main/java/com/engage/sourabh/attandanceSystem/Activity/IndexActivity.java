@@ -53,20 +53,22 @@ public class IndexActivity extends AppCompatActivity {
                 assert profiledatabase != null;
                 if(profiledatabase!=null)
                 {
-                    String fullnameindex=profiledatabase.getFullname();
+                    String fullNameUser=profiledatabase.getFullname();
                     String usertype=profiledatabase.getUserType();
                     String email=profiledatabase.getEmail();
                     String address=profiledatabase.getAddresss();
-                    String birthofdate=profiledatabase.getBirthofdate();
+                    String dateOfBirth=profiledatabase.getBirthofdate();
                     String number=profiledatabase.getNumbers();
                     String password1=profiledatabase.getPassword();
-                    ((global)getApplication()).setPassword(password1);
-                    ((global) getApplication()).setFullname(fullnameindex);
+
                     ((global) getApplication()).setAddress(address);
-                    ((global) getApplication()).setBirthofdate(birthofdate);
+                    ((global) getApplication()).setBirthofdate(dateOfBirth);
                     ((global) getApplication()).setNumber(number);
                     ((global) getApplication()).setUsertype(usertype);
                     ((global) getApplication()).setEmail(email);
+
+                    ((global)getApplication()).setPassword(password1);
+                    ((global) getApplication()).setFullname(fullNameUser);
 
                 }
             }
@@ -79,7 +81,7 @@ public class IndexActivity extends AppCompatActivity {
 
 
 
-
+       //setting icon to bottom nav bar
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_notification));
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_profile));

@@ -26,13 +26,13 @@ public class AttandanceActivity extends AppCompatActivity {
 
        ImageView backBtn;
     private Spinner selectCourses, selectYear, selectSubject;
-    private EditText division,starttime,endtime;
+    private EditText division, startTime, endTime;
 
     private Button camera,rollnumber;
     int CAMERA_PIC_REQUEST=1;
 
 
-    private int sub;
+    private int coursePos;
 
 
     @Override
@@ -41,8 +41,8 @@ public class AttandanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attandance);
 
         division=findViewById(R.id.divisionattndanc);
-        starttime=findViewById(R.id.starttime);
-        endtime=findViewById(R.id.endtime);
+        startTime =findViewById(R.id.starttime);
+        endTime =findViewById(R.id.endtime);
 
         selectCourses =findViewById(R.id.spinner);
         selectYear =findViewById(R.id.spinner2);
@@ -75,7 +75,7 @@ public class AttandanceActivity extends AppCompatActivity {
         selectCourses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sub = position;
+                coursePos = position;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -96,13 +96,13 @@ public class AttandanceActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(sub == 0 && position == 0){
+                if(coursePos == 0 && position == 0){
                     ArrayAdapter<CharSequence> adpter2=ArrayAdapter.createFromResource(AttandanceActivity.this,R.array.FY_1,R.layout.spinner_item);
 
                     adpter2.setDropDownViewResource(R.layout.spinner_drop_item);
 
                     selectSubject.setAdapter(adpter2);
-                }else if(sub == 0 && position == 1){
+                }else if(coursePos == 0 && position == 1){
                     ArrayAdapter<CharSequence> adpter2 =ArrayAdapter.createFromResource(AttandanceActivity.this,R.array.FY_2,R.layout.spinner_item);
 
                     adpter2.setDropDownViewResource(R.layout.spinner_drop_item);
@@ -132,17 +132,17 @@ public class AttandanceActivity extends AppCompatActivity {
                 String years= selectYear.getSelectedItem().toString().trim();
                 String subjectAttendance= selectSubject.getSelectedItem().toString().trim();
                 String divisions=division.getText().toString().trim();
-                String sTime=starttime.getText().toString().trim();
-                String eTime=endtime.getText().toString().trim();
+                String sTime= startTime.getText().toString().trim();
+                String eTime= endTime.getText().toString().trim();
                 if(divisions.isEmpty()){
                     division.setError(getString(R.string.divAlert));
                     division.requestFocus();
                 }else if(sTime.isEmpty()){
-                    starttime.setError(getString(R.string.enterStime));
-                    starttime.requestFocus();
+                    startTime.setError(getString(R.string.enterStime));
+                    startTime.requestFocus();
                 }else if(eTime.isEmpty()){
-                    endtime.setError(getString(R.string.enterStime));
-                    endtime.requestFocus();
+                    endTime.setError(getString(R.string.enterStime));
+                    endTime.requestFocus();
                 }else{
 
                     Intent intent=new Intent(AttandanceActivity.this, CameraAttendance.class);
@@ -163,8 +163,8 @@ public class AttandanceActivity extends AppCompatActivity {
 
                 String subjectAttendance= selectSubject.getSelectedItem().toString().trim();
                 String divisions=division.getText().toString().trim();
-                String sTime=starttime.getText().toString().trim();
-                String eTime=endtime.getText().toString().trim();
+                String sTime= startTime.getText().toString().trim();
+                String eTime= endTime.getText().toString().trim();
 
 
                 String courseA= selectCourses.getSelectedItem().toString().trim();
@@ -174,19 +174,22 @@ public class AttandanceActivity extends AppCompatActivity {
                     division.setError(getString(R.string.divAlert));
                     division.requestFocus();
                 }else if(sTime.isEmpty()){
-                    starttime.setError(getString(R.string.enterStime));
-                    starttime.requestFocus();
+                    startTime.setError(getString(R.string.enterStime));
+                    startTime.requestFocus();
                 }else if(eTime.isEmpty()){
-                    endtime.setError(getString(R.string.enterEtime));
-                    endtime.requestFocus();
+                    endTime.setError(getString(R.string.enterEtime));
+                    endTime.requestFocus();
                 }else{
                     Intent intent=new Intent(AttandanceActivity.this, manualAttendance.class);
-                    intent.putExtra("course",courseA);
+
                     intent.putExtra("year",yearS);
                     intent.putExtra("division",divisions);
                     intent.putExtra("subject",subjectAttendance);
                     intent.putExtra("starttime",sTime);
                     intent.putExtra("endtime",eTime);
+
+                    intent.putExtra("course",courseA);
+
                     startActivity(intent);
                 }
             }
@@ -196,8 +199,8 @@ public class AttandanceActivity extends AppCompatActivity {
 
     private void TakeTimeForClass() {
 
-        starttime.setInputType(InputType.TYPE_NULL);
-        starttime.setOnClickListener(new View.OnClickListener() {
+        startTime.setInputType(InputType.TYPE_NULL);
+        startTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -207,7 +210,7 @@ public class AttandanceActivity extends AppCompatActivity {
                 picker1 = new TimePickerDialog(AttandanceActivity.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        starttime.setText(sHour + ":" + sMinute);
+                        startTime.setText(sHour + ":" + sMinute);
                     }
                 }, hour, minutes, false);
                 picker1.getWindow().setBackgroundDrawableResource(R.color.grey);
@@ -215,22 +218,22 @@ public class AttandanceActivity extends AppCompatActivity {
             }
         });
 
-        endtime.setInputType(InputType.TYPE_NULL);
-        endtime.setOnClickListener(new View.OnClickListener() {
+        endTime.setInputType(InputType.TYPE_NULL);
+        endTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
                 int hour = cldr.get(Calendar.HOUR_OF_DAY);
                 int minutes = cldr.get(Calendar.MINUTE);
-                TimePickerDialog picker1;
-                picker1 = new TimePickerDialog(AttandanceActivity.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePicker;
+                timePicker = new TimePickerDialog(AttandanceActivity.this,R.style.MyTimePickerDialogStyle, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                        endtime.setText(sHour + ":" + sMinute);
+                        endTime.setText(sHour + ":" + sMinute);
                     }
                 }, hour, minutes, false);
-                picker1.getWindow().setBackgroundDrawableResource(R.color.grey);
-                picker1.show();
+                timePicker.getWindow().setBackgroundDrawableResource(R.color.grey);
+                timePicker.show();
             }
         });
     }

@@ -70,7 +70,7 @@ public class InstituteHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"You can only take attendance from teacher Account Login",Toast.LENGTH_LONG).show();
+
                 Intent i=new Intent(getContext(), TeacherDetailActivity.class);
                 startActivity(i);
 

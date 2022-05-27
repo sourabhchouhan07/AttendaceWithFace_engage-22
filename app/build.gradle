@@ -63,10 +63,7 @@ dependencies {
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
 
 
-    //tensorFlowlite
 
-    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
    
     // CameraX core library using the camera2 implementation
     def camerax_version = "1.0.0-rc01"
@@ -80,6 +77,10 @@ dependencies {
     // If you want to additionally use the CameraX Extensions library
     implementation "androidx.camera:camera-extensions:1.0.0-alpha20"
 
+    //tensorflow lite
+
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     implementation ('org.tensorflow:tensorflow-lite:2.4.0') { changing = true }
     implementation('org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly') { changing = true }
     implementation('org.tensorflow:tensorflow-lite-support:0.0.0-nightly') { changing = true }

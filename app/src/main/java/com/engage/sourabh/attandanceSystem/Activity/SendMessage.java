@@ -111,9 +111,11 @@ public class SendMessage extends AppCompatActivity {
                 }else if(senderName.isEmpty()){
                     senderName ="Institute";
                 }else {
-                    @SuppressLint("SimpleDateFormat") final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy ");
-                    String currentDateandTime = sdf.format(new Date()).trim();
-                    notificationSendAndReceive notificationSendAndReceive = new notificationSendAndReceive(subJect,msg, senderName ,currentDateandTime,course+year);
+                    @SuppressLint("SimpleDateFormat")
+
+                    final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy ");
+                    String curDateTime = sdf.format(new Date()).trim();
+                    notificationSendAndReceive notificationSendAndReceive = new notificationSendAndReceive(subJect,msg, senderName ,curDateTime,course+year);
                     notice.child(userId).setValue(notificationSendAndReceive);
                     Toast.makeText(SendMessage.this,"Successfully Send Msg", Toast.LENGTH_SHORT).show();
                     subject.setText(" ");

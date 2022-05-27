@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 passsword.setEnabled(false);
                 progressBar.setVisibility(View.VISIBLE);
                 if(userEmail.isEmpty()){
-                    email.setError("Please enter email");
+                    email.setError(getString(R.string.emailAlert));
                     email.requestFocus();
                     progressBar.setVisibility(View.GONE);
                     email.setEnabled(true);
@@ -168,7 +168,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this,"your are not sign",Toast.LENGTH_LONG).show();
                                 }
                             } else {
-                                Toast.makeText(LoginActivity.this,"Please enter valid password",Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivity.this, R.string.vPass ,Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
                                 email.setEnabled(true);
                                 passsword.setEnabled(true);
