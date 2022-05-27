@@ -62,8 +62,10 @@ public class AttandanceActivity extends AppCompatActivity {
 
 
         TakeTimeForClass();
-
-        ArrayAdapter<CharSequence> DataAdapterC=ArrayAdapter.createFromResource(AttandanceActivity.this,R.array.SUbject,R.layout.spinner_item);
+          //Adding Spinner Data array r
+        ArrayAdapter<CharSequence> DataAdapterC=ArrayAdapter.createFromResource(
+                AttandanceActivity.this,R.array.SUbject,
+                R.layout.spinner_item);
 
         DataAdapterC.setDropDownViewResource(R.layout.spinner_drop_item);
 
@@ -82,7 +84,9 @@ public class AttandanceActivity extends AppCompatActivity {
         });
 
 
-        ArrayAdapter<CharSequence> DataAdapter1=ArrayAdapter.createFromResource(AttandanceActivity.this,R.array.categriory,R.layout.spinner_item);
+        ArrayAdapter<CharSequence> DataAdapter1=ArrayAdapter.createFromResource(
+                AttandanceActivity.this,R.array.categriory
+                ,R.layout.spinner_item);
 
         DataAdapter1.setDropDownViewResource(R.layout.spinner_drop_item);
 
@@ -124,36 +128,30 @@ public class AttandanceActivity extends AppCompatActivity {
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String attancourses= selectCourses.getSelectedItem().toString().trim();
-                String attanyears= selectYear.getSelectedItem().toString().trim();
-                String attansubjects= selectSubject.getSelectedItem().toString().trim();
+                String course= selectCourses.getSelectedItem().toString().trim();
+                String years= selectYear.getSelectedItem().toString().trim();
+                String subjectAttendance= selectSubject.getSelectedItem().toString().trim();
                 String divisions=division.getText().toString().trim();
-                String starttimes=starttime.getText().toString().trim();
-                String endtimes=endtime.getText().toString().trim();
+                String sTime=starttime.getText().toString().trim();
+                String eTime=endtime.getText().toString().trim();
                 if(divisions.isEmpty()){
-                    division.setError("Please enter division");
+                    division.setError(getString(R.string.divAlert));
                     division.requestFocus();
-                }else if(starttimes.isEmpty()){
-                    starttime.setError("Please enter division");
+                }else if(sTime.isEmpty()){
+                    starttime.setError(getString(R.string.enterStime));
                     starttime.requestFocus();
-                }else if(endtimes.isEmpty()){
-                    endtime.setError("Please enter division");
+                }else if(eTime.isEmpty()){
+                    endtime.setError(getString(R.string.enterStime));
                     endtime.requestFocus();
-                }else if(starttimes.length()<4){
-                    starttime.setError("PLease eter valid formate");
-                    starttime.requestFocus();
-                }else if(endtimes.length()<4){
-                    starttime.setError("Please enter valid formate");
-                    starttime.requestFocus();
                 }else{
 
                     Intent intent=new Intent(AttandanceActivity.this, CameraAttendance.class);
-                    intent.putExtra("course",attancourses);
-                    intent.putExtra("year",attanyears);
+                    intent.putExtra("course",course);
+                    intent.putExtra("year",years);
                     intent.putExtra("division",divisions);
-                    intent.putExtra("subject",attansubjects);
-                    intent.putExtra("starttime",starttimes);
-                    intent.putExtra("endtime",endtimes);
+                    intent.putExtra("subject",subjectAttendance);
+                    intent.putExtra("starttime",sTime);
+                    intent.putExtra("endtime",eTime);
                     startActivity(intent);
                 }
             }
@@ -161,35 +159,34 @@ public class AttandanceActivity extends AppCompatActivity {
         rollnumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String attancourses= selectCourses.getSelectedItem().toString().trim();
-                String attanyears= selectYear.getSelectedItem().toString().trim();
-                String attansubjects= selectSubject.getSelectedItem().toString().trim();
+
+
+                String subjectAttendance= selectSubject.getSelectedItem().toString().trim();
                 String divisions=division.getText().toString().trim();
-                String starttimes=starttime.getText().toString().trim();
-                String endtimes=endtime.getText().toString().trim();
+                String sTime=starttime.getText().toString().trim();
+                String eTime=endtime.getText().toString().trim();
+
+
+                String courseA= selectCourses.getSelectedItem().toString().trim();
+                String yearS= selectYear.getSelectedItem().toString().trim();
+
                 if(divisions.isEmpty()){
-                    division.setError("Please enter division");
+                    division.setError(getString(R.string.divAlert));
                     division.requestFocus();
-                }else if(starttimes.isEmpty()){
-                    starttime.setError("Please enter starting time");
+                }else if(sTime.isEmpty()){
+                    starttime.setError(getString(R.string.enterStime));
                     starttime.requestFocus();
-                }else if(endtimes.isEmpty()){
-                    endtime.setError("Please enter endTime");
+                }else if(eTime.isEmpty()){
+                    endtime.setError(getString(R.string.enterEtime));
                     endtime.requestFocus();
-                }else if(starttimes.length()<4){
-                    starttime.setError("PLease enter valid formate");
-                    starttime.requestFocus();
-                }else if(endtimes.length()<4){
-                    starttime.setError("Please enter valid formate");
-                    starttime.requestFocus();
                 }else{
-                    Intent intent=new Intent(AttandanceActivity.this, selectrollnumber.class);
-                    intent.putExtra("course",attancourses);
-                    intent.putExtra("year",attanyears);
+                    Intent intent=new Intent(AttandanceActivity.this, manualAttendance.class);
+                    intent.putExtra("course",courseA);
+                    intent.putExtra("year",yearS);
                     intent.putExtra("division",divisions);
-                    intent.putExtra("subject",attansubjects);
-                    intent.putExtra("starttime",starttimes);
-                    intent.putExtra("endtime",endtimes);
+                    intent.putExtra("subject",subjectAttendance);
+                    intent.putExtra("starttime",sTime);
+                    intent.putExtra("endtime",eTime);
                     startActivity(intent);
                 }
             }

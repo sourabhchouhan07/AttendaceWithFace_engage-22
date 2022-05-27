@@ -121,7 +121,7 @@ public class StudentHomeAcitvity extends AppCompatActivity {
 
         //set NOtification count
 
-        bottomNavigation.setCount(1,"10");
+
 
         //set home fragment default
 

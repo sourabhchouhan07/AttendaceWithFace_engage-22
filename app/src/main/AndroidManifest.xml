@@ -21,9 +21,6 @@
             android:name=".Activity.StudentAttendanceReport"
             android:exported="false" />
         <activity
-            android:name=".Activity.selectrollnumber"
-            android:exported="false" />
-        <activity
             android:name=".Activity.SignUpActivity"
             android:exported="false" />
         <activity

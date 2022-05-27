@@ -18,15 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.engage.sourabh.attandanceSystem.R;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class AddTeacher extends AppCompatActivity {
 
       private ImageView homeButton, backbtn;
-    private EditText name,degree_t,birthofdate,number,email,address;
+    Button submitBtn;
+    private EditText name,degree_t, teacherBOD;
+    private EditText number,email,address;
     private Spinner courses;
     private ProgressDialog detectionProgressDialog;
     DatePickerDialog pickDate;
@@ -38,18 +37,18 @@ public class AddTeacher extends AppCompatActivity {
         courses=findViewById(R.id.course);
         degree_t=findViewById(R.id.degree);
         name=findViewById(R.id.fullname);
-        birthofdate=findViewById(R.id.birtofdate);
+        teacherBOD =findViewById(R.id.birtofdate);
         number=findViewById(R.id.number);
         email=findViewById(R.id.email);
         address=findViewById(R.id.addresss);
-        Button submitBtn=findViewById(R.id.submit);
-        birthofdate.setInputType(InputType.TYPE_NULL);
+       submitBtn=findViewById(R.id.submit);
+        teacherBOD.setInputType(InputType.TYPE_NULL);
 
-        List<String> categories = new ArrayList<String>();
-        categories.add("BSCIT");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(AddTeacher.this, R.layout.spinner_item, categories);
-        dataAdapter.setDropDownViewResource(R.layout.spinner_drop_item);
-        courses.setAdapter(dataAdapter);
+
+        ArrayAdapter<CharSequence> subject=ArrayAdapter.createFromResource(AddTeacher.this,R.array.SUbject,R.layout.spinner_item);
+        subject.setDropDownViewResource(R.layout.spinner_drop_item);
+
+        courses.setAdapter(subject);
 
         backbtn=findViewById(R.id.backBtn);
         homeButton=findViewById(R.id.home_btn);
@@ -59,7 +58,7 @@ public class AddTeacher extends AppCompatActivity {
         });
 
 
-        birthofdate.setOnClickListener(new View.OnClickListener() {
+        teacherBOD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -73,7 +72,7 @@ public class AddTeacher extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                birthofdate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                teacherBOD.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 pickDate.show();
@@ -82,10 +81,18 @@ public class AddTeacher extends AppCompatActivity {
 
         //submiting the Details
 
+        submitingDetails();
+
+
+
+    }
+
+    private void submitingDetails () {
+
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String BOD=birthofdate.getText().toString();
+                final String BOD= teacherBOD.getText().toString();
                 final String numbers=number.getText().toString();
                 final String addresss=address.getText().toString();
                 final String coureses =courses.getSelectedItem().toString();
@@ -106,32 +113,29 @@ public class AddTeacher extends AppCompatActivity {
                     degree_t.setError(getString(R.string.alertDegree));
                     degree_t.requestFocus();
                 } else if(BOD.isEmpty()){
-                    birthofdate.setError("Please BOD ");
-                    birthofdate.requestFocus();
+                    teacherBOD.setError("Please enter  DOB ");
+                    teacherBOD.requestFocus();
                 } else if(numbers.isEmpty()){
                     number.setError(getString(R.string.validNo));
                     number.requestFocus();
                 } else if(addresss.isEmpty()){
                     address.setError(getString(R.string.address));
                     address.requestFocus();
-                } else if(userEmail.length()<10){
-                    email.setError("Please enter proper email id");
+                } else if(userEmail.length()<6){
+                    email.setError(getString(R.string.properEmailAlert));
                     email.requestFocus();
                 } else if(fullName.length()<9){
-                    name.setError("Please enter Full Name");
+                    name.setError(getString(R.string.fullNameAlert));
                     name.requestFocus();
                 } else if(numbers.length()<10){
-                    number.setError("number lenght will be 10");
+                    number.setError(getString(R.string.noLength));
                     number.requestFocus();
                 } else if(addresss.length()<7){
-                    address.setError("Please enter proper address");
+                    address.setError(getString(R.string.properAddress));
                     address.requestFocus();
 
-                } else if(!isValid(userEmail)){
-                    email.setError("Email not valid");
-                    email.requestFocus();
-                    Toast.makeText(AddTeacher.this,"Email are not valid",Toast.LENGTH_LONG).show();
-                } else  if(!(userEmail.isEmpty() && fullName.isEmpty()&&BOD.isEmpty()&&numbers.isEmpty()&&addresss.isEmpty())){
+                }
+                else  if(!(userEmail.isEmpty() && fullName.isEmpty()&&BOD.isEmpty()&&numbers.isEmpty()&&addresss.isEmpty())){
                     Intent intent=new Intent(AddTeacher.this, setpassword.class);
 
                     intent.putExtra("degree",degree);
@@ -144,7 +148,7 @@ public class AddTeacher extends AppCompatActivity {
 
 
                     startActivity(intent);
-                    birthofdate.setText("");
+                    teacherBOD.setText("");
                     number.setText("");
                     email.setText("");
                     address.setText("");
@@ -158,21 +162,7 @@ public class AddTeacher extends AppCompatActivity {
             }
         });
         detectionProgressDialog = new ProgressDialog(AddTeacher.this);
-
-
-
     }
 
-    public static boolean isValid(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
 
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
 }

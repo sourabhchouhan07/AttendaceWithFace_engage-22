@@ -58,6 +58,11 @@ public class StudentAttendanceReport extends AppCompatActivity {
         pb.setVisibility(View.VISIBLE);
 
 
+
+
+        //Adding data to Spinner
+
+
         List<String> categories1 = new ArrayList<String>();
 
             categories1.add("FY_1BSCIT");

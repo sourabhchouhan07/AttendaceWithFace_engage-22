@@ -24,16 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class AddStudent extends AppCompatActivity {
      Button sumitBtn;
     String icode="121212";
     private ImageView backBtn;
     private ImageView homeBtn;
-    private EditText studentfullname, studentrollnumber,studentnumber,studentemail,studentdivision,studentbirtofdate,studentaddresss;
+    private EditText studentName, studentRoll;
+    private EditText studentNo, studentMail, studentDiv;
+    private EditText studentDoB,studentaddresss;
 
     private Spinner studentcourse,studentyear;
+
+
     private DatabaseReference studentRef;
 
     private ProgressBar pbadd;
@@ -53,7 +56,7 @@ public class AddStudent extends AppCompatActivity {
         studentRef = FirebaseDatabase.getInstance().getReference("Student");
         icode=((global)getApplication()).getInstituteCode();
 
-        studentbirtofdate.setInputType(InputType.TYPE_NULL);
+        studentDoB.setInputType(InputType.TYPE_NULL);
 
         //backButton fun
 
@@ -63,7 +66,7 @@ public class AddStudent extends AppCompatActivity {
 
 
 
-        studentbirtofdate.setOnClickListener(new View.OnClickListener() {
+        studentDoB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
@@ -75,7 +78,7 @@ public class AddStudent extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                studentbirtofdate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                studentDoB.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, year, month, day);
                 picker.show();
@@ -120,77 +123,57 @@ public class AddStudent extends AppCompatActivity {
 
         studentcourse=findViewById(R.id.studentcourse);
         studentyear=findViewById(R.id.studentyear);
-        studentfullname=findViewById(R.id.studentfullname);
-        studentrollnumber=findViewById(R.id.studentrollnumber);
-        studentnumber=findViewById(R.id.studentnumber);
-        studentemail=findViewById(R.id.studentemail);
-        studentdivision=findViewById(R.id.studentdivision);
-        studentbirtofdate=findViewById(R.id.studentbirtofdate);
+        studentName =findViewById(R.id.studentfullname);
+        studentRoll =findViewById(R.id.studentrollnumber);
+        studentNo =findViewById(R.id.studentnumber);
+        studentMail =findViewById(R.id.studentemail);
+        studentDiv =findViewById(R.id.studentdivision);
+        studentDoB =findViewById(R.id.studentbirtofdate);
         studentaddresss=findViewById(R.id.studentaddresss);
     }
 
     private void RegisterStudent() {
         pbadd.setVisibility(View.VISIBLE);
-        final String numbers = studentnumber.getText().toString().trim();
-        final String divisions = studentdivision.getText().toString().trim();
+        final String numbers = studentNo.getText().toString().trim();
+        final String divisions = studentDiv.getText().toString().trim();
         final String addresses = studentaddresss.getText().toString().trim();
         final String coureses = studentcourse.getSelectedItem().toString();
         final String years = studentyear.getSelectedItem().toString();
-        final String division = studentdivision.getText().toString().trim();
-        final String emailuser = studentemail.getText().toString().trim();
-        final String fullnames = studentfullname.getText().toString().trim();
-        final String rollnumbers = studentrollnumber.getText().toString().trim();
-        final String birthofdates = studentbirtofdate.getText().toString().trim();
+        final String division = studentDiv.getText().toString().trim();
+        final String emailuser = studentMail.getText().toString().trim();
+        final String fullnames = studentName.getText().toString().trim();
+        final String rollnumbers = studentRoll.getText().toString().trim();
+        final String birthofdates = studentDoB.getText().toString().trim();
 
 //
         if (emailuser.isEmpty()) {
-            studentemail.setError(getString(R.string.emailAlert));
-            studentemail.requestFocus();
+            studentMail.setError(getString(R.string.emailAlert));
+            studentMail.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (fullnames.isEmpty()) {
-            studentfullname.setError(getString(R.string.fullNameAlert));
-            studentfullname.requestFocus();
+            studentName.setError(getString(R.string.fullNameAlert));
+            studentName.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (rollnumbers.isEmpty()) {
-            studentrollnumber.setError(getString(R.string.enterRoll));
-            studentrollnumber.requestFocus();
+            studentRoll.setError(getString(R.string.enterRoll));
+            studentRoll.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (birthofdates.isEmpty()) {
-            studentbirtofdate.setError(getString(R.string.BOD));
-            studentbirtofdate.requestFocus();
+            studentDoB.setError(getString(R.string.BOD));
+            studentDoB.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (numbers.isEmpty()) {
-            studentnumber.setError(getString(R.string.enterNo));
-            studentnumber.requestFocus();
+            studentNo.setError(getString(R.string.enterNo));
+            studentNo.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (divisions.isEmpty()) {
-            studentdivision.setError(getString(R.string.divAlert));
-            studentdivision.requestFocus();
-            pbadd.setVisibility(View.GONE);
-
-        } else if (addresses.isEmpty()) {
-            studentaddresss.setError("Please enter address");
-            studentaddresss.requestFocus();
-            pbadd.setVisibility(View.GONE);
-
-        } else if (emailuser.length() < 10) {
-            studentemail.setError(getString(R.string.properEmailAlert));
-            studentemail.requestFocus();
-            pbadd.setVisibility(View.GONE);
-
-        } else if (fullnames.length() < 7) {
-            studentfullname.setError(getString(R.string.fullNameAlert));
-            studentfullname.requestFocus();
-            pbadd.setVisibility(View.GONE);
-
-        } else if (numbers.length() < 10) {
-            studentnumber.setError(getString(R.string.validNo));
-            studentnumber.requestFocus();
+        }  else if (numbers.length() < 10) {
+            studentNo.setError(getString(R.string.validNo));
+            studentNo.requestFocus();
             pbadd.setVisibility(View.GONE);
 
         } else if (addresses.length() < 7) {
@@ -198,12 +181,28 @@ public class AddStudent extends AppCompatActivity {
             studentaddresss.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (!isValid(emailuser)) {
-            studentemail.setError("Email not valid");
-            studentemail.requestFocus();
+        }else if (divisions.isEmpty()) {
+            studentDiv.setError(getString(R.string.divAlert));
+            studentDiv.requestFocus();
             pbadd.setVisibility(View.GONE);
 
-        } else if (emailuser.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresses.isEmpty()) {
+        } else if (addresses.isEmpty()) {
+            studentaddresss.setError(getString(R.string.properAddress));
+            studentaddresss.requestFocus();
+            pbadd.setVisibility(View.GONE);
+
+        } else if (emailuser.length() < 6) {
+            studentMail.setError(getString(R.string.properEmailAlert));
+            studentMail.requestFocus();
+            pbadd.setVisibility(View.GONE);
+
+        } else if (fullnames.length() < 7) {
+            studentName.setError(getString(R.string.fullNameAlert));
+            studentName.requestFocus();
+            pbadd.setVisibility(View.GONE);
+
+        }
+        else if (emailuser.isEmpty() && fullnames.isEmpty() && rollnumbers.isEmpty() && birthofdates.isEmpty() && numbers.isEmpty() && divisions.isEmpty() && addresses.isEmpty()) {
             Toast.makeText(AddStudent.this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
             pbadd.setVisibility(View.GONE);
 
@@ -224,25 +223,13 @@ public class AddStudent extends AppCompatActivity {
             intent.putExtra("code", icode);
 
             startActivity(intent);
-            studentbirtofdate.setText("");
-            studentnumber.setText("");
-            studentaddresss.setText("");
-            studentdivision.setText("");
-            studentfullname.setText("");
-            studentemail.setText("");
+            finish();
 
 
-            studentrollnumber.setText("");
 
 
         }
     }
-    public static boolean isValid(String email) {
-        String emailcheck = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
-        Pattern pat = Pattern.compile(emailcheck);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
+
 
     }

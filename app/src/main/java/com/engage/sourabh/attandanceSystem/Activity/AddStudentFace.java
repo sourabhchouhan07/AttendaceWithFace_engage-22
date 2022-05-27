@@ -19,6 +19,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.YuvImage;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -96,7 +97,10 @@ public class AddStudentFace extends AppCompatActivity {
     FirebaseAuth mAuth,auth1;
     FirebaseDatabase database;
     DatabaseReference dbRef;
-
+    ImageView backbtn, homeButton;
+    Button nextBtn;
+    String modelFile = "mobile_face_net.tflite"; //model name
+    String fullname,email,rollnumber,addresss,courese,year,birthofdate,division,number;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     PreviewView previewView;
     ImageView face_preview;
@@ -123,10 +127,7 @@ public class AddStudentFace extends AppCompatActivity {
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     DatabaseReference retData;
     String code;
-    ImageView backbtn, homeButton;
-    Button nextBtn;
-    String modelFile = "mobile_face_net.tflite"; //model name
-    String fullname,email,rollnumber,addresss,courese,year,birthofdate,division,number;
+
     private HashMap<String, SimilarityClassifier.Recognition> registered = new HashMap<>();
     //this for saved Faces
 
@@ -243,12 +244,31 @@ public class AddStudentFace extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
         add_face.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 addFace();
+
                 createStudentAccount();
+                // completing the activity
+                nextBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        mAuth.signOut();
+                        Intent i = new Intent(context, LoginActivity.class);
+                        Toast.makeText(context,"Student is Registered , Login Now",Toast.LENGTH_LONG).show();
+
+                        i.putExtra("email",emailaddrss);
+                        i.putExtra("password",password12);
+
+                        startActivity(i);
+                    }
+                });
+
 
 
 
@@ -344,8 +364,10 @@ public class AddStudentFace extends AppCompatActivity {
         {
 
             start = false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Do You Want to Add this Face ");
+
+
 
             // Set up the input
 //            final EditText input = new EditText(context);
@@ -395,8 +417,10 @@ public class AddStudentFace extends AppCompatActivity {
                     dialog.cancel();
                 }
             });
+            AlertDialog dialog = builder.create();
 
-            builder.show();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.YELLOW));
+            dialog.show();
 
 
 
@@ -612,21 +636,21 @@ public class AddStudentFace extends AppCompatActivity {
     }
 
     //IMPORTANT. If conversion not done ,the toBitmap conversion does not work on some devices.
-    private static byte[] YUV_420_888toNV21(Image image) {
+    private static byte[] YUV_420_888toNV21(Image Stdimage) {
 
-        int width = image.getWidth();
-        int height = image.getHeight();
+        int width = Stdimage.getWidth();
+        int height = Stdimage.getHeight();
         int ySize = width * height;
         int uvSize = width * height / 4;
 
         byte[] nv21 = new byte[ySize + uvSize * 2];
 
-        ByteBuffer yBuffer = image.getPlanes()[0].getBuffer(); // Y
-        ByteBuffer uBuffer = image.getPlanes()[1].getBuffer(); // U
-        ByteBuffer vBuffer = image.getPlanes()[2].getBuffer(); // V
+        ByteBuffer yBuffer = Stdimage.getPlanes()[0].getBuffer(); // Y
+        ByteBuffer uBuffer = Stdimage.getPlanes()[1].getBuffer(); // U
+        ByteBuffer vBuffer = Stdimage.getPlanes()[2].getBuffer(); // V
 
-        int rowStride = image.getPlanes()[0].getRowStride();
-        assert (image.getPlanes()[0].getPixelStride() == 1);
+        int rowStride = Stdimage.getPlanes()[0].getRowStride();
+        assert (Stdimage.getPlanes()[0].getPixelStride() == 1);
 
         int pos = 0;
 
@@ -642,11 +666,11 @@ public class AddStudentFace extends AppCompatActivity {
             }
         }
 
-        rowStride = image.getPlanes()[2].getRowStride();
-        int pixelStride = image.getPlanes()[2].getPixelStride();
+        rowStride = Stdimage.getPlanes()[2].getRowStride();
+        int pixelStride = Stdimage.getPlanes()[2].getPixelStride();
 
-        assert (rowStride == image.getPlanes()[1].getRowStride());
-        assert (pixelStride == image.getPlanes()[1].getPixelStride());
+        assert (rowStride == Stdimage.getPlanes()[1].getRowStride());
+        assert (pixelStride == Stdimage.getPlanes()[1].getPixelStride());
 
         if (pixelStride == 2 && rowStride == width && uBuffer.get(0) == vBuffer.get(1)) {
             // maybe V an U planes overlap as per NV21, which means vBuffer[1] is alias of uBuffer[0]
@@ -684,12 +708,12 @@ public class AddStudentFace extends AppCompatActivity {
         return nv21;
     }
 
-    private Bitmap toBitmap(Image image) {
+    private Bitmap toBitmap(Image stdImage) {
 
-        byte[] nv21 = YUV_420_888toNV21(image);
+        byte[] nv21 = YUV_420_888toNV21(stdImage);
 
 
-        YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, image.getWidth(), image.getHeight(), null);
+        YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, stdImage.getWidth(), stdImage.getHeight(), null);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 75, out);

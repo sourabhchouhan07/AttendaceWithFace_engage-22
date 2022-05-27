@@ -4,8 +4,6 @@ import static android.view.View.GONE;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,123 +28,148 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
 
 
 public class ProfileFragment extends Fragment {
 
-    private TextView full_names,showcources,Birthofdates,Contacts,mails,addresss,uids,div,rollnumber,usertype,rollt,divt,showdegreet,showdegree;
+    private TextView userfullName, showCourses;
+
+
+    private TextView BOD, Contacts, emails;
+
+    private TextView Addresses, uidOfUser, div;
+
+    private TextView rollnumber, usertype, rollt;
+
+    private TextView divt, showdegreet, showDegree;
+
     private ImageView profile;
+
+
     Button logout;
-    private ProgressBar ppb;
-    private StorageReference mStorageRef;
+    private ProgressBar progrssBar;
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout=inflater.inflate(R.layout.fragment_profile,container,false);
-        full_names=layout.findViewById(R.id.full_name);
-        showcources=layout.findViewById(R.id.showcource);
-        Birthofdates=layout.findViewById(R.id.Birthofdate);
-        Contacts=layout.findViewById(R.id.Contact);
-        mails=layout.findViewById(R.id.mail);
-        addresss=layout.findViewById(R.id.address);
-//        uids=layout.findViewById(R.id.uid);
-        logout=layout.findViewById(R.id.logout);
-        profile=layout.findViewById(R.id.imageView2);
-//        profile=layout.findViewById(R.id.profileimage);
-        ppb=layout.findViewById(R.id.profilepb);
-        div=layout.findViewById(R.id.div);
-        rollnumber=layout.findViewById(R.id.rollnumber);
-        usertype=layout.findViewById(R.id.usertype);
-        divt=layout.findViewById(R.id.divt);
-        rollt=layout.findViewById(R.id.rollt);
+    public View onCreateView (@NonNull LayoutInflater inflater , @Nullable ViewGroup container , @Nullable Bundle savedInstanceState) {
+        View fragmentView = inflater.inflate(R.layout.fragment_profile , container , false);
 
-        showdegree=layout.findViewById(R.id.showdegree);
-        showdegreet=layout.findViewById(R.id.showdegreet);
-        showdegree.setVisibility(GONE);
+
+        logout = fragmentView.findViewById(R.id.logout);
+        profile = fragmentView.findViewById(R.id.imageView2);
+
+        progrssBar = fragmentView.findViewById(R.id.profilepb);
+        div = fragmentView.findViewById(R.id.div);
+        rollnumber = fragmentView.findViewById(R.id.rollnumber);
+        usertype = fragmentView.findViewById(R.id.usertype);
+        divt = fragmentView.findViewById(R.id.divt);
+        rollt = fragmentView.findViewById(R.id.rollt);
+
+        userfullName = fragmentView.findViewById(R.id.full_name);
+        showCourses = fragmentView.findViewById(R.id.showcource);
+        BOD = fragmentView.findViewById(R.id.Birthofdate);
+        Contacts = fragmentView.findViewById(R.id.Contact);
+        emails = fragmentView.findViewById(R.id.mail);
+        Addresses = fragmentView.findViewById(R.id.address);
+
+
+        showDegree = fragmentView.findViewById(R.id.showdegree);
+        showdegreet = fragmentView.findViewById(R.id.showdegreet);
+        showDegree.setVisibility(GONE);
         showdegreet.setVisibility(GONE);
-           logout.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-
-                   FirebaseAuth mauth=FirebaseAuth.getInstance();
-                   mauth.signOut();
-                   Intent i=new Intent(getContext(), LoginActivity.class);
-                   startActivity(i);
-               }
-           });
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        return layout;
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        ppb.setVisibility(View.VISIBLE);
-        String loginid=((global) requireActivity().getApplication()).getUid();
-        DatabaseReference notice;
-        notice = FirebaseDatabase.getInstance().getReference("Profile/"+loginid);
-        notice.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                profiledatabase addTeacherdatbase= dataSnapshot.getValue(profiledatabase.class);
-                assert addTeacherdatbase != null;
-                full_names.setText(addTeacherdatbase.getFullname());
-                usertype.setText("Usertype:"+addTeacherdatbase.getUserType());
+            public void onClick (View v) {
 
-                String ust=addTeacherdatbase.getUserType();
+                FirebaseAuth mauth = FirebaseAuth.getInstance();
+                mauth.signOut();
+                Intent i = new Intent(getContext() , LoginActivity.class);
+                startActivity(i);
+            }
+        });
 
-                if(ust.equals("institute")){
+        return fragmentView;
+    }
+
+    @Override
+    public void onStart () {
+        super.onStart();
+
+
+        progrssBar.setVisibility(View.VISIBLE);
+        String loginid = ((global) requireActivity().getApplication()).getUid();
+
+
+        DatabaseReference dbRef;
+        dbRef = FirebaseDatabase.getInstance().getReference("Profile/" + loginid);
+        dbRef.addValueEventListener(new ValueEventListener() {
+
+
+
+            @Override
+            public void onDataChange (@NonNull DataSnapshot dataSnapshot) {
+                profiledatabase userDatabaseSet = dataSnapshot.getValue(profiledatabase.class);
+                assert userDatabaseSet != null;
+
+
+                userfullName.setText(userDatabaseSet.getFullname());
+                usertype.setText(" User : " + userDatabaseSet.getUserType());
+
+                String ust = userDatabaseSet.getUserType();
+
+                if (ust.equals("institute")) {
                     profile.setImageResource(R.drawable.instititue);
 
-                }else if(ust.equals("Teacher")){
+                } else if (ust.equals("Teacher")) {
                     profile.setImageResource(R.drawable.teachepic);
 
-                }else{
+                } else {
                     profile.setImageResource(R.drawable.stdentpic);
                 }
-                if(addTeacherdatbase.getCourece()!=null){
-                    showcources.setText(addTeacherdatbase.getCourece());
+                if (userDatabaseSet.getCourece() != null) {
+                    showCourses.setText(userDatabaseSet.getCourece());
                 }
-                if(addTeacherdatbase.getCourse()!=null){
-                    showcources.setText(addTeacherdatbase.getCourse());
-                }
-                if(addTeacherdatbase.getDegree()!=null){
-                    showdegree.setVisibility(View.VISIBLE);
-                    showdegree.setText(addTeacherdatbase.getDegree());
-                    showdegreet.setVisibility(View.VISIBLE);
-                }
-                Birthofdates.setText(addTeacherdatbase.getBirthofdate());
-                Contacts.setText(addTeacherdatbase.getNumbers());
-                mails.setText(addTeacherdatbase.getEmail());
-                addresss.setText(addTeacherdatbase.getAddresss());
-//                uids.setText(addTeacherdatbase.getUid());
-                if(addTeacherdatbase.getDivision()==null){
+
+                if (userDatabaseSet.getDivision() == null) {
                     div.setVisibility(GONE);
                     divt.setVisibility(GONE);
                 }
-                div.setText(addTeacherdatbase.getDivision());
-                if(addTeacherdatbase.getRollnumber()==null){
+                div.setText(userDatabaseSet.getDivision());
+                if (userDatabaseSet.getRollnumber() == null) {
                     rollnumber.setVisibility(GONE);
                     rollt.setVisibility(GONE);
                 }
-                rollnumber.setText(addTeacherdatbase.getRollnumber());
-                ppb.setVisibility(GONE);
+                
+                if (userDatabaseSet.getCourse() != null) {
+                    showCourses.setText(userDatabaseSet.getCourse());
+                }
+                if (userDatabaseSet.getDegree() != null) {
+                    showDegree.setVisibility(View.VISIBLE);
+                    showDegree.setText(userDatabaseSet.getDegree());
+                    showdegreet.setVisibility(View.VISIBLE);
+                }
+
+
+
+
+
+
+                BOD.setText(userDatabaseSet.getBirthofdate());
+                Contacts.setText(userDatabaseSet.getNumbers());
+                emails.setText(userDatabaseSet.getEmail());
+                Addresses.setText(userDatabaseSet.getAddresss());
+
+
+                rollnumber.setText(userDatabaseSet.getRollnumber());
+                progrssBar.setVisibility(GONE);
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(),"error"+error,Toast.LENGTH_LONG).show();
-                ppb.setVisibility(GONE);
+            public void onCancelled (@NonNull DatabaseError error) {
+                Toast.makeText(getContext() , "error" + error , Toast.LENGTH_LONG).show();
+                progrssBar.setVisibility(GONE);
             }
         });
-        String pp=((global) requireActivity().getApplication()).getLocalprofilepic();
-        if(pp!=null){
-            File newfile=new File(pp);
-            Bitmap bitmapdatabase2 = BitmapFactory.decodeFile(newfile.getAbsolutePath());
-            profile.setImageBitmap(bitmapdatabase2);
-        }
+
     }
 }

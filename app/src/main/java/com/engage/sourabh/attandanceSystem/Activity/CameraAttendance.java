@@ -98,6 +98,7 @@ public class CameraAttendance extends AppCompatActivity {
     DatabaseReference  dbRef;
     static int count=0;
     ImageView backBtn;
+    int countK=25;
 
     String Sname;
     TextView msg;
@@ -112,13 +113,13 @@ public class CameraAttendance extends AppCompatActivity {
     ImageView face_preview;
     Interpreter tfLite;
     TextView reco_name,preview_info,textAbove_preview;
-    Button recognize,camera_switch, actions;
+    Button recognize,camera_switch;
     ImageButton add_face;
     CameraSelector cameraSelector;
     boolean developerMode=false;
     float distance= 1.0f;
     boolean start=true,flipX=false;
-    Context context=CameraAttendance.this;
+    Context activityContext =CameraAttendance.this;
     int cam_face=CameraSelector.LENS_FACING_BACK; //Default Back Camera
 
     Button submitBtn;
@@ -136,7 +137,7 @@ public class CameraAttendance extends AppCompatActivity {
     DatabaseReference retData;
     String modelFile="mobile_face_net.tflite"; //model name
 
-    private HashMap<String, SimilarityClassifier.Recognition> registered = new HashMap<>(); //saved Faces
+    private HashMap<String, SimilarityClassifier.Recognition> registeredFaces = new HashMap<>(); //saved Faces
 
 
 
@@ -144,7 +145,8 @@ public class CameraAttendance extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        registered=readFromSP(); //Load saved faces from memory when app starts
+
+
         setContentView(R.layout.activity_camera_attendance);
 
         face_preview =findViewById(R.id.imageView);
@@ -155,6 +157,15 @@ public class CameraAttendance extends AppCompatActivity {
         add_face.setVisibility(View.INVISIBLE);
         msg=findViewById(R.id.msg);
         icode=((global)getApplication()).getInstituteCode();
+
+
+        final Intent intent=getIntent();
+        course=intent.getStringExtra("course");
+        year=intent.getStringExtra("year");
+        division=intent.getStringExtra("division");
+        subject=intent.getStringExtra("subject");
+        starttime=intent.getStringExtra("starttime");
+        endtime=intent.getStringExtra("endtime");
 
         dbRef = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"faces");
         progressDialog= new ProgressDialog(this);
@@ -170,6 +181,8 @@ public class CameraAttendance extends AppCompatActivity {
         submitBtn=findViewById(R.id.submitBtn);
 
 
+              initializeVariable();
+
 
         textAbove_preview.setText("Recognized Face:");
 //        preview_info.setText("        Recognized Face:");
@@ -180,13 +193,7 @@ public class CameraAttendance extends AppCompatActivity {
 
         //intent
 
-        final Intent intent=getIntent();
-        course=intent.getStringExtra("course");
-        year=intent.getStringExtra("year");
-        division=intent.getStringExtra("division");
-        subject=intent.getStringExtra("subject");
-        starttime=intent.getStringExtra("starttime");
-        endtime=intent.getStringExtra("endtime");
+
 
         loadfun();
 
@@ -278,6 +285,10 @@ public class CameraAttendance extends AppCompatActivity {
 
     }
 
+    private void initializeVariable () {
+
+    }
+
     private void submitAttendance() {
         progressDialog.show();
         notice1=FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandance");
@@ -317,7 +328,7 @@ public class CameraAttendance extends AppCompatActivity {
 
 
 
-                for (int k = 1; k <=20 ; k++)
+                for (int k = 1; k <=countK ; k++)
                 {     DatabaseReference dbt = retData.child(k+"");
                     String studentName=k+"";
                     if(dbt==null){
@@ -331,17 +342,17 @@ public class CameraAttendance extends AppCompatActivity {
                             if (snapshot.exists()){
                                 int i = 0;
                             Log.d("sst", "sourabh start" + dbt + "");
-                            float[][] mt = new float[200][200];
+                            float[][] faceEmbeddings = new float[200][200];
                             for (DataSnapshot tp : snapshot.getChildren()) {
                                 String t = tp.getValue(String.class);
-                                mt[0][i] = Float.parseFloat(t);
+                                faceEmbeddings[0][i] = Float.parseFloat(t);
                                 Log.d("sst", "sourabh start" + t);
                                 i++;
 
                             }
                             SimilarityClassifier.Recognition result = new SimilarityClassifier.Recognition(
                                     "0", "", -1f);
-                            result.setExtra(mt);
+                            result.setExtra(faceEmbeddings);
 
 
                             findName.child(studentName).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -353,7 +364,7 @@ public class CameraAttendance extends AppCompatActivity {
                                         Log.d("nnnn",nos); //yaha tk aa rha hai data
 
                                      String toge=nos+" , " +studentName+"";
-                                     registered.put(toge,result);
+                                     registeredFaces.put(toge,result);
                                        Log.d("reff",findName.child(studentName).toString());
                                     }
                                 }
@@ -402,11 +413,11 @@ public class CameraAttendance extends AppCompatActivity {
         {
 
             start=false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activityContext);
             builder.setTitle("Enter Name");
 
             // Set up the input
-            final EditText input = new EditText(context);
+            final EditText input = new EditText(activityContext);
 
             input.setInputType(InputType.TYPE_CLASS_TEXT );
             builder.setView(input);
@@ -423,7 +434,7 @@ public class CameraAttendance extends AppCompatActivity {
                     result.setExtra(embeedings);
                     String pt="";
 
-                    registered.put( input.getText().toString(),result);
+                    registeredFaces.put( input.getText().toString(),result);
                     String name=input.getText().toString();
                     DatabaseReference ref= dbRef.child("faces").child(name);
                     DatabaseReference tk= dbRef.child("studentName").child(String.valueOf(count));
@@ -527,14 +538,16 @@ public class CameraAttendance extends AppCompatActivity {
 
                 // Camera Feed-->Analyzer-->ImageProxy-->mediaImage-->InputImage(needed for ML kit face detection)
                 @SuppressLint("UnsafeExperimentalUsageError")
+
+
                 Image mediaImage = imageProxy.getImage();
 
                 if (mediaImage != null) {
                     image = InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
-//                    System.out.println("Rotation "+imageProxy.getImageInfo().getRotationDegrees());
+
                 }
 
-//                System.out.println("ANALYSIS");
+
 
                 //Process acquired image to detect faces
                 Task<List<Face>> result =
@@ -577,7 +590,7 @@ public class CameraAttendance extends AppCompatActivity {
                                                 }
                                                 else
                                                 {
-                                                    if(registered.isEmpty())
+                                                    if(registeredFaces.isEmpty())
                                                         reco_name.setText("Add Face");
                                                     else
                                                         reco_name.setText("No Face Detected!");
@@ -664,7 +677,7 @@ public class CameraAttendance extends AppCompatActivity {
         String label = "?";
 
         //Compare new face with saved Faces.
-        if (registered.size() > 0) {
+        if (registeredFaces.size() > 0) {
 
             final List<Pair<String, Float>> nearest = findNearest(embeedings[0]);//Find 2 closest matching face
 
@@ -729,7 +742,7 @@ public class CameraAttendance extends AppCompatActivity {
         List<Pair<String, Float>> neighbour_list = new ArrayList<Pair<String, Float>>();
         Pair<String, Float> ret = null; //to get closest match
         Pair<String, Float> prev_ret = null; //to get second closest match
-        for (Map.Entry<String, SimilarityClassifier.Recognition> entry : registered.entrySet())
+        for (Map.Entry<String, SimilarityClassifier.Recognition> entry : registeredFaces.entrySet())
         {
 
             final String name = entry.getKey();
@@ -813,21 +826,21 @@ public class CameraAttendance extends AppCompatActivity {
     }
 
     //IMPORTANT. If conversion not done ,the toBitmap conversion does not work on some devices.
-    private static byte[] YUV_420_888toNV21(Image image) {
+    private static byte[] YUV_420_888toNV21(Image stdImage) {
 
-        int width = image.getWidth();
-        int height = image.getHeight();
+        int width = stdImage.getWidth();
+        int height = stdImage.getHeight();
         int ySize = width*height;
         int uvSize = width*height/4;
 
         byte[] nv21 = new byte[ySize + uvSize*2];
 
-        ByteBuffer yBuffer = image.getPlanes()[0].getBuffer(); // Y
-        ByteBuffer uBuffer = image.getPlanes()[1].getBuffer(); // U
-        ByteBuffer vBuffer = image.getPlanes()[2].getBuffer(); // V
+        ByteBuffer yBuffer = stdImage.getPlanes()[0].getBuffer(); // Y
+        ByteBuffer uBuffer = stdImage.getPlanes()[1].getBuffer(); // U
+        ByteBuffer vBuffer = stdImage.getPlanes()[2].getBuffer(); // V
 
-        int rowStride = image.getPlanes()[0].getRowStride();
-        assert(image.getPlanes()[0].getPixelStride() == 1);
+        int rowStride = stdImage.getPlanes()[0].getRowStride();
+        assert(stdImage.getPlanes()[0].getPixelStride() == 1);
 
         int pos = 0;
 
@@ -844,11 +857,11 @@ public class CameraAttendance extends AppCompatActivity {
             }
         }
 
-        rowStride = image.getPlanes()[2].getRowStride();
-        int pixelStride = image.getPlanes()[2].getPixelStride();
+        rowStride = stdImage.getPlanes()[2].getRowStride();
+        int pixelStride = stdImage.getPlanes()[2].getPixelStride();
 
-        assert(rowStride == image.getPlanes()[1].getRowStride());
-        assert(pixelStride == image.getPlanes()[1].getPixelStride());
+        assert(rowStride == stdImage.getPlanes()[1].getRowStride());
+        assert(pixelStride == stdImage.getPlanes()[1].getPixelStride());
 
         if (pixelStride == 2 && rowStride == width && uBuffer.get(0) == vBuffer.get(1)) {
             // maybe V an U planes overlap as per NV21, which means vBuffer[1] is alias of uBuffer[0]
@@ -887,12 +900,12 @@ public class CameraAttendance extends AppCompatActivity {
         return nv21;
     }
 
-    private Bitmap toBitmap(Image image) {
+    private Bitmap toBitmap(Image stdImage) {
 
-        byte[] nv21=YUV_420_888toNV21(image);
+        byte[] nv21=YUV_420_888toNV21(stdImage);
 
 
-        YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, image.getWidth(), image.getHeight(), null);
+        YuvImage yuvImage = new YuvImage(nv21, ImageFormat.NV21, stdImage.getWidth(), stdImage.getHeight(), null);
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         yuvImage.compressToJpeg(new Rect(0, 0, yuvImage.getWidth(), yuvImage.getHeight()), 75, out);
@@ -905,54 +918,9 @@ public class CameraAttendance extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 
-    //Save Faces to Shared Preferences.Conversion of Recognition objects to json string
-    private void insertToSP(HashMap<String, SimilarityClassifier.Recognition> jsonMap,int mode) {
-        if(mode==1)  //mode: 0:save all, 1:clear all, 2:update all
-            jsonMap.clear();
-        else if (mode==0)
-            jsonMap.putAll(readFromSP());
-        String jsonString = new Gson().toJson(jsonMap);
-//        for (Map.Entry<String, SimilarityClassifier.Recognition> entry : jsonMap.entrySet())
-//        {
-//            System.out.println("Entry Input "+entry.getKey()+" "+  entry.getValue().getExtra());
-//        }
-        SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("map", jsonString);
-        //System.out.println("Input josn"+jsonString.toString());
-        editor.apply();
-        Toast.makeText(context, "Recognitions Saved", Toast.LENGTH_SHORT).show();
-    }
 
-    //Load Faces from Shared Preferences.Json String to Recognition object
-    private HashMap<String, SimilarityClassifier.Recognition> readFromSP(){
-        SharedPreferences sharedPreferences = getSharedPreferences("HashMap", MODE_PRIVATE);
-        String defValue = new Gson().toJson(new HashMap<String, SimilarityClassifier.Recognition>());
-        String json=sharedPreferences.getString("map",defValue);
-        // System.out.println("Output json"+json.toString());
-        TypeToken<HashMap<String,SimilarityClassifier.Recognition>> token = new TypeToken<HashMap<String,SimilarityClassifier.Recognition>>() {};
-        HashMap<String,SimilarityClassifier.Recognition> retrievedMap=new Gson().fromJson(json,token.getType());
-        // System.out.println("Output map"+retrievedMap.toString());
 
-        //During type conversion and save/load procedure,format changes(eg float converted to double).
-        //So embeddings need to be extracted from it in required format(eg.double to float).
-        for (Map.Entry<String, SimilarityClassifier.Recognition> entry : retrievedMap.entrySet())
-        {
-            float[][] output=new float[1][OUTPUT_SIZE];
-            ArrayList arrayList= (ArrayList) entry.getValue().getExtra();
-            arrayList = (ArrayList) arrayList.get(0);
-            for (int counter = 0; counter < arrayList.size(); counter++) {
-                output[0][counter]= ((Double) arrayList.get(counter)).floatValue();
-            }
-            entry.getValue().setExtra(output);
 
-            //System.out.println("Entry output "+entry.getKey()+" "+entry.getValue().getExtra() );
-
-        }
-//        System.out.println("OUTPUT"+ Arrays.deepToString(outut));
-        Toast.makeText(context, "Recognitions Loaded", Toast.LENGTH_SHORT).show();
-        return retrievedMap;
-    }
 
 
 

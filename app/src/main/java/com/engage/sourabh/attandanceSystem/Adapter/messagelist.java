@@ -15,40 +15,44 @@ import java.util.List;
 
 public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
 
-    private Activity context;
-    private List<notificationSendAndReceive> messagelist;
+
+    private List<notificationSendAndReceive> messageData;
+    private Activity activityContext;
 
 
 
     public messagelist(Activity context, List<notificationSendAndReceive> messagelist){
         super(context, R.layout.resever_msg_list,messagelist);
-        this.context=context;
-        this.messagelist=messagelist;
+        this.activityContext =context;
+        this.messageData =messagelist;
     }
 
 
-    @SuppressLint("SetTextI18n")
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater=context.getLayoutInflater();
+        LayoutInflater inflater= activityContext.getLayoutInflater();
 
 
-        @SuppressLint({"InflateParams", "ViewHolder"}) View listviewitem=inflater.inflate(R.layout.resever_msg_list,null,true);
+        @SuppressLint({"InflateParams", "ViewHolder"})
 
-
-
-
-        TextView sender=listviewitem.findViewById(R.id.by);
-        TextView time=listviewitem.findViewById(R.id.time);
-        TextView subject=listviewitem.findViewById(R.id.subject);
-        TextView message=listviewitem.findViewById(R.id.messae);
-        TextView timed=listviewitem.findViewById(R.id.timed);
+        View viewItem=inflater.inflate(R.layout.resever_msg_list,null,true);
 
 
 
 
-        notificationSendAndReceive notificationSendAndReceive = messagelist.get(position);
+        TextView sender=viewItem.findViewById(R.id.by);
+        TextView time=viewItem.findViewById(R.id.time);
+        TextView subject=viewItem.findViewById(R.id.subject);
+        TextView message=viewItem.findViewById(R.id.messae);
+        TextView timed=viewItem.findViewById(R.id.timed);
+
+
+
+
+        notificationSendAndReceive notificationSendAndReceive = messageData.get(position);
 
 
 
@@ -63,6 +67,6 @@ public class messagelist extends ArrayAdapter<notificationSendAndReceive> {
         message.setText(notificationSendAndReceive.getMessage());
 
 
-        return listviewitem;
+        return viewItem;
     }
 }

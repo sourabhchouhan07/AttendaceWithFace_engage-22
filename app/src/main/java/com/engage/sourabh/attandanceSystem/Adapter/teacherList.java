@@ -1,6 +1,5 @@
 package com.engage.sourabh.attandanceSystem.Adapter;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,48 +13,52 @@ import com.engage.sourabh.attandanceSystem.R;
 
 import java.util.List;
 
-public class teacherList extends ArrayAdapter<addTeacherdatabase> {
+public class teacherList extends ArrayAdapter <addTeacherdatabase> {
 
-    private TextView teacherName, teacherCourse, teaherDOB,teacheremail,teacheraddress;
+
+    private List <addTeacherdatabase> teacherDataList;
+    private TextView teacherName, teacherCourse, teaherDOB;
+    private TextView emailOfTeacher, addressOfTeacher;
     private Activity context;
-    private List<addTeacherdatabase> teacherinfo;
+    private int pos;
 
-
-    public teacherList(Context context, List<addTeacherdatabase> teacherinfo) {
-        super(context, R.layout.teacherlist,teacherinfo);
-        this.context= (Activity) context;
-        this.teacherinfo=teacherinfo;
+    public teacherList(Context context , List <addTeacherdatabase> teacherDataList) {
+        super(context , R.layout.teacherlist , teacherDataList);
+        this.context = (Activity) context;
+        this.teacherDataList = teacherDataList;
     }
-    
-        @SuppressLint("SetTextI18n")
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater =context.getLayoutInflater();
+
+    @Override
+    public View getView(int position , View convertView , ViewGroup parent) {
+        LayoutInflater inflater = context.getLayoutInflater();
 
 
-            View listViewItem=inflater.inflate(R.layout.teacherlist,null,true);
+        View viewItem = inflater.inflate(R.layout.teacherlist , null , true);
 
-            //Init. View
-
-            teacherName =listViewItem.findViewById(R.id.teachername);
-            teacherCourse =listViewItem.findViewById(R.id.teachercourse);
-            teaherDOB =listViewItem.findViewById(R.id.degree);
-            teacheremail=listViewItem.findViewById(R.id.teacheremail);
-            teacheraddress=listViewItem.findViewById(R.id.teacheraddress);
-
-
-            addTeacherdatabase addTeacherdatbase=teacherinfo.get(position);
-
-            //setting data to Textview;
-            teacherName.setText(addTeacherdatbase.getFullname());
-            teacherCourse.setText(addTeacherdatbase.getCourese());
-            teaherDOB.setText(addTeacherdatbase.getDegree());
-            teacheremail.setText(addTeacherdatbase.getEmail());
-            teacheraddress.setText(addTeacherdatbase.getAddresss());
+        //Init. View
+        pos = position;
+        teacherName = viewItem.findViewById(R.id.teachername);
+        teacherCourse = viewItem.findViewById(R.id.teachercourse);
+        teaherDOB = viewItem.findViewById(R.id.degree);
+        emailOfTeacher = viewItem.findViewById(R.id.teacheremail);
+        addressOfTeacher = viewItem.findViewById(R.id.teacheraddress);
 
 
+        //setting data to Textview;
+
+        setTextView();
 
 
-            return listViewItem;
-        }
+        return viewItem;
     }
+
+
+    private void setTextView() {
+        addTeacherdatabase teacherData = teacherDataList.get(pos);
+        teacherName.setText(teacherData.getFullname());
+        teacherCourse.setText(teacherData.getCourese());
+        teaherDOB.setText(teacherData.getDegree());
+        emailOfTeacher.setText(teacherData.getEmail());
+        addressOfTeacher.setText(teacherData.getAddresss());
+    }
+}

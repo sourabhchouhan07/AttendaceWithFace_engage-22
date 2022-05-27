@@ -5,21 +5,37 @@
     android:layout_width="match_parent"
     android:backgroundTint="@color/colorBackground"
     android:layout_height="match_parent"
-    tools:context=".Activity.selectrollnumber"
+    tools:context=".Activity.manualAttendance"
     android:background="#fff"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:paddingTop="15dp"
+        android:layout_height="54dp"
+        android:background="@color/colorPrimary">
 
-        android:background="@color/colorPrimary"
-        android:text="Select RollNo "
-        android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="64dp"
+            android:layout_margin="2dp"
+            android:layout_height="45dp"
+            app:srcCompat="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="90dp"
+
+            android:paddingTop="15dp"
+            android:text="Select RollNo "
+            android:textAlignment="center"
+            android:textColor="@color/white"
+
+
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
     <TableLayout
         android:layout_marginTop="10dp"
         android:id="@+id/mainLayout"
@@ -32,4 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.WhiteAccent"/>
+
+
 </LinearLayout>
