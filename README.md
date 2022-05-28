@@ -4,10 +4,10 @@
 # OverView
 The purpose of this system is to to help the lecturers, improve and organize the process of tracking and managing attendance  and provides a valuable attentive 
 service for both teachers and students. it Reduces manual process errors by providing automated and a reliable attendance system.
-First, the software takes a picture of all authorized students and stores it in a Firebase database. The system then stores the image by mapping it into a face coordinate structure. Next time whenever the registered student capture through camera the system recognizes the Student and marks his attendance along with the time. In this way a teacher can keep track of their attendance according to their subjects and classes . and all of this data will be saved on our database .
+First, the software takes a picture of all authorized students at registration time and stores it in a Firebase database. The system then stores the image by mapping it into a face coordinate structure. Next time whenever the registered student capture through camera the system recognizes the Student and marks his attendance along with the time. In this way a teacher can keep track of their attendance according to their subjects and classes . and all of this data will be saved on our database .
 
-## Demo Video Link   [Click](https://google.com)
-## Documentation Of Project [Documentation](https://google.com)
+## Demo Video Link   [Click](https://www.youtube.com/watch?v=NusSxQCQEas)
+## Documentation Of Project [Documentation](https://docs.google.com/presentation/d/1mIHfzW5_sc6rj06ncF3qHKMyt3bG6so4/edit?usp=sharing&ouid=103183354087582171419&rtpof=true&sd=true)
 
 
 ## Installation
@@ -18,7 +18,7 @@ Use Import from Version Control in Android Studio or Clone repo and open the pro
 git clone https://github.com/sourabhchouhan07/AttendaceWithFace_engage-22.git
 ```
 
-### Application file : [FaceX.apk](https://www.google.com)
+### Application file : [Download App](https://drive.google.com/file/d/1CATpGVKS2fm7hz74bIyOCmfQQCDjFk7i/view?usp=sharing)
 
 
 
@@ -34,10 +34,13 @@ git clone https://github.com/sourabhchouhan07/AttendaceWithFace_engage-22.git
 * Mobile facenet Model : [Research Paper](https://arxiv.org/ftp/arxiv/papers/1804/1804.07573.pdf) [Implementation](https://github.com/sirius-ai/MobileFaceNet_TF)
 * ML kit : for face Detection
 * CameraX library : - for Taking pictures
+* TensorFlow lite
 
 <!-- <img src="https://github.com/sourabhchouhan07/AttendaceWithFace_engage-22/blob/master/Snapshot/1.png" alt="youtube-icon" width="50px"> -->
 
 # Features of the Application (With Demo)
+
+###  Three Dashboard 1. Institute Dashboard 2. Teacher Dashboard 3 . Student Dashboard 
  ## 1.Institute Dashboard
  * Register Your Institute 
  * Add Teacher (only from this dashbord)
