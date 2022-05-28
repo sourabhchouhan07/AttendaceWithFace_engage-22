@@ -15,7 +15,7 @@
         <Button
             android:layout_width="94dp"
             android:layout_height="49dp"
-
+               android:visibility="invisible"
             android:background="@color/colorPrimary"
             android:text=" HELP ? "
             android:textAlignment="center"

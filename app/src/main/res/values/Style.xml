@@ -3,7 +3,7 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">#B093EC</item>
+        <item name="colorPrimaryDark">#ECA5BF</item>
         <item name="colorAccent">@color/colorAccent</item>
       
         <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryDark</item>
