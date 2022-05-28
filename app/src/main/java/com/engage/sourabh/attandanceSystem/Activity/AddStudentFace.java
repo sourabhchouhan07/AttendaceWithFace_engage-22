@@ -65,6 +65,7 @@ import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.tensorflow.lite.Interpreter;
 
@@ -236,7 +237,9 @@ public class AddStudentFace extends AppCompatActivity {
 
                 mAuth.signOut();
                 Intent i = new Intent(context, LoginActivity.class);
-                Toast.makeText(context,"Student is Registered , Login Now",Toast.LENGTH_LONG).show();
+
+                DynamicToast.makeSuccess(AddStudentFace.this, "Student is Registered , Login Now ").show();
+
 
                 i.putExtra("email",emailaddrss);
                 i.putExtra("password",password12);
@@ -260,12 +263,13 @@ public class AddStudentFace extends AppCompatActivity {
 
                         mAuth.signOut();
                         Intent i = new Intent(context, LoginActivity.class);
-                        Toast.makeText(context,"Student is Registered , Login Now",Toast.LENGTH_LONG).show();
 
+                        DynamicToast.makeSuccess(AddStudentFace.this, "Student is Registered , Login Now ").show();
                         i.putExtra("email",emailaddrss);
                         i.putExtra("password",password12);
 
                         startActivity(i);
+                        finish();
                     }
                 });
 

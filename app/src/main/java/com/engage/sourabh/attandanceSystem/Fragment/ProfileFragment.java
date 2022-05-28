@@ -2,7 +2,6 @@ package com.engage.sourabh.attandanceSystem.Fragment;
 
 import static android.view.View.GONE;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -41,7 +40,7 @@ public class ProfileFragment extends Fragment {
 
     private TextView rollnumber, usertype, rollt;
 
-    private TextView divt, showdegreet, showDegree;
+    private TextView divt, showdegreet, showDegree,showDob,showCourse,showAddress;
 
     private ImageView profile;
 
@@ -57,14 +56,17 @@ public class ProfileFragment extends Fragment {
 
         logout = fragmentView.findViewById(R.id.logout);
         profile = fragmentView.findViewById(R.id.imageView2);
-
+             showAddress=fragmentView.findViewById(R.id.showaddress);
+             showCourse=fragmentView.findViewById(R.id.showcourse);
+             showDob=fragmentView.findViewById(R.id.showdob);
         progrssBar = fragmentView.findViewById(R.id.profilepb);
         div = fragmentView.findViewById(R.id.div);
         rollnumber = fragmentView.findViewById(R.id.rollnumber);
         usertype = fragmentView.findViewById(R.id.usertype);
         divt = fragmentView.findViewById(R.id.divt);
         rollt = fragmentView.findViewById(R.id.rollt);
-
+        showDegree = fragmentView.findViewById(R.id.showdegree);
+        showdegreet = fragmentView.findViewById(R.id.showdegreet);
         userfullName = fragmentView.findViewById(R.id.full_name);
         showCourses = fragmentView.findViewById(R.id.showcource);
         BOD = fragmentView.findViewById(R.id.Birthofdate);
@@ -73,8 +75,7 @@ public class ProfileFragment extends Fragment {
         Addresses = fragmentView.findViewById(R.id.address);
 
 
-        showDegree = fragmentView.findViewById(R.id.showdegree);
-        showdegreet = fragmentView.findViewById(R.id.showdegreet);
+
         showDegree.setVisibility(GONE);
         showdegreet.setVisibility(GONE);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +152,18 @@ public class ProfileFragment extends Fragment {
 
 
 
+                if(userDatabaseSet.getBirthofdate()==null){
+                    showDob.setVisibility(View.INVISIBLE);
+                }
+
+
+                if(userDatabaseSet.getCourse()==null && userDatabaseSet.getCourece()==null){
+                    showCourse.setVisibility(View.INVISIBLE);
+                }
+
+                if(userDatabaseSet.getAddresss()==null){
+                    showAddress.setVisibility(View.INVISIBLE);
+                }
 
 
 

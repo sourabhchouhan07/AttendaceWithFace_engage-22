@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 public class SplashScreen extends AppCompatActivity {
     String inCode="";
@@ -101,8 +102,8 @@ public class SplashScreen extends AppCompatActivity {
                             String usertypelogin=dataSnapshot.child("userType").getValue().toString();
                             inCode=dataSnapshot.child("code").getValue().toString();
 
+                            DynamicToast.makeSuccess(SplashScreen.this, "Successfully login").show();
 
-                            Toast.makeText(SplashScreen.this,"Successfully login ",Toast.LENGTH_SHORT).show();
 
                             //NOW selecting Correct User from his Database
 
@@ -135,7 +136,7 @@ public class SplashScreen extends AppCompatActivity {
                                 i.putExtra("uid",uid);
                                 ((global)getApplication()).setInstituteCode(inCode);
 
-                                String name=dataSnapshot.child("name").getValue().toString();
+                                String name=dataSnapshot.child("fullname").getValue().toString();
                                 ((global)getApplication()).setFullname(name);
                                 i.putExtra("code",inCode);
                                 i.putExtra("userType",usertypelogin);

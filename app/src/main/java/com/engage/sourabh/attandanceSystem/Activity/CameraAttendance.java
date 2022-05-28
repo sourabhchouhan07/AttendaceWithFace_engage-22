@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -62,13 +63,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import org.tensorflow.lite.Interpreter;
 
@@ -311,7 +311,9 @@ public class CameraAttendance extends AppCompatActivity {
         notice2 = FirebaseDatabase.getInstance().getReference("institutes/"+icode+"/"+"Attandancedetail");
         notice2.child(course+"/"+year+"/"+division+"/"+subject+"/"+Adate).setValue("date");
         progressDialog.dismiss();
-        Toast.makeText(CameraAttendance.this,"Submit attendance ", Toast.LENGTH_LONG).show();
+
+        DynamicToast.makeSuccess(CameraAttendance.this, " Attendance Submit successfully ").show();
+//        Toast.makeText(CameraAttendance.this,"Submit attendance ", Toast.LENGTH_LONG).show();
         finish();
     }
 

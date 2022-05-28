@@ -161,10 +161,10 @@ public class SignUpActivity extends AppCompatActivity {
 
             final HashMap<String, String> profile = new HashMap<>();
             profiledatabase profiledatabase = new profiledatabase(" ",name, email, " ", " ", " ", " ", " ", userType, " ", " ", " ", " ", " ", "");
-            profile.put("name", name);
+            profile.put("fullname", name);
             profile.put("email", email);
             profile.put("userType", "institute");
-            profile.put("number",number);
+            profile.put("numbers",number);
             profile.put("code",code);
             String keyto =uniKey.push().getKey();
             uniKey.child(keyto).setValue(code);
@@ -180,7 +180,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 rootRef = FirebaseDatabase.getInstance().getReference();
                                 Toast.makeText(SignUpActivity.this, "Account created successfully...", Toast.LENGTH_SHORT).show();
                                 String currentUserId = currentUser.getUid();
-                                profile.put("userId", currentUserId);
+                                profile.put("uid", currentUserId);
 
 
                                 rootRef.child("Profile").child(currentUserId).setValue(profile);

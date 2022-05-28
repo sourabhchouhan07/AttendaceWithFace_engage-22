@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 startActivity(intent);
                                             }else if(usertypelogin.equals("institute"))
                                             {
-                                                String name=dataSnapshot.child("name").getValue().toString();
+                                                String name=dataSnapshot.child("fullname").getValue().toString();
                                                 ((global)getApplication()).setFullname(name);
                                                 progressBar.setVisibility(View.GONE);
                                                 Intent intent = new Intent(LoginActivity.this, IndexActivity.class);
