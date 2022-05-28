@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="0dp"
                         android:paddingStart="10dp"
-                        android:text="@string/cource"
+                        android:text="course"
                         android:textColor="@color/black"
                         android:textSize="13dp" />
 
